@@ -188,39 +188,39 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
             <div class="tray tray-center">
                 <div class="col-md-12">
 
-                    <?php if(isset($_GET['text'])){ echo '<h2 style="color:'. $_GET['color'] .';">' . $_GET['text'] . '</h2>';} ?>
-
-                    <?php if(isset($_GET['action']) && $_GET['action']=='new'){ ?>
-                        <div class="row">
+                        <!-- NEW PROJECT -->
+                        <!-- NEW PROJECT -->
+                        <!-- NEW PROJECT -->
+                        <div class="row j-hide" id="newProForm" >
                             <div class="col-md-6">
 
-                                <!-- Input Fields -->
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <span class="panel-title">Add New Project</span>
+                                        <span class="panel-title">Create New Project</span>
                                     </div>
 
                                     <div class="panel-body">
-                                        <form class="form-horizontal" name="newform" method="POST" action="projectnames.php" role="form">
+                                        <form class="form-horizontal" name="newform" id="newform"method="POST" action="" role="form">
                                             <div class="form-group">
                                                 <label for="inputStandard" class="col-lg-3 control-label">Project Name</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" name="newproject" class="form-control" placeholder="Type Project Name Here..." required>
+                                                    <input type="text" id="nProjectName" name="projectName" class="form-control" placeholder="Insert Project Name" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
-                                                <a href="projectnames.php" class="btn btn-default " role="button"> Cancel </a>
-                                                <button type="submit" name="submitnew" class="btn btn-primary">Save Project</button>
+                                                <button type="button" class="btn btn-default" role="button" id="canelNewPro" > Cancel </button>
+                                                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewPro" > Create Project</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                    <?php } ?>
 
+                        <!-- EDIT PROJECT -->
+                        <!-- EDIT PROJECT -->
+                        <!-- EDIT PROJECT -->
                         <div class="row j-hide" id="editmode">
                             <div class="col-md-6">
 
@@ -241,7 +241,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                             </div>
                                             <div align="right" class="">
                                                 <button type="button" class="btn btn-default " role="button" id="canelEditPro"> Cancel </button>
-                                                <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveEditPro">Edit Project</button>
+                                                <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveEditPro">Save changes</button>
                                             </div>
                                         </form>
                                     </div>
@@ -284,7 +284,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                     <?php if(isset($_POST['deleteall']) && isset($_POST['checknum'])) { ?>
                         <div class="row">
                             <div class="col-md-6">
-
                                 <!-- Input Fields -->
                                 <div class="panel panel-danger">
                                     <div class="panel-heading">
@@ -316,7 +315,8 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         <div class="clearfix"></div>
                     <?php } ?>
 
-                    <a href="projectnames.php?action=new" class="btn btn-default btn-gradient"><i class="fa fa-plus"></i> Add New Project </a>
+                    <!-- CREATE NEW PROJECT BTN -->
+                    <button class="btn btn-default btn-gradient" id="newProOpen"><i class="fa fa-plus"></i> Create New Project </button>
 
                     <div class="panel panel-visible">
                         <div class="panel-heading">
@@ -361,7 +361,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 
                                     </tbody>
                                 </table>
-                                <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button>
+                                <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
                             </form>
                         </div>
                     </div>

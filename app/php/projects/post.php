@@ -1,16 +1,23 @@
 <?php
 include_once('../../axispanel/includes/connect.php');
 
-if(isset($_POST['newproject']) ) {
+if(isset($_POST['projectName']) ) {
 
-    $new = $_POST['newproject'];
+    $projectName = $_POST['projectName'];
 
-    $sqlnew = "INSERT INTO tblprojects (projectName) VALUES ('$new')";
+    $sqlnew = "INSERT INTO tblprojects (projectName) VALUES ('$projectName')";
 
     if (mysqli_query($conn, $sqlnew)) {
 
-        header("HTTP/1.0 200 OK");
-        echo "Project created successfully";
+        //Get Project ID
+        $project = array(
+                        'projectId' => $conn->insert_id,
+                        'projectName' => $projectName 
+                    );
+        $projects = json_encode($project);
+
+          header("HTTP/1.0 200 OK");
+          echo $projects;
     }
     else {
         header("HTTP/1.0 500 Internal Server Error");

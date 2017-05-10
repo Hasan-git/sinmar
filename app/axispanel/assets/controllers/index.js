@@ -35,10 +35,18 @@
                     success:function(data){
                         //Datatable Initializer
                         var tbl = $('#datatable3').dataTable({
-                            "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
+                            "sDom": '<"dt-panelmenu text-center clearfix"T><"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>',
+                            // "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
                             "oTableTools": {
                                 "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
                             },
+                            lengthMenu: [
+                                [ 10, 25, 50, -1 ],
+                                [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                            ],
+                            buttons: [
+                                'pageLength'
+                            ],
                             data:data.data,
                             columns:[
                                 {'data':'projectId'},
@@ -106,7 +114,6 @@
                             myDataTable.row(row).data(localProject).draw();
                             $('#editmode').hide(700);
                             toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
-
                             } ,
                             error: function(err) {
                                 toastr.error(error, 'Notification', {timeOut: 5000})
@@ -115,6 +122,46 @@
                     });
 
 
+            // New project btn clicked -> show the form
+            $('#newProOpen').click(function(){
+                $('#newProForm').show(800);
+
+            });
+
+            // New Project canceled
+            $('#canelNewPro').click(function(){
+                        $('#newProForm').hide(700);
+            });
+
+
+            $('#saveNewPro').click(function(){
+                $.ajax({
+                    url: '../php/projects/post.php',
+                    method:'POST',
+                    data: $('#newform').serialize(),
+                    success:function(data){ 
+
+                        var _newProduct = JSON.parse(data)
+
+                        var myDataTable= $('#datatable3').DataTable();
+                        
+                        myDataTable.row.add(_newProduct  ).draw( false )
+                        
+                        $('#newProForm').hide(700);
+                        toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
+                    } ,
+                    error: function(err) {
+                        if(err){
+                            toastr.error(err, 'Notification', {timeOut: 5000})
+                        }else{
+                            toastr.error('An error occurred', 'Notification', {timeOut: 5000})
+                        }
+                    }
+                });    
+            });
+
+
+           
 
         });//end
 
