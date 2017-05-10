@@ -1,0 +1,109 @@
+    tblbrands
+
+Column	Type	Null	Default 	Comments
+brandId /(Primary)/	int(11)	No		
+brandName	varchar(250)	No		
+
+
+
+    tblcategories
+
+Column	Type	Null	Default 	Comments
+categoryId /(Primary)/	int(11)	No		
+categoryName	varchar(250)	No		
+
+
+   
+
+    tblitemimages
+
+Column	Type	Null	Default 	Comments
+ImageId /(Primary)/	int(11)	No		
+imageName	varchar(250)	No		
+itemName	varchar(250)	No		
+
+
+
+    tblitems
+
+Column	Type	Null	Default 	Comments
+itemId /(Primary)/	int(11)	No		
+itemType	enum('Hardware', 'Appliances')	No		
+itemName	varchar(250)	No		
+brandName	varchar(250)	No		
+categoryName	varchar(250)	No		
+model	varchar(250)	Yes	/NULL/ 	
+itemSize	varchar(100)	Yes	/NULL/ 	
+color	varchar(100)	Yes	/NULL/ 	
+price	int(11)	No		
+description	text	Yes	/NULL/ 	
+new	tinyint(1)	Yes	/NULL/ 	
+offer	tinyint(1)	Yes	/NULL/ 	
+offerPrice	int(11)	Yes	/NULL/ 	
+itemImage	varchar(250)	No		
+
+
+
+
+    tblprojectdetails
+
+Column	Type	Null	Default 	Comments
+prdetailsId /(Primary)/	int(11)	No		
+prdetailsTitle	varchar(250)	Yes	/NULL/ 	
+prdetailsName	varchar(250)	No		
+prdetailsType	varchar(250)	No		
+prdetailsSubtype	varchar(250)	Yes	/NULL/ 	
+location	varchar(250)	Yes	/NULL/ 	
+projectDate	date	No		
+description	text	Yes	/NULL/ 	
+notes	text	Yes	/NULL/ 	
+new	tinyint(1)	No		
+projectImage	varchar(250)	No		
+
+
+     
+
+
+    tblprojectimages
+
+Column	Type	Null	Default 	Comments
+projectImageId /(Primary)/	int(11)	No		
+imageType	enum('After', 'Before')	No		
+projectTitle	varchar(250)	No		
+imageSort	varchar(250)	No		
+imageName	varchar(250)	No		
+
+
+      
+
+
+    tblprojects
+
+Column	Type	Null	Default 	Comments
+projectId /(Primary)/	int(11)	No		
+projectName	varchar(250)	No		
+
+
+      
+
+
+    tblprojecttype
+
+Column	Type	Null	Default 	Comments
+projectTypeId /(Primary)/	int(11)	No		
+projectTypeName	varchar(250)	No		
+
+
+      
+
+
+    tblusers
+
+Column	Type	Null	Default 	Comments
+userId /(Primary)/	int(11)	No		
+userName	varchar(200)	No		
+password	varchar(100)	No		
+userType	enum('Admin', 'User', 'Client')	No		
+
+
+
