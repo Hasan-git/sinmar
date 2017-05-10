@@ -1,3 +1,4 @@
+    tbl brands
     tblBrands
 
 Column	Type	Null	Default 	Comments
