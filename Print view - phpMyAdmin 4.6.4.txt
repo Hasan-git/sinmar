@@ -1,4 +1,4 @@
-    tblbrands
+    tblBrands
 
 Column	Type	Null	Default 	Comments
 brandId /(Primary)/	int(11)	No		
