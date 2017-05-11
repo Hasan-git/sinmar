@@ -182,61 +182,60 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
             <div class="tray tray-center">
                 <div class="col-md-12">
 
-                    <?php if(isset($_GET['text'])){ echo '<h2 style="color:'. $_GET['color'] .';">' . $_GET['text'] . '</h2>';} ?>
 
-                    <?php if(isset($_GET['action']) && $_GET['action']=='new'){ ?>
-                        <div class="row">
+                        <!-- NEW PROJECT TYPE-->
+                        <!-- NEW PROJECT TYPE-->
+                        <!-- NEW PROJECT TYPE-->
+                        <div class="row j-hide" id="newProForm">
                             <div class="col-md-6">
-
-                                <!-- Input Fields -->
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <span class="panel-title">Add New Project Type</span>
                                     </div>
 
                                     <div class="panel-body">
-                                        <form class="form-horizontal" name="newform" method="POST" action="projecttypes.php" role="form">
+                                        <form class="form-horizontal" name="newform" id="newform" method="POST" action="" role="form">
                                             <div class="form-group">
                                                 <label for="inputStandard" class="col-lg-3 control-label">Project Types</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" name="newprojecttype" class="form-control" placeholder="Write Project type Here..." required>
+                                                    <input type="text" name="projectTypeName" data-validation="required" class="form-control" placeholder="Insert Project Type" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
-                                                <a href="projecttypes.php" class="btn btn-default " role="button"> Cancel </a>
-                                                <button type="submit" name="submitnew" class="btn btn-primary">Save Type</button>
+                                                <button type="button" class="btn btn-default" role="button" id="canelNewPro" > Cancel </button>
+                                                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewPro" > Create Project</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                    <?php } ?>
 
-                    <?php if(isset($_GET['action']) && $_GET['action']=='edit'){ ?>
-                        <div class="row">
+
+
+                        <!-- EDIT PROJECT TYPE-->
+                        <!-- EDIT PROJECT TYPE-->
+                        <!-- EDIT PROJECT TYPE-->
+                        <div class="row j-hide" id="editmode">
                             <div class="col-md-6">
-
-                                <!-- Input Fields -->
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <span class="panel-title">Edit Type <?php if(isset($row_edit['projectTypeName'])) {echo $row_edit['projectTypeName'];} ?></span>
+                                        <span class="panel-title">Edit  <span class="text-info" id="proNameBox"></span> </span>
                                     </div>
 
                                     <div class="panel-body">
-                                        <form class="form-horizontal" name="editform" method="POST" action="projecttypes.php" role="form">
+                                        <form class="form-horizontal" name="editform" id="editProForm" method="POST" action="" role="form">
                                             <div class="form-group">
                                                 <label class="col-lg-3 control-label">Project Type</label>
                                                 <div class="col-lg-8">
-                                                    <input type="hidden" name="editprojecttypeId" value="<?php if(isset($row_edit['projectTypeId'])){ echo $row_edit['projectTypeId'];} ?>" >
-                                                    <input type="text" name="editprojecttypename" class="form-control" value="<?php if(isset($row_edit['projectTypeName'])){ echo $row_edit['projectTypeName'];} ?>" required>
+                                                    <input type="hidden" name="projectTypeId" id="projectTypeId" value="" >
+                                                    <input type="text"   name="projectTypeName" id="projectTypeName" class="form-control" value="" data-validation="required" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
-                                                <a href="projecttypes.php" class="btn btn-default " role="button"> Cancel </a>
-                                                <button type="submit" name="submitedit" class="btn btn-primary">Edit Type</button>
+                                               <button type="button" class="btn btn-default " role="button" id="canelEditPro"> Cancel </button>
+                                                <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveEditPro">Save changes</button>
                                             </div>
                                         </form>
                                     </div>
@@ -245,73 +244,9 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                    <?php } ?>
 
-                    <?php if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['projectTypeId'])) { ?>
-                        <div class="row">
-                            <div class="col-md-6">
 
-                                <!-- Input Fields -->
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <span class="panel-title">Are you sure you want to Delete <?php if(isset($row_delete['projectTypeName'])) {echo $row_delete['projectTypeName'];} ?>?</span>
-                                    </div>
-
-                                    <div class="panel-body">
-                                        <form class="form-horizontal" name="deleteform" method="POST" action="projecttypes.php" role="form">
-                                            <div class="form-group">
-                                                <input type="hidden" name="deleteprojecttypeId" value="<?php if(isset($row_delete['projectTypeId'])){ echo $row_delete['projectTypeId'];} ?>" >
-                                                <h4>&emsp;&emsp;<?php if(isset($row_delete['projectTypeName'])){ echo $row_delete['projectTypeName'];} ?></h4>
-                                            </div>
-                                            <div align="right" class="">
-                                                <a href="projecttypes.php" class="btn btn-default " role="button"> Cancel Delete </a>
-                                                <button type="submit" name="submitdelete" class="btn btn-danger">Delete Type</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    <?php } ?>
-
-                    <?php if(isset($_POST['deleteall']) && isset($_POST['checknum'])) { ?>
-                        <div class="row">
-                            <div class="col-md-6">
-
-                                <!-- Input Fields -->
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <span class="panel-title">Are you sure you want to Delete Records?</span>
-                                    </div>
-
-                                    <div class="panel-body">
-                                        <form class="form-horizontal" name="deleteallform" method="POST" action="projecttypes.php" role="form">
-                                            <div class="form-group">
-
-                                                <?php
-                                                $list = $_POST['checknum'];
-                                                foreach($list as $name) { ?>
-                                                    <input type="hidden" name="checknum[]" value="<?php echo $name; ?>" checked >
-                                                    <p>&emsp;&emsp;<?php echo $name; ?></p>
-                                                <?php } ?>
-
-                                            </div>
-                                            <div align="right" class="">
-                                                <a href="projecttypes.php" class="btn btn-default " role="button"> Cancel Delete </a>
-                                                <button type="submit" name="submitalldelete" class="btn btn-danger">Delete Types</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    <?php } ?>
-
-                    <a href="projecttypes.php?action=new" class="btn btn-default btn-gradient"><i class="fa fa-plus"></i> Add Project Type </a>
+                    <button class="btn btn-default btn-gradient" scrollto="#newProForm" id="newProOpen"><i class="fa fa-plus"></i> Add Project Type </button>
 
                     <div class="panel panel-visible">
                         <div class="panel-heading">
@@ -319,11 +254,10 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         </div>
 
                         <div class="panel-body pn">
-                            <form name="table" method="POST" action="projecttypes.php">
+                            <form name="table" method="POST" action="">
                                 <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Select</th>
                                         <th>ID</th>
                                         <th>Project Types</th>
                                         <th>Actions</th>
@@ -331,30 +265,16 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <th>Select</th>
                                         <th>ID</th>
                                         <th>Project Types</th>
                                         <th>Actions</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    <?php if (mysqli_num_rows($result) > 0) {
-                                        $i=1;
-                                        while($row = mysqli_fetch_assoc($result)) { ?>
-                                            <tr>
-                                                <td>&emsp;<input type="checkbox" name="checknum[]" value="<?php echo $row['projectTypeName']; ?>"></td>
-                                                <td><?php echo $i; ?></td>
-                                                <td><?php echo $row['projectTypeName']; ?></td>
-                                                <td>
-                                                    <a href="projecttypes.php?action=edit&projectTypeId=<?php echo $row['projectTypeId']; ?>" class="btn btn-warning btn-sm btn-rounded btn-gradient"><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="projecttypes.php?action=delete&projectTypeId=<?php echo $row['projectTypeId']; ?>" class="btn btn-danger btn-sm btn-rounded btn-gradient"><i class="fa fa-times-circle"></i> Delete </a>
-                                                </td>
-                                            </tr>
-                                            <?php $i++; }/*whileend*/
-                                    }/*ifend*/ ?>
+                                  
                                     </tbody>
                                 </table>
-                                <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button>
+                                <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
                             </form>
                         </div>
                     </div>
@@ -372,6 +292,21 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 
     </div>
     <!-- End: Main -->
+
+    <!-- MODAL TEMPLATE for delete project -->
+    <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+          <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+          <div>
+                <h2 id="modal1Title">Notification</h2>
+                <p id="modal1Desc">
+                  Are you sure you want to delete this project ?
+                </p>
+          </div>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">No</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Yes</button>
+    </div>
+
 
     <!-- BEGIN: PAGE SCRIPTS -->
 
@@ -391,6 +326,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     <!-- plugins -->
     <script src="vendor/plugins/toaster/toastr.min.js"></script>
     <script src="vendor/plugins/modal/remodal.js"></script>
+    <script src="vendor/plugins/jqueryFormValidator/form-validator/jquery.form-validator.js"></script>
 
     <!-- Theme Javascript -->
     <script src="assets/js/utility/utility.js"></script>
@@ -398,81 +334,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     <script src="assets/js/main.js"></script>
     <script src="assets/controllers/projectTypes.js"></script>
 
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
 
-            "use strict";
-
-            // Init Theme Core
-            Core.init();
-
-            // Init Demo JS
-            Demo.init();
-
-            // Init Widget Demo JS
-            // demoHighCharts.init();
-
-            // Because we are using Admin Panels we use the OnFinish
-            // callback to activate the demoWidgets. It's smoother if
-            // we let the panels be moved and organized before
-            // filling them with content from various plugins
-
-            // Init plugins used on this page
-            // HighCharts, JvectorMap, Admin Panels
-
-            // Init Admin Panels on widgets inside the ".admin-panels" container
-            //   $('.admin-panels').adminpanel({
-            //     grid: '.admin-grid',
-            //     draggable: true,
-            //     preserveGrid: true,
-            //     mobile: false,
-            //     onStart: function() {
-            //       // Do something before AdminPanels runs
-            //     },
-            //    onFinish: function() {
-            //       $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
-
-            // Init the rest of the plugins now that the panels
-            // have had a chance to be moved and organized.
-            // It's less taxing to organize empty panels
-
-            //    },
-            //    onSave: function() {
-            //      $(window).trigger('resize');
-            //    }
-            //  });
-
-            // MISC DATATABLE HELPER FUNCTIONS
-            $('#datatable3').dataTable({
-                "aoColumnDefs": [{
-                    'bSortable': false,
-                    'aTargets': [-1]
-                }],
-                "oLanguage": {
-                    "oPaginate": {
-                        "sPrevious": "",
-                        "sNext": ""
-                    }
-                },
-                "iDisplayLength": 10,
-                "aLengthMenu": [
-                    [5, 10, 25, 50, -1],
-                    [5, 10, 25, 50, "All"]
-                ],
-                "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
-                "oTableTools": {
-                    "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-                }
-            });
-
-            // Add Placeholder text to datatables filter bar
-            $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
-
-
-        });
-    </script>
-
-    <!-- END: PAGE SCRIPTS -->
 
 
     </body>

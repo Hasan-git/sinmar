@@ -38,6 +38,7 @@
                 modules:    conf.modules
             });
 
+            var urlPath = '../php/projects/';
 
             ////////////////////////////////////////////////////
             
@@ -45,7 +46,7 @@
 
             //Get all projects
             $.ajax({
-                url: '../php/projects/get.php',
+                url: urlPath + 'get.php',
                 method:'GET',
                 dataType:'json',
                 success:function(data){
@@ -70,7 +71,7 @@
                             {   'data':null,
                                 'render': function ( data, type, full, meta ) {
                                     //set data-row attr as the datatable row -> give access the save changes to update row data localy
-                                    return "<button class='btn btn-xs btn-success' id='editProject' data-row='"+meta.row+"' data-project='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
+                                    return "<button class='btn btn-xs btn-success' scrollto='#editmode' id='editProject' data-row='"+meta.row+"' data-project='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
                                       "<a class='btn btn-xs btn-danger' id='deleteProject' data-row='"+meta.row+"' project-id='"+full.projectId+"' href='#'> <i class='fa fa-trash'></i> </a> "
                                 },
                                 
@@ -114,7 +115,7 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url: '../php/projects/update.php',
+                            url: urlPath + 'update.php',
                             method:'POST',
                             data: $('#editProForm').serialize(),
                             success:function(data){ 
@@ -165,7 +166,7 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url: '../php/projects/post.php',
+                        url: urlPath + 'post.php',
                         method:'POST',
                         data: $('#newform').serialize(),
                         success:function(data){ 
@@ -207,7 +208,7 @@
             $(document).on('confirmation', '.remodal', function () {
                 
                 $.ajax({
-                        url: '../php/projects/delete.php',
+                        url: urlPath + 'delete.php',
                         method:'POST',
                         data: {projectId:projectId},
                         success:function(data){ 
@@ -217,8 +218,8 @@
 
                         // get / set dt row
                         var row = myDataTable.row($(thisProject).parents('tr')).remove().draw();;
-                        //myDataTable.row(row).data(localProject).draw();
-                        // $('#editmode').hide(700);
+                        
+                        inst.close();
                         toastr.success('Project deleted successfully', 'Notification', {timeOut: 5000})
                         } ,
                         error: function(err) {
@@ -232,9 +233,6 @@
             });
 
         });
-
-
-
 
         });//end
 

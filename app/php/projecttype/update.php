@@ -1,7 +1,7 @@
 <?php
 include_once('../../axispanel/includes/connect.php');
 
-    if(isset($_POST['projecTypetName']) && isset($_POST['projectTypeId']) ) {
+    if(isset($_POST['projectTypeName']) && isset($_POST['projectTypeId']) ) {
 
 
         $projectTypeName = $_POST['projectTypeName'];

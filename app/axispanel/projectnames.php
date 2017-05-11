@@ -187,14 +187,13 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         <!-- NEW PROJECT -->
                         <div class="row j-hide" id="newProForm" >
                             <div class="col-md-6">
-
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <span class="panel-title">Create New Project</span>
                                     </div>
 
                                     <div class="panel-body">
-                                        <form class="form-horizontal" name="newform" id="newform"method="POST" action="" role="form">
+                                        <form class="form-horizontal" name="newform" id="newform" method="POST" action="" role="form">
                                             <div class="form-group">
                                                 <label for="inputStandard" class="col-lg-3 control-label">Project Name</label>
                                                 <div class="col-lg-8">
@@ -217,7 +216,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         <!-- EDIT PROJECT -->
                         <div class="row j-hide" id="editmode">
                             <div class="col-md-6">
-
                                 <!-- Input Fields -->
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -310,7 +308,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                     <?php } ?>
 
                     <!-- CREATE NEW PROJECT BTN -->
-                    <button class="btn btn-default btn-gradient" id="newProOpen"><i class="fa fa-plus"></i> Create New Project </button>
+                    <button class="btn btn-default btn-gradient" scrollto="#newProForm" id="newProOpen"><i class="fa fa-plus"></i> Create New Project </button>
 
                     <div class="panel panel-visible">
                         <div class="panel-heading">
@@ -374,19 +372,19 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     </div>
     <!-- End: Main -->
 
-    <!-- Modal template for delete project -->
+    <!-- MODAL TEMPLATE for delete project -->
     <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-      <div>
-        <h2 id="modal1Title">Notification</h2>
-        <p id="modal1Desc">
-          Are you sure you want to delete this project ?
-        </p>
-      </div>
-      <br>
-      <button data-remodal-action="cancel" class="remodal-cancel">No</button>
-      <button data-remodal-action="confirm" class="remodal-confirm">Yes</button>
-</div>
+          <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+          <div>
+            <h2 id="modal1Title">Notification</h2>
+            <p id="modal1Desc">
+              Are you sure you want to delete this project ?
+            </p>
+          </div>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">No</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Yes</button>
+    </div>
 
     <!-- BEGIN: PAGE SCRIPTS -->
 
