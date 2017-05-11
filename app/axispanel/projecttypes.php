@@ -129,6 +129,13 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.css">
 
+        <!-- toastr -->
+        <link rel="stylesheet" type="text/css" href="vendor/plugins/toaster/toastr.min.css">
+        
+        <!-- Modal -->
+        <link rel="stylesheet" href="vendor/plugins/modal/remodal.css">
+        <link rel="stylesheet" href="vendor/plugins/modal/remodal-default-theme.css">
+
         <!-- Favicon -->
         <link rel="shortcut icon" href="assets/img/favicon.ico">
 
@@ -169,7 +176,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <?php include_once('includes/topbar.php') ?>
 
         <!-- Begin: Content -->
-        <section id="content" class=" animated fadeIn">
+        <section id="content" class="animated fadeIn">
 
             <!-- begin: .tray-center -->
             <div class="tray tray-center">
@@ -381,10 +388,15 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     <!-- Datatables Bootstrap Modifications  -->
     <script src="vendor/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
 
+    <!-- plugins -->
+    <script src="vendor/plugins/toaster/toastr.min.js"></script>
+    <script src="vendor/plugins/modal/remodal.js"></script>
+
     <!-- Theme Javascript -->
     <script src="assets/js/utility/utility.js"></script>
     <script src="assets/js/demo/demo.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/controllers/projectTypes.js"></script>
 
     <script type="text/javascript">
         jQuery(document).ready(function() {
