@@ -6,26 +6,26 @@
 <?php include_once('includes/connect.php'); ?>
 <?php
 // Query
-$sql = "SELECT projectId, projectName FROM tblprojects ORDER BY projectId DESC";
-$result = mysqli_query($conn, $sql);
+// $sql = "SELECT projectId, projectName FROM tblprojects ORDER BY projectId DESC";
+// $result = mysqli_query($conn, $sql);
 
 //insert record
-if(isset($_POST['newproject']) && isset($_POST['submitnew'])) {
-    $new = $_POST['newproject'];
+// if(isset($_POST['newproject']) && isset($_POST['submitnew'])) {
+//     $new = $_POST['newproject'];
 
-    $sqlnew = "INSERT INTO tblprojects (projectName) VALUES ('$new')";
+//     $sqlnew = "INSERT INTO tblprojects (projectName) VALUES ('$new')";
 
-    if (mysqli_query($conn, $sqlnew)) {
-        $text = "Record Inserted successfully.";
-        $color = "blue";
-    }
-    else {
-        $text = 'Error: ' . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projectnames.php?action=new&text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
+//     if (mysqli_query($conn, $sqlnew)) {
+//         $text = "Record Inserted successfully.";
+//         $color = "blue";
+//     }
+//     else {
+//         $text = 'Error: ' . mysqli_error($conn);
+//         $color = "red";
+//     }
+//     $insertGoTo = sprintf("projectnames.php?action=new&text=%s&color=%s",$text,$color);
+//     header(sprintf("Location: %s", $insertGoTo));
+// }
 
 //query for edit form
 if(isset($_GET['action']) && $_GET['action']=='edit' && isset($_GET['projectId'])) {
@@ -123,6 +123,9 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <!-- Datatables Addons CSS -->
         <link rel="stylesheet" type="text/css" href="vendor/plugins/datatables/media/css/dataTables.plugins.css">
 
+        <!-- toastr -->
+        <link rel="stylesheet" type="text/css" href="vendor/plugins/toaster/toastr.min.css">
+
         <!-- Theme CSS -->
         <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
 
@@ -137,6 +140,16 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
+
+        <style type="text/css"> 
+            #datatable3 tr > td, #datatable3 thead > tr > th,#datatable3> tfoot > tr > th {
+                text-align: center;
+            }
+            .j-hide{
+                display: none;
+            }
+
+        </style>
 
     </head>
 
@@ -175,61 +188,60 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
             <div class="tray tray-center">
                 <div class="col-md-12">
 
-                    <?php if(isset($_GET['text'])){ echo '<h2 style="color:'. $_GET['color'] .';">' . $_GET['text'] . '</h2>';} ?>
-
-                    <?php if(isset($_GET['action']) && $_GET['action']=='new'){ ?>
-                        <div class="row">
+                        <!-- NEW PROJECT -->
+                        <!-- NEW PROJECT -->
+                        <!-- NEW PROJECT -->
+                        <div class="row j-hide" id="newProForm" >
                             <div class="col-md-6">
 
-                                <!-- Input Fields -->
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <span class="panel-title">Add New Project</span>
+                                        <span class="panel-title">Create New Project</span>
                                     </div>
 
                                     <div class="panel-body">
-                                        <form class="form-horizontal" name="newform" method="POST" action="projectnames.php" role="form">
+                                        <form class="form-horizontal" name="newform" id="newform"method="POST" action="" role="form">
                                             <div class="form-group">
                                                 <label for="inputStandard" class="col-lg-3 control-label">Project Name</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" name="newproject" class="form-control" placeholder="Type Project Name Here..." required>
+                                                    <input type="text" id="nProjectName" name="projectName" class="form-control" placeholder="Insert Project Name" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
-                                                <a href="projectnames.php" class="btn btn-default " role="button"> Cancel </a>
-                                                <button type="submit" name="submitnew" class="btn btn-primary">Save Project</button>
+                                                <button type="button" class="btn btn-default" role="button" id="canelNewPro" > Cancel </button>
+                                                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewPro" > Create Project</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                    <?php } ?>
 
-                    <?php if(isset($_GET['action']) && $_GET['action']=='edit'){ ?>
-                        <div class="row">
+                        <!-- EDIT PROJECT -->
+                        <!-- EDIT PROJECT -->
+                        <!-- EDIT PROJECT -->
+                        <div class="row j-hide" id="editmode">
                             <div class="col-md-6">
 
                                 <!-- Input Fields -->
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        <span class="panel-title">Edit Project <?php if(isset($row_edit['projectName'])) {echo $row_edit['projectName'];} ?></span>
+                                        <span class="panel-title">Edit <span class="text-info" id="proNameBox"></span> Project </span>
                                     </div>
 
                                     <div class="panel-body">
-                                        <form class="form-horizontal" name="editform" method="POST" action="projectnames.php" role="form">
+                                        <form class="form-horizontal" name="editform" id="editProForm" method="POST"  >
                                             <div class="form-group">
                                                 <label class="col-lg-3 control-label">Project Name</label>
                                                 <div class="col-lg-8">
-                                                    <input type="hidden" name="editprojectId" value="<?php if(isset($row_edit['projectId'])){ echo $row_edit['projectId'];} ?>" >
-                                                    <input type="text" name="editprojectName" class="form-control" value="<?php if(isset($row_edit['projectName'])){ echo $row_edit['projectName'];} ?>" required>
+                                                    <input type="hidden" id="projectId" name="projectId" value="" >
+                                                    <input type="text" id="projectName" name="projectName" class="form-control" value="" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
-                                                <a href="projectnames.php" class="btn btn-default " role="button"> Cancel </a>
-                                                <button type="submit" name="submitedit" class="btn btn-primary">Edit Project</button>
+                                                <button type="button" class="btn btn-default " role="button" id="canelEditPro"> Cancel </button>
+                                                <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveEditPro">Save changes</button>
                                             </div>
                                         </form>
                                     </div>
@@ -237,8 +249,8 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 
                             </div>
                         </div>
+
                         <div class="clearfix"></div>
-                    <?php } ?>
 
                     <?php if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['projectId'])) { ?>
                         <div class="row">
@@ -272,7 +284,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                     <?php if(isset($_POST['deleteall']) && isset($_POST['checknum'])) { ?>
                         <div class="row">
                             <div class="col-md-6">
-
                                 <!-- Input Fields -->
                                 <div class="panel panel-danger">
                                     <div class="panel-heading">
@@ -304,7 +315,8 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         <div class="clearfix"></div>
                     <?php } ?>
 
-                    <a href="projectnames.php?action=new" class="btn btn-default btn-gradient"><i class="fa fa-plus"></i> Add New Project </a>
+                    <!-- CREATE NEW PROJECT BTN -->
+                    <button class="btn btn-default btn-gradient" id="newProOpen"><i class="fa fa-plus"></i> Create New Project </button>
 
                     <div class="panel panel-visible">
                         <div class="panel-heading">
@@ -316,22 +328,22 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                 <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Select</th>
-                                        <th>ID</th>
+                                        <!-- <th>Select</th> -->
+                                        <th>Id</th>
                                         <th>Project Name</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <th>Select</th>
-                                        <th>ID</th>
+                                        <!-- <th>Select</th> -->
+                                        <th>Id</th>
                                         <th>Project Name</th>
                                         <th>Actions</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
-                                    <?php if (mysqli_num_rows($result) > 0) {
+<!--                                     <?php if (mysqli_num_rows($result) > 0) {
                                         $i=1;
                                         while($row = mysqli_fetch_assoc($result)) { ?>
                                             <tr>
@@ -344,10 +356,12 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                                 </td>
                                             </tr>
                                             <?php $i++; }/*whileend*/
-                                    }/*ifend*/ ?>
+                                    }/*ifend*/ ?> -->
+
+
                                     </tbody>
                                 </table>
-                                <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button>
+                                <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
                             </form>
                         </div>
                     </div>
@@ -381,87 +395,14 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     <!-- Datatables Bootstrap Modifications  -->
     <script src="vendor/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
 
+    <!-- toastr  -->
+    <script src="vendor/plugins/toaster/toastr.min.js"></script>
+
     <!-- Theme Javascript -->
     <script src="assets/js/utility/utility.js"></script>
     <script src="assets/js/demo/demo.js"></script>
     <script src="assets/js/main.js"></script>
-
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-
-            "use strict";
-
-            // Init Theme Core
-            Core.init();
-
-            // Init Demo JS
-            Demo.init();
-
-            // Init Widget Demo JS
-            // demoHighCharts.init();
-
-            // Because we are using Admin Panels we use the OnFinish
-            // callback to activate the demoWidgets. It's smoother if
-            // we let the panels be moved and organized before
-            // filling them with content from various plugins
-
-            // Init plugins used on this page
-            // HighCharts, JvectorMap, Admin Panels
-
-            // Init Admin Panels on widgets inside the ".admin-panels" container
-            //   $('.admin-panels').adminpanel({
-            //     grid: '.admin-grid',
-            //     draggable: true,
-            //     preserveGrid: true,
-            //     mobile: false,
-            //     onStart: function() {
-            //       // Do something before AdminPanels runs
-            //     },
-            //    onFinish: function() {
-            //       $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
-
-            // Init the rest of the plugins now that the panels
-            // have had a chance to be moved and organized.
-            // It's less taxing to organize empty panels
-
-            //    },
-            //    onSave: function() {
-            //      $(window).trigger('resize');
-            //    }
-            //  });
-
-            // MISC DATATABLE HELPER FUNCTIONS
-            $('#datatable3').dataTable({
-                "aoColumnDefs": [{
-                    'bSortable': false,
-                    'aTargets': [-1]
-                }],
-                "oLanguage": {
-                    "oPaginate": {
-                        "sPrevious": "",
-                        "sNext": ""
-                    }
-                },
-                "iDisplayLength": 10,
-                "aLengthMenu": [
-                    [5, 10, 25, 50, -1],
-                    [5, 10, 25, 50, "All"]
-                ],
-                "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
-                "oTableTools": {
-                    "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-                }
-            });
-
-            // Add Placeholder text to datatables filter bar
-            $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
-
-
-        });
-    </script>
-
-    <!-- END: PAGE SCRIPTS -->
-
+    <script src="assets/controllers/index.js"></script>
 
     </body>
 
@@ -476,3 +417,4 @@ if(isset($_GET['action']) && $_GET['action']=='delete') {
 }
 mysqli_close($conn);
 ?>
+
