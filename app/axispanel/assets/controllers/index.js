@@ -26,75 +26,93 @@
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
                 }
+            //VALIDATION CONFIGURATION    
+            var conf = $.formUtils.defaultConfig();
+            conf.language = 'en';
+            conf.modules =  'security, date';
+            conf.scrollToTopOnError = false;
 
-                //Get all projects
-                $.ajax({
-                    url: '../php/projects/get.php',
-                    method:'GET',
-                    dataType:'json',
-                    success:function(data){
-                        //Datatable Initializer
-                        var tbl = $('#datatable3').dataTable({
-                            "sDom": '<"dt-panelmenu text-center clearfix"T><"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>',
-                            // "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
-                            "oTableTools": {
-                                "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-                            },
-                            lengthMenu: [
-                                [ 10, 25, 50, -1 ],
-                                [ '10 rows', '25 rows', '50 rows', 'Show all' ]
-                            ],
-                            buttons: [
-                                'pageLength'
-                            ],
-                            data:data.data,
-                            columns:[
-                                {'data':'projectId'},
-                                {'data':'projectName'},
-                                {   'data':null,
-                                    'render': function ( data, type, full, meta ) {
-                                        //set data-row attr as the datatable row -> give access the save changes to update row data localy
-                                        return "<button class='btn btn-xs btn-success' id='editProject' data-row='"+meta.row+"' data-project='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
-                                          "<a class='btn btn-xs btn-danger' id='deleteProject' data-row='"+meta.row+"' project-id='"+full.projectId+"' href='#'> <i class='fa fa-trash'></i> </a> "
-                                    },
-                                    
-                                }
-                            ]
-                        })     
-                    // Add Placeholder text to datatables filter bar
-                    $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  
-                    }
-                })
+            // Call the setup function
+            $.validate({
+                language:   conf.language,
+                modules:    conf.modules
+            });
 
-                    $('#canelEditPro').click(function(){
-                        $('#editmode').hide(700);
-                    });
 
-                    //Edit project btn Clicked
-                   $('#datatable3 tbody').on( 'click', '#editProject', function (event) {
+            ////////////////////////////////////////////////////
+            
+            ////////////////////////////////////////////////////
 
-                        event.preventDefault();
-                        event.stopPropagation();
+            //Get all projects
+            $.ajax({
+                url: '../php/projects/get.php',
+                method:'GET',
+                dataType:'json',
+                success:function(data){
+                    //Datatable Initializer
+                    var tbl = $('#datatable3').dataTable({
+                        "sDom": '<"dt-panelmenu text-center clearfix"T><"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>',
+                        // "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
+                        "oTableTools": {
+                            "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
+                        },
+                        lengthMenu: [
+                            [ 10, 25, 50, -1 ],
+                            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+                        ],
+                        buttons: [
+                            'pageLength'
+                        ],
+                        data:data.data,
+                        columns:[
+                            {'data':'projectId'},
+                            {'data':'projectName'},
+                            {   'data':null,
+                                'render': function ( data, type, full, meta ) {
+                                    //set data-row attr as the datatable row -> give access the save changes to update row data localy
+                                    return "<button class='btn btn-xs btn-success' id='editProject' data-row='"+meta.row+"' data-project='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
+                                      "<a class='btn btn-xs btn-danger' id='deleteProject' data-row='"+meta.row+"' project-id='"+full.projectId+"' href='#'> <i class='fa fa-trash'></i> </a> "
+                                },
+                                
+                            }
+                        ]
+                    })     
+                // Add Placeholder text to datatables filter bar
+                $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  
+                }
+            })
 
-                        $('#editmode').show(700);
-                        
-                        //var product = JSON.parse($(this).attr('project-id')) 
-                        var project = $(this).data().project;
-                        var datatableRow = $(this).attr('data-row');
-                        
-                        //set datatable row in data-row attr to for saveEditPro(Save button) to have the access for datatable row
-                        $('#editmode').find('#saveEditPro').attr("data-row",datatableRow)
+            $('#canelEditPro').click(function(){
+                $('#editmode').hide(700);
+            });
 
-                        // $('#editmode').find('#proNameBox').html(datatableRow)
-                        $('#editmode').find('#proNameBox').html(project.projectName)
-                        $('#editmode').find('#projectName').val(project.projectName)
-                        $('#editmode').find('#projectId').val(project.projectId)
-                   
-                    });
+            //Edit project btn Clicked
+           $('#datatable3 tbody').on( 'click', '#editProject', function (event) {
 
-                    // Edit project form submited
-                    $('#saveEditPro').click(function(){
-                       
+                event.preventDefault();
+                event.stopPropagation();
+
+                $('#editmode').show(700);
+                
+                //var product = JSON.parse($(this).attr('project-id')) 
+                var project = $(this).data().project;
+                var datatableRow = $(this).attr('data-row');
+                
+                //set datatable row in data-row attr to for saveEditPro(Save button) to have the access for datatable row
+                $('#editmode').find('#saveEditPro').attr("data-row",datatableRow)
+
+                // $('#editmode').find('#proNameBox').html(datatableRow)
+                $('#editmode').find('#proNameBox').html(project.projectName)
+                $('#editmode').find('#projectName').val(project.projectName)
+                $('#editmode').find('#projectId').val(project.projectId)
+           
+            });
+
+            // Edit project form submited
+            $('#saveEditPro').click(function(){
+               if( !$('#editProForm').isValid(conf.language, conf, true) ) {
+                    // displayErrors( errors );
+                   } else {
                         $.ajax({
                             url: '../php/projects/update.php',
                             method:'POST',
@@ -118,8 +136,11 @@
                             error: function(err) {
                                 toastr.error(error, 'Notification', {timeOut: 5000})
                             }
-                        });
                     });
+                    
+                   }
+
+            });
 
 
             // New project btn clicked -> show the form
@@ -133,33 +154,49 @@
                 $('#newProForm').hide(700);
             });
 
+                
 
+
+            //CREATE NEW PROJECT IN PROCESS
             $('#saveNewPro').click(function(){
-                $.ajax({
-                    url: '../php/projects/post.php',
-                    method:'POST',
-                    data: $('#newform').serialize(),
-                    success:function(data){ 
+                
+                   if( !$('#newform').isValid(conf.language, conf, true) ) {
+                    // displayErrors( errors );
+                   } else {
+                   // The form is valid
+                    $.ajax({
+                        url: '../php/projects/post.php',
+                        method:'POST',
+                        data: $('#newform').serialize(),
+                        success:function(data){ 
 
-                        var _newProduct = JSON.parse(data)
+                            var _newProduct = JSON.parse(data)
 
-                        var myDataTable= $('#datatable3').DataTable();
-                        
-                        myDataTable.row.add(_newProduct  ).draw( false )
-                        
-                        $('#newProForm').hide(700);
-                        toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
-                    } ,
-                    error: function(err) {
-                        if(err){
-                            toastr.error(err, 'Notification', {timeOut: 5000})
-                        }else{
-                            toastr.error('An error occurred', 'Notification', {timeOut: 5000})
+                            var myDataTable= $('#datatable3').DataTable();
+                            
+                            myDataTable.row.add(_newProduct  ).draw( false )
+                            
+                            $('#newProForm').hide(700);
+                            toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
+                        } ,
+                        error: function(err) {
+                            if(err){
+                                toastr.error(err, 'Notification', {timeOut: 5000})
+                            }else{
+                                toastr.error('An error occurred', 'Notification', {timeOut: 5000})
+                            }
                         }
-                    }
-                });    
+                    });    
+
+
+                   }
+               
+                
+
             });
 
+
+        //DELETE PROJECT CLICKED
         $('#datatable3 tbody').on( 'click', '#deleteProject', function (event) {
             var thisProject = $(this);
             var projectId = $(this).attr('project-id');

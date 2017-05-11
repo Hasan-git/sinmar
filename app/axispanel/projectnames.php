@@ -198,7 +198,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                             <div class="form-group">
                                                 <label for="inputStandard" class="col-lg-3 control-label">Project Name</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" id="nProjectName" name="projectName" class="form-control" placeholder="Insert Project Name" required>
+                                                    <input type="text" data-validation="required" id="nProjectName" name="projectName" class="form-control" placeholder="Insert Project Name" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
@@ -230,7 +230,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                                 <label class="col-lg-3 control-label">Project Name</label>
                                                 <div class="col-lg-8">
                                                     <input type="hidden" id="projectId" name="projectId" value="" >
-                                                    <input type="text" id="projectName" name="projectName" class="form-control" value="" required>
+                                                    <input type="text" id="projectName" data-validation="required" name="projectName" class="form-control" value="" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
@@ -406,6 +406,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
    <!-- plugins -->
     <script src="vendor/plugins/toaster/toastr.min.js"></script>
     <script src="vendor/plugins/modal/remodal.js"></script>
+    <script src="vendor/plugins/jqueryFormValidator/form-validator/jquery.form-validator.js"></script>
 
     <!-- Theme Javascript -->
     <script src="assets/js/utility/utility.js"></script>
