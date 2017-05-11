@@ -15,7 +15,7 @@
                   "newestOnTop": false,
                   "progressBar": true,
                   "positionClass": "toast-top-right",
-                  "preventDuplicates": false,
+                  "preventDuplicates": true,
                   "onclick": null,
                   "showDuration": "5000",
                   "hideDuration": "1000",
@@ -55,7 +55,7 @@
                                     'render': function ( data, type, full, meta ) {
                                         //set data-row attr as the datatable row -> give access the save changes to update row data localy
                                         return "<button class='btn btn-xs btn-success' id='editProject' data-row='"+meta.row+"' data-project='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
-                                          "<button class='btn btn-xs btn-danger' id='deleteProject' data-row='"+meta.row+"' project-id='"+full.projectId+"' > <i class='fa fa-trash'></i> </button> "
+                                          "<a class='btn btn-xs btn-danger' id='deleteProject' data-row='"+meta.row+"' project-id='"+full.projectId+"' href='#'> <i class='fa fa-trash'></i> </a> "
                                     },
                                     
                                 }
@@ -130,7 +130,7 @@
 
             // New Project canceled
             $('#canelNewPro').click(function(){
-                        $('#newProForm').hide(700);
+                $('#newProForm').hide(700);
             });
 
 
@@ -160,8 +160,44 @@
                 });    
             });
 
+        $('#datatable3 tbody').on( 'click', '#deleteProject', function (event) {
+            var thisProject = $(this);
+            var projectId = $(this).attr('project-id');
+            var inst = $('[data-remodal-id=modal]').remodal();
+                    
+            inst.open();
 
-           
+            $(document).on('confirmation', '.remodal', function () {
+                
+                $.ajax({
+                        url: '../php/projects/delete.php',
+                        method:'POST',
+                        data: {projectId:projectId},
+                        success:function(data){ 
+
+                        //get the dt instance
+                        var myDataTable= $('#datatable3').DataTable();
+
+                        // get / set dt row
+                        var row = myDataTable.row($(thisProject).parents('tr')).remove().draw();;
+                        //myDataTable.row(row).data(localProject).draw();
+                        // $('#editmode').hide(700);
+                        toastr.success('Project deleted successfully', 'Notification', {timeOut: 5000})
+                        } ,
+                        error: function(err) {
+                            toastr.error(error, 'Notification', {timeOut: 5000})
+                        }
+                    });
+            });
+
+            $(document).on('cancellation', '.remodal', function () {
+                inst.close();
+            });
+
+        });
+
+
+
 
         });//end
 
