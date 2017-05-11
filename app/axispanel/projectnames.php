@@ -216,7 +216,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         <!-- EDIT PROJECT -->
                         <div class="row j-hide" id="editmode">
                             <div class="col-md-6">
-                                <!-- Input Fields -->
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <span class="panel-title">Edit <span class="text-info" id="proNameBox"></span> Project </span>
@@ -316,7 +315,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         </div>
 
                         <div class="panel-body pn">
-                            <form name="table" method="POST" action="projectnames.php">
+                            <form name="table" method="POST" action="">
                                 <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>

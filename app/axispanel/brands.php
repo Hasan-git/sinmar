@@ -132,6 +132,13 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/img/favicon.ico">
 
+    <!-- toastr -->
+  <link rel="stylesheet" type="text/css" href="vendor/plugins/toaster/toastr.min.css">
+  
+  <!-- Modal -->
+  <link rel="stylesheet" href="vendor/plugins/modal/remodal.css">
+  <link rel="stylesheet" href="vendor/plugins/modal/remodal-default-theme.css">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -175,182 +182,99 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <div class="tray tray-center">
             <div class="col-md-12">
 
-            <?php if(isset($_GET['text'])){ echo '<h2 style="color:'. $_GET['color'] .';">' . $_GET['text'] . '</h2>';} ?>
-
-			<?php if(isset($_GET['action']) && $_GET['action']=='new'){ ?>
-			<div class="row">
+      <!-- NEW PROJECT -->
+      <!-- NEW PROJECT -->
+      <!-- NEW PROJECT -->
+  			<div class="row j-hide" id="newFormContainer" >
+  			  <div class="col-md-6">
+  				<div class="panel">
+  				  <div class="panel-heading">
+  					<span class="panel-title">Create New Brand</span>
+  				  </div>
+  				  
+  				  <div class="panel-body">
+  					<form class="form-horizontal" name="newform" id="newform" method="POST" action="" role="form">
+  					  <div class="form-group">
+  						<label for="inputStandard" class="col-lg-3 control-label">Brand Name</label>
+  						<div class="col-lg-8">
+  						  <input type="text" data-validation="required" id="nbrandName" name="brandName" class="form-control" placeholder="Insert barnd name" required>
+  						</div>
+  					  </div>
+  					  <div align="right" class="">
+					      <button type="button" class="btn btn-default" role="button" id="cancelNewForm" > Cancel </button>
+                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewForm" > Create Brand</button>
+              </div>
+  					</form>
+  				  </div>
+  				</div>
+  				
+  			  </div>
+  			</div>			  
+  			<div class="clearfix"></div>
+			
+      <!-- EDIT PROJECT -->
+      <!-- EDIT PROJECT -->
+      <!-- EDIT PROJECT -->
+			<div class="row j-hide" id="editFormContainer">
 			  <div class="col-md-6">
-
-				<!-- Input Fields -->
 				<div class="panel">
 				  <div class="panel-heading">
-					<span class="panel-title">Add New Brand</span>
+					<span class="panel-title">Edit <span class="text-info" id="nfBoxName"></span> Brand </span>
 				  </div>
 				  
 				  <div class="panel-body">
-					<form class="form-horizontal" name="newform" method="POST" action="brands.php" role="form">
-					  <div class="form-group">
-						<label for="inputStandard" class="col-lg-3 control-label">Brand Name</label>
-						<div class="col-lg-8">
-						  <input type="text" name="newbrand" class="form-control" placeholder="Type Brand Name Here..." required>
-						</div>
-					  </div>
-					  <div align="right" class="">
-					    <a href="brands.php" class="btn btn-default " role="button"> Cancel </a>
-                        <button type="submit" name="submitnew" class="btn btn-primary">Save Brand</button>
-                      </div>
-					</form>
-				  </div>
-				</div>
-				
-			  </div>
-			</div>			  
-			<div class="clearfix"></div>
-			<?php } ?>	
-
-			<?php if(isset($_GET['action']) && $_GET['action']=='edit'){ ?>	
-			<div class="row">
-			  <div class="col-md-6">
-
-				<!-- Input Fields -->
-				<div class="panel">
-				  <div class="panel-heading">
-					<span class="panel-title">Edit Brand <?php if(isset($row_edit['brandName'])) {echo $row_edit['brandName'];} ?></span>
-				  </div>
-				  
-				  <div class="panel-body">
-					<form class="form-horizontal" name="editform" method="POST" action="brands.php" role="form">
+					<form class="form-horizontal" name="editform" id="editForm" method="POST" role="form">
 					  <div class="form-group">
 						<label class="col-lg-3 control-label">Brand Name</label>
 						<div class="col-lg-8">
-                            <input type="hidden" name="editbrandId" value="<?php if(isset($row_edit['brandId'])){ echo $row_edit['brandId'];} ?>" >
-							<input type="text" name="editbrandName" class="form-control" value="<?php if(isset($row_edit['brandName'])){ echo $row_edit['brandName'];} ?>" required>
+              <input type="hidden" id="brandId" name="brandId" value="" >
+							<input type="text" name="brandName" id="brandName" data-validation="required" class="form-control" value="" required>
 						</div>
 					  </div>
 					  <div align="right" class="">
-					    <a href="brands.php" class="btn btn-default " role="button"> Cancel </a>
-                        <button type="submit" name="submitedit" class="btn btn-primary">Edit Brand</button>
-                      </div>
+					    <button type="button" class="btn btn-default " role="button" id="cancelEditForm"> Cancel </button>
+              <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveEditForm">Save changes</button>
+            </div>
 					</form>
 				  </div>
 				</div>
-				
 			  </div>
 			</div>
 			<div class="clearfix"></div>
-			<?php } ?>
 
-            <?php if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['brandId'])) { ?>
-                <div class="row">
-                    <div class="col-md-6">
+           
+			  <button  class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"><i class="fa fa-plus"></i> Create New Brand </button>
 
-                        <!-- Input Fields -->
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <span class="panel-title">Are you sure you want to Delete <?php if(isset($row_delete['brandName'])) {echo $row_delete['brandName'];} ?>?</span>
-                            </div>
-
-                            <div class="panel-body">
-                                <form class="form-horizontal" name="deleteform" method="POST" action="brands.php" role="form">
-                                    <div class="form-group">
-                                        <input type="hidden" name="deletebrandId" value="<?php if(isset($row_delete['brandId'])){ echo $row_delete['brandId'];} ?>" >
-                                        <h4>&emsp;&emsp;<?php if(isset($row_delete['brandName'])){ echo $row_delete['brandName'];} ?></h4>
-                                    </div>
-                                    <div align="right" class="">
-                                        <a href="brands.php" class="btn btn-default " role="button"> Cancel Delete </a>
-                                        <button type="submit" name="submitdelete" class="btn btn-danger">Delete Brand</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            <?php } ?>
-
-            <?php if(isset($_POST['deleteall']) && isset($_POST['checknum'])) { ?>
-                <div class="row">
-                    <div class="col-md-6">
-
-                        <!-- Input Fields -->
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <span class="panel-title">Are you sure you want to Delete Records?</span>
-                            </div>
-
-                            <div class="panel-body">
-                                <form class="form-horizontal" name="deleteallform" method="POST" action="brands.php" role="form">
-                                    <div class="form-group">
-
-                                        <?php
-                                            $list = $_POST['checknum'];
-                                            foreach($list as $name) { ?>
-                                                <input type="hidden" name="checknum[]" value="<?php echo $name; ?>" checked >
-                                                <p>&emsp;&emsp;<?php echo $name; ?></p>
-                                        <?php } ?>
-
-                                    </div>
-                                    <div align="right" class="">
-                                        <a href="brands.php" class="btn btn-default " role="button"> Cancel Delete </a>
-                                        <button type="submit" name="submitalldelete" class="btn btn-danger">Delete Brand</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            <?php } ?>
-
-			  <a href="brands.php?action=new" class="btn btn-default btn-gradient"><i class="fa fa-plus"></i> Add New Brand </a>
-
-              <div class="panel panel-visible">
-                <div class="panel-heading">
-                  <div class="panel-title hidden-xs"><span class="glyphicon glyphicon-tags"></span>Item Brands</div>
-                </div>
-
-                <div class="panel-body pn">
-                 <form name="table" method="POST" action="brands.php">
-                  <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
-                    <thead>
-                      <tr>
-						<th>Select</th>
-                        <th>ID</th>
-                        <th>Brand Name</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tfoot>
-                      <tr>
-						<th>Select</th>
-                        <th>ID</th>
-                        <th>Brand Name</th>
-                        <th>Actions</th>
-                      </tr>
-                    </tfoot>
-                    <tbody>
-					<?php if (mysqli_num_rows($result) > 0) {
-						 $i=1;
-						 while($row_brands = mysqli_fetch_assoc($result)) { ?>
-					  <tr>
-						<td>&emsp;<input type="checkbox" name="checknum[]" value="<?php echo $row_brands['brandName']; ?>"></td>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $row_brands['brandName']; ?></td>
-						<td>
-						  <a href="brands.php?action=edit&brandId=<?php echo $row_brands['brandId']; ?>" class="btn btn-warning btn-sm btn-rounded btn-gradient"><i class="fa fa-pencil"></i> Edit </a>
-						  <a href="brands.php?action=delete&brandId=<?php echo $row_brands['brandId']; ?>" class="btn btn-danger btn-sm btn-rounded btn-gradient"><i class="fa fa-times-circle"></i> Delete </a>
-						</td>
-                      </tr>
-					<?php $i++; }/*whileend*/ 
-						}/*ifend*/ ?>
-                    </tbody>
-                  </table>
-                    <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button>
-                 </form>
-                </div>
+            <div class="panel panel-visible">
+              <div class="panel-heading">
+                <div class="panel-title hidden-xs"><span class="glyphicon glyphicon-tags"></span>Item Brands</div>
               </div>
+
+              <div class="panel-body pn">
+               <form name="table" method="POST" action="">
+                <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Brand Name</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>ID</th>
+                      <th>Brand Name</th>
+                      <th>Actions</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+				
+                  </tbody>
+                </table>
+                  <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
+               </form>
+              </div>
+            </div>
            </div>
         </div>
         <!-- end: .tray-center -->	
@@ -366,6 +290,20 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
   </div>
   <!-- End: Main -->
 
+      <!-- MODAL TEMPLATE for delete Brand -->
+    <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+      <div>
+        <h2 id="modal1Title">Notification</h2>
+        <p id="modal1Desc">
+          Are you sure you want to delete this project ?
+        </p>
+      </div>
+      <br>
+      <button data-remodal-action="cancel" class="remodal-cancel">No</button>
+      <button data-remodal-action="confirm" class="remodal-confirm">Yes</button>
+    </div>
+
 <!-- BEGIN: PAGE SCRIPTS -->
 
   <!-- jQuery -->
@@ -380,84 +318,21 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 
   <!-- Datatables Bootstrap Modifications  -->
   <script src="vendor/plugins/datatables/media/js/dataTables.bootstrap.js"></script> 
+
+   <!-- plugins -->
+  <script src="vendor/plugins/toaster/toastr.min.js"></script>
+  <script src="vendor/plugins/modal/remodal.js"></script>
+  <script src="vendor/plugins/jqueryFormValidator/form-validator/jquery.form-validator.js"></script>
  
   <!-- Theme Javascript -->
   <script src="assets/js/utility/utility.js"></script>
   <script src="assets/js/demo/demo.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/controllers/brands.js"></script>
+
   
   <script type="text/javascript">
-  jQuery(document).ready(function() {
-
-    "use strict";
-
-    // Init Theme Core      
-    Core.init();
-
-    // Init Demo JS
-    Demo.init();
-
-    // Init Widget Demo JS
-    // demoHighCharts.init();
-
-    // Because we are using Admin Panels we use the OnFinish 
-    // callback to activate the demoWidgets. It's smoother if
-    // we let the panels be moved and organized before 
-    // filling them with content from various plugins
-
-    // Init plugins used on this page
-    // HighCharts, JvectorMap, Admin Panels
-
-    // Init Admin Panels on widgets inside the ".admin-panels" container
- //   $('.admin-panels').adminpanel({
- //     grid: '.admin-grid',
- //     draggable: true,
- //     preserveGrid: true,
- //     mobile: false,
- //     onStart: function() {
- //       // Do something before AdminPanels runs
- //     },
- //    onFinish: function() {
- //       $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
-
-        // Init the rest of the plugins now that the panels
-        // have had a chance to be moved and organized.
-        // It's less taxing to organize empty panels
-       
-  //    },
-  //    onSave: function() {
-  //      $(window).trigger('resize');
-  //    }
-  //  });
-	
-    // MISC DATATABLE HELPER FUNCTIONS
-	$('#datatable3').dataTable({
-      "aoColumnDefs": [{
-        'bSortable': false,
-        'aTargets': [-1]
-      }],
-      "oLanguage": {
-        "oPaginate": {
-          "sPrevious": "",
-          "sNext": ""
-        }
-      },
-      "iDisplayLength": 10,
-      "aLengthMenu": [
-        [5, 10, 25, 50, -1],
-        [5, 10, 25, 50, "All"]
-      ],
-      "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
-      "oTableTools": {
-        "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-      }
-    });
-
-    // Add Placeholder text to datatables filter bar
-    $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
-	
-	
-  });
+  
   </script>
 
   <!-- END: PAGE SCRIPTS -->
