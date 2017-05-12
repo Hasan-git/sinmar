@@ -123,14 +123,18 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <!-- Datatables Addons CSS -->
         <link rel="stylesheet" type="text/css" href="vendor/plugins/datatables/media/css/dataTables.plugins.css">
 
-        <!-- toastr -->
-        <link rel="stylesheet" type="text/css" href="vendor/plugins/toaster/toastr.min.css">
-
         <!-- Theme CSS -->
         <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
 
         <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.css">
+
+        <!-- toastr -->
+        <link rel="stylesheet" type="text/css" href="vendor/plugins/toaster/toastr.min.css">
+        
+        <!-- Modal -->
+        <link rel="stylesheet" href="vendor/plugins/modal/remodal.css">
+        <link rel="stylesheet" href="vendor/plugins/modal/remodal-default-theme.css">
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="assets/img/favicon.ico">
@@ -140,16 +144,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-
-        <style type="text/css"> 
-            #datatable3 tr > td, #datatable3 thead > tr > th,#datatable3> tfoot > tr > th {
-                text-align: center;
-            }
-            .j-hide{
-                display: none;
-            }
-
-        </style>
 
     </head>
 
@@ -193,18 +187,17 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         <!-- NEW PROJECT -->
                         <div class="row j-hide" id="newProForm" >
                             <div class="col-md-6">
-
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <span class="panel-title">Create New Project</span>
                                     </div>
 
                                     <div class="panel-body">
-                                        <form class="form-horizontal" name="newform" id="newform"method="POST" action="" role="form">
+                                        <form class="form-horizontal" name="newform" id="newform" method="POST" action="" role="form">
                                             <div class="form-group">
                                                 <label for="inputStandard" class="col-lg-3 control-label">Project Name</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" id="nProjectName" name="projectName" class="form-control" placeholder="Insert Project Name" required>
+                                                    <input type="text" data-validation="required" id="nProjectName" name="projectName" class="form-control" placeholder="Insert Project Name" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
@@ -223,8 +216,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         <!-- EDIT PROJECT -->
                         <div class="row j-hide" id="editmode">
                             <div class="col-md-6">
-
-                                <!-- Input Fields -->
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <span class="panel-title">Edit <span class="text-info" id="proNameBox"></span> Project </span>
@@ -236,7 +227,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                                 <label class="col-lg-3 control-label">Project Name</label>
                                                 <div class="col-lg-8">
                                                     <input type="hidden" id="projectId" name="projectId" value="" >
-                                                    <input type="text" id="projectName" name="projectName" class="form-control" value="" required>
+                                                    <input type="text" id="projectName" data-validation="required" name="projectName" class="form-control" value="" required>
                                                 </div>
                                             </div>
                                             <div align="right" class="">
@@ -316,7 +307,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                     <?php } ?>
 
                     <!-- CREATE NEW PROJECT BTN -->
-                    <button class="btn btn-default btn-gradient" id="newProOpen"><i class="fa fa-plus"></i> Create New Project </button>
+                    <button class="btn btn-default btn-gradient" scrollto="#newProForm" id="newProOpen"><i class="fa fa-plus"></i> Create New Project </button>
 
                     <div class="panel panel-visible">
                         <div class="panel-heading">
@@ -324,7 +315,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         </div>
 
                         <div class="panel-body pn">
-                            <form name="table" method="POST" action="projectnames.php">
+                            <form name="table" method="POST" action="">
                                 <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
@@ -380,6 +371,20 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     </div>
     <!-- End: Main -->
 
+    <!-- MODAL TEMPLATE for delete project -->
+    <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+          <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+          <div>
+            <h2 id="modal1Title">Notification</h2>
+            <p id="modal1Desc">
+              Are you sure you want to delete this project ?
+            </p>
+          </div>
+          <br>
+          <button data-remodal-action="cancel" class="remodal-cancel">No</button>
+          <button data-remodal-action="confirm" class="remodal-confirm">Yes</button>
+    </div>
+
     <!-- BEGIN: PAGE SCRIPTS -->
 
     <!-- jQuery -->
@@ -395,8 +400,10 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     <!-- Datatables Bootstrap Modifications  -->
     <script src="vendor/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
 
-    <!-- toastr  -->
+   <!-- plugins -->
     <script src="vendor/plugins/toaster/toastr.min.js"></script>
+    <script src="vendor/plugins/modal/remodal.js"></script>
+    <script src="vendor/plugins/jqueryFormValidator/form-validator/jquery.form-validator.js"></script>
 
     <!-- Theme Javascript -->
     <script src="assets/js/utility/utility.js"></script>

@@ -1,19 +1,33 @@
 <?php
-//insert record
-if(isset($_POST['newbrand']) && isset($_POST['submitnew'])) {
-    $new = $_POST['newbrand'];
+include_once('../../axispanel/includes/connect.php');
 
-    $sqlnew = "INSERT INTO tblbrands (brandName) VALUES ('$new')";
+if(isset($_POST['brandName']) ) {
+
+    $brandName = $_POST['brandName'];
+
+    $sqlnew = "INSERT INTO tblbrands (brandName) VALUES ('$brandName')";
 
     if (mysqli_query($conn, $sqlnew)) {
-        $text = "Record Inserted successfully.";
-        $color = "blue";
+
+        //Get Project ID
+        $brand = array(
+                        'brandId' => $conn->insert_id,
+                        'brandName' => $brandName 
+                    );
+        $brand_ = json_encode($brand);
+
+          header("HTTP/1.0 200 OK");
+          echo $brand_;
     }
     else {
-        $text = 'Error: ' . mysqli_error($conn);
-        $color = "red";
+        header("HTTP/1.0 500 Internal Server Error");
+        echo "An error occurred";
     }
-    $insertGoTo = sprintf("brands.php?action=new&text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
+}else{
+
+    header("HTTP/1.0 400 Bad Request");
+    echo "Some fields are required";
 }
+    
+
 ?>

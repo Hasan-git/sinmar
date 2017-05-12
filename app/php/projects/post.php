@@ -14,10 +14,10 @@ if(isset($_POST['projectName']) ) {
                         'projectId' => $conn->insert_id,
                         'projectName' => $projectName 
                     );
-        $projects = json_encode($project);
+        $project_ = json_encode($project);
 
           header("HTTP/1.0 200 OK");
-          echo $projects;
+          echo $project_;
     }
     else {
         header("HTTP/1.0 500 Internal Server Error");

@@ -24689,3 +24689,11 @@ body.timeline-page .panel-clone {
     min-width: 0 !important;
   }
 }
+
+ #datatable3 tr > td, #datatable3 thead > tr > th,
+ #datatable3> tfoot > tr > th {
+        text-align: center;
+  }
+.j-hide{
+    display: none;
+}

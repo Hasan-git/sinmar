@@ -1,47 +1,26 @@
 <?php
-//query for delete form
-if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['brandId'])) {
-    $brandid = $_GET['brandId'];
+include_once('../../axispanel/includes/connect.php');
 
-    $sqldelete = sprintf("SELECT brandId, brandName FROM tblbrands WHERE brandId = %u",$brandid);
-    $resultdelete = mysqli_query($conn, $sqldelete);
-    $row_delete = mysqli_fetch_assoc($resultdelete);
-}
+if(isset($_POST['brandId']) ) {
 
-//Deleting record
-if(isset($_POST['submitdelete']) && isset($_POST['deletebrandId'])) {
-    $brandid = $_POST['deletebrandId'];
+    $brandId = $_POST['brandId'];
 
-    $sqldelete = sprintf("DELETE FROM tblbrands WHERE brandId = %u",$brandid);
+    $deleteQuery = "DELETE FROM tblbrands WHERE brandId = '$brandId'";
 
-    if (mysqli_query($conn, $sqldelete)) {
-        $text = "Record deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting record: " . mysqli_error($conn);
-        $color = "red";
+    if (mysqli_query($conn, $deleteQuery)) {
+
+          header("HTTP/1.0 200 OK");
+          echo 'deleted';
     }
-    $insertGoTo = sprintf("brands.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//Delete selected record
-if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
-    $list = $_POST['checknum'];
-
-    foreach($list as $name) {
-        $sqlalldelete = sprintf("DELETE FROM tblbrands WHERE brandName = '%s'",$name);
-        $resultalldelete = mysqli_query($conn, $sqlalldelete);
+    else {
+        header("HTTP/1.0 500 Internal Server Error");
+        echo "An error occurred";
     }
+}else{
 
-    if (mysqli_query($conn, $sqlalldelete)) {
-        $text = "All Records deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting records: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("brands.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
+    header("HTTP/1.0 400 Bad Request");
+    echo "Something went wrong";
 }
+    
+
 ?>
