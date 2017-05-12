@@ -129,6 +129,13 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     <!-- Admin Forms CSS -->
     <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.css">
 
+    <!-- toastr -->
+    <link rel="stylesheet" type="text/css" href="vendor/plugins/toaster/toastr.min.css">
+
+    <!-- Modal -->
+    <link rel="stylesheet" href="vendor/plugins/modal/remodal.css">
+    <link rel="stylesheet" href="vendor/plugins/modal/remodal-default-theme.css">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/img/favicon.ico">
 
@@ -175,29 +182,27 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <div class="tray tray-center">
             <div class="col-md-12">
 
-                <?php if(isset($_GET['text'])){ echo '<h2 style="color:'. $_GET['color'] .';">' . $_GET['text'] . '</h2>';} ?>
-
-                <?php if(isset($_GET['action']) && $_GET['action']=='new'){ ?>
-                    <div class="row">
+                    <!-- NEW PROJECT -->
+                    <!-- NEW PROJECT -->
+                    <!-- NEW PROJECT -->
+                    <div class="row j-hide" id="newFormContainer">
                         <div class="col-md-6">
-
-                            <!-- Input Fields -->
                             <div class="panel">
                                 <div class="panel-heading">
                                     <span class="panel-title">Add New Category</span>
                                 </div>
 
                                 <div class="panel-body">
-                                    <form class="form-horizontal" name="newform" method="POST" action="categories.php" role="form">
+                                    <form class="form-horizontal" name="newform" id="newform" method="POST" action="" role="form">
                                         <div class="form-group">
                                             <label for="inputStandard" class="col-lg-3 control-label">Category Name</label>
                                             <div class="col-lg-8">
-                                                <input type="text" name="newcategory" class="form-control" placeholder="Type Category Name Here..." required>
+                                                <input type="text"  data-validation="required" id="categoryName"  name="categoryName" class="form-control" placeholder="Insert Category Name" required>
                                             </div>
                                         </div>
                                         <div align="right" class="">
-                                            <a href="categories.php" class="btn btn-default " role="button"> Cancel </a>
-                                            <button type="submit" name="submitnew" class="btn btn-primary">Save Category</button>
+                                            <button type="button" class="btn btn-default" role="button" id="cancelNewForm" > Cancel </button>
+                                            <button type="button" name="submitnew" class="btn btn-primary" id="saveNewForm" > Create category</button>
                                         </div>
                                     </form>
                                 </div>
@@ -206,30 +211,30 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                <?php } ?>
 
-                <?php if(isset($_GET['action']) && $_GET['action']=='edit'){ ?>
-                    <div class="row">
+
+                    <!-- EDIT PROJECT -->
+                    <!-- EDIT PROJECT -->
+                    <!-- EDIT PROJECT -->
+                    <div class="row j-hide" id="editFormContainer">
                         <div class="col-md-6">
-
-                            <!-- Input Fields -->
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <span class="panel-title">Edit Category <?php if(isset($row_edit['categoryName'])) {echo $row_edit['categoryName'];} ?></span>
+                                    <span class="panel-title">Edit  <span class="text-info" id="nfBoxName"></span>  Category </span>
                                 </div>
 
                                 <div class="panel-body">
-                                    <form class="form-horizontal" name="editform" method="POST" action="categories.php" role="form">
+                                    <form class="form-horizontal" name="editform" id="editForm" method="POST" action="" role="form">
                                         <div class="form-group">
                                             <label class="col-lg-3 control-label">Category Name</label>
                                             <div class="col-lg-8">
-                                                <input type="hidden" name="editcategoryId" value="<?php if(isset($row_edit['categoryId'])){ echo $row_edit['categoryId'];} ?>" >
-                                                <input type="text" name="editcategoryName" class="form-control" value="<?php if(isset($row_edit['categoryName'])){ echo $row_edit['categoryName'];} ?>" required>
+                                                <input type="hidden" name="categoryId" id="categoryId" value="">
+                                                <input type="text" data-validation="required" name="categoryName" id="categoryName"  class="form-control" value="" required>
                                             </div>
                                         </div>
                                         <div align="right" class="">
-                                            <a href="categories.php" class="btn btn-default " role="button"> Cancel </a>
-                                            <button type="submit" name="submitedit" class="btn btn-primary">Edit Category</button>
+                                            <button type="button" class="btn btn-default " role="button" id="cancelEditForm"> Cancel </button>
+                                            <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveEditForm">Save changes</button>
                                         </div>
                                     </form>
                                 </div>
@@ -238,73 +243,8 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                <?php } ?>
 
-                <?php if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['categoryId'])) { ?>
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <!-- Input Fields -->
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <span class="panel-title">Are you sure you want to Delete <?php if(isset($row_delete['categoryName'])) {echo $row_delete['categoryName'];} ?>?</span>
-                                </div>
-
-                                <div class="panel-body">
-                                    <form class="form-horizontal" name="deleteform" method="POST" action="categories.php" role="form">
-                                        <div class="form-group">
-                                            <input type="hidden" name="deletecategoryId" value="<?php if(isset($row_delete['categoryId'])){ echo $row_delete['categoryId'];} ?>" >
-                                            <h4>&emsp;&emsp;<?php if(isset($row_delete['categoryName'])){ echo $row_delete['categoryName'];} ?></h4>
-                                        </div>
-                                        <div align="right" class="">
-                                            <a href="categories.php" class="btn btn-default " role="button"> Cancel Delete </a>
-                                            <button type="submit" name="submitdelete" class="btn btn-danger">Delete Category</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                <?php } ?>
-
-                <?php if(isset($_POST['deleteall']) && isset($_POST['checknum'])) { ?>
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <!-- Input Fields -->
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <span class="panel-title">Are you sure you want to Delete Records?</span>
-                                </div>
-
-                                <div class="panel-body">
-                                    <form class="form-horizontal" name="deleteallform" method="POST" action="categories.php" role="form">
-                                        <div class="form-group">
-
-                                            <?php
-                                            $list = $_POST['checknum'];
-                                            foreach($list as $name) { ?>
-                                                <input type="hidden" name="checknum[]" value="<?php echo $name; ?>" checked >
-                                                <p>&emsp;&emsp;<?php echo $name; ?></p>
-                                            <?php } ?>
-
-                                        </div>
-                                        <div align="right" class="">
-                                            <a href="categories.php" class="btn btn-default " role="button"> Cancel Delete </a>
-                                            <button type="submit" name="submitalldelete" class="btn btn-danger">Delete Category</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                <?php } ?>
-
-                <a href="categories.php?action=new" class="btn btn-default btn-gradient"><i class="fa fa-plus"></i> Add New Category </a>
+                <button class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"><i class="fa fa-plus"></i> Create New Category </button>
 
                 <div class="panel panel-visible">
                     <div class="panel-heading">
@@ -312,11 +252,10 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                     </div>
 
                     <div class="panel-body pn">
-                        <form name="table" method="POST" action="categories.php">
+                        <form name="table" method="POST" action="">
                             <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>Select</th>
                                     <th>ID</th>
                                     <th>Category Name</th>
                                     <th>Actions</th>
@@ -324,30 +263,16 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Select</th>
                                     <th>ID</th>
                                     <th>Category Name</th>
                                     <th>Actions</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <?php if (mysqli_num_rows($result) > 0) {
-                                    $i=1;
-                                    while($row_categories = mysqli_fetch_assoc($result)) { ?>
-                                        <tr>
-                                            <td>&emsp;<input type="checkbox" name="checknum[]" value="<?php echo $row_categories['categoryName']; ?>"></td>
-                                            <td><?php echo $i; ?></td>
-                                            <td><?php echo $row_categories['categoryName']; ?></td>
-                                            <td>
-                                                <a href="categories.php?action=edit&categoryId=<?php echo $row_categories['categoryId']; ?>" class="btn btn-warning btn-sm btn-rounded btn-gradient"><i class="fa fa-pencil"></i> Edit </a>
-                                                <a href="categories.php?action=delete&categoryId=<?php echo $row_categories['categoryId']; ?>" class="btn btn-danger btn-sm btn-rounded btn-gradient"><i class="fa fa-times-circle"></i> Delete </a>
-                                            </td>
-                                        </tr>
-                                        <?php $i++; }/*whileend*/
-                                }/*ifend*/ ?>
+                                
                                 </tbody>
                             </table>
-                            <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button>
+                            <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
                         </form>
                     </div>
                 </div>
@@ -366,7 +291,19 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 </div>
 <!-- End: Main -->
 
-<!-- BEGIN: PAGE SCRIPTS -->
+    <!-- MODAL TEMPLATE for delete cateogry -->
+    <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+      <div>
+        <h2 id="modal1Title">Notification</h2>
+        <p id="modal1Desc">
+          Are you sure you want to delete this project ?
+        </p>
+      </div>
+      <br>
+      <button data-remodal-action="cancel" class="remodal-cancel">No</button>
+      <button data-remodal-action="confirm" class="remodal-confirm">Yes</button>
+    </div>
 
 <!-- jQuery -->
 <script src="vendor/jquery/jquery-1.11.1.min.js"></script>
@@ -381,83 +318,90 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 <!-- Datatables Bootstrap Modifications  -->
 <script src="vendor/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
 
+   <!-- plugins -->
+  <script src="vendor/plugins/toaster/toastr.min.js"></script>
+  <script src="vendor/plugins/modal/remodal.js"></script>
+  <script src="vendor/plugins/jqueryFormValidator/form-validator/jquery.form-validator.js"></script>
+
 <!-- Theme Javascript -->
 <script src="assets/js/utility/utility.js"></script>
 <script src="assets/js/demo/demo.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/controllers/categories.js"></script>
+
 
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    // jQuery(document).ready(function() {
 
-        "use strict";
+    //     "use strict";
 
-        // Init Theme Core
-        Core.init();
+    //     // Init Theme Core
+    //     Core.init();
 
-        // Init Demo JS
-        Demo.init();
+    //     // Init Demo JS
+    //     Demo.init();
 
-        // Init Widget Demo JS
-        // demoHighCharts.init();
+    //     // Init Widget Demo JS
+    //     // demoHighCharts.init();
 
-        // Because we are using Admin Panels we use the OnFinish
-        // callback to activate the demoWidgets. It's smoother if
-        // we let the panels be moved and organized before
-        // filling them with content from various plugins
+    //     // Because we are using Admin Panels we use the OnFinish
+    //     // callback to activate the demoWidgets. It's smoother if
+    //     // we let the panels be moved and organized before
+    //     // filling them with content from various plugins
 
-        // Init plugins used on this page
-        // HighCharts, JvectorMap, Admin Panels
+    //     // Init plugins used on this page
+    //     // HighCharts, JvectorMap, Admin Panels
 
-        // Init Admin Panels on widgets inside the ".admin-panels" container
-        //   $('.admin-panels').adminpanel({
-        //     grid: '.admin-grid',
-        //     draggable: true,
-        //     preserveGrid: true,
-        //     mobile: false,
-        //     onStart: function() {
-        //       // Do something before AdminPanels runs
-        //     },
-        //    onFinish: function() {
-        //       $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+    //     // Init Admin Panels on widgets inside the ".admin-panels" container
+    //     //   $('.admin-panels').adminpanel({
+    //     //     grid: '.admin-grid',
+    //     //     draggable: true,
+    //     //     preserveGrid: true,
+    //     //     mobile: false,
+    //     //     onStart: function() {
+    //     //       // Do something before AdminPanels runs
+    //     //     },
+    //     //    onFinish: function() {
+    //     //       $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
 
-        // Init the rest of the plugins now that the panels
-        // have had a chance to be moved and organized.
-        // It's less taxing to organize empty panels
+    //     // Init the rest of the plugins now that the panels
+    //     // have had a chance to be moved and organized.
+    //     // It's less taxing to organize empty panels
 
-        //    },
-        //    onSave: function() {
-        //      $(window).trigger('resize');
-        //    }
-        //  });
+    //     //    },
+    //     //    onSave: function() {
+    //     //      $(window).trigger('resize');
+    //     //    }
+    //     //  });
 
-        // MISC DATATABLE HELPER FUNCTIONS
-        $('#datatable3').dataTable({
-            "aoColumnDefs": [{
-                'bSortable': false,
-                'aTargets': [-1]
-            }],
-            "oLanguage": {
-                "oPaginate": {
-                    "sPrevious": "",
-                    "sNext": ""
-                }
-            },
-            "iDisplayLength": 10,
-            "aLengthMenu": [
-                [5, 10, 25, 50, -1],
-                [5, 10, 25, 50, "All"]
-            ],
-            "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
-            "oTableTools": {
-                "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-            }
-        });
+    //     // MISC DATATABLE HELPER FUNCTIONS
+    //     $('#datatable3').dataTable({
+    //         "aoColumnDefs": [{
+    //             'bSortable': false,
+    //             'aTargets': [-1]
+    //         }],
+    //         "oLanguage": {
+    //             "oPaginate": {
+    //                 "sPrevious": "",
+    //                 "sNext": ""
+    //             }
+    //         },
+    //         "iDisplayLength": 10,
+    //         "aLengthMenu": [
+    //             [5, 10, 25, 50, -1],
+    //             [5, 10, 25, 50, "All"]
+    //         ],
+    //         "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
+    //         "oTableTools": {
+    //             "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
+    //         }
+    //     });
 
-        // Add Placeholder text to datatables filter bar
-        $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
+    //     // Add Placeholder text to datatables filter bar
+    //     $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
 
 
-    });
+    // });
 </script>
 
 <!-- END: PAGE SCRIPTS -->

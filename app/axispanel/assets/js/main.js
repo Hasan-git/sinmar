@@ -802,7 +802,6 @@ var bgPrimary = '#4a89dc',
  $('#datatable3 tbody').on( 'click', '.btn', function (event) {
    var target = $(this.getAttribute('scrollto'));
        if( target.length ) {
-       console.log(target)
            event.preventDefault();
            $('html, body').stop().animate({
                scrollTop: target.offset().top-50
@@ -819,3 +818,4 @@ $('.btn').on('click', function(event) {
         }, 1000);
     }
 });
+

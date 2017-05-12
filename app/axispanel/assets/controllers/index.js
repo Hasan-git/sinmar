@@ -135,7 +135,11 @@
                             toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
                             } ,
                             error: function(err) {
-                                toastr.error(error, 'Notification', {timeOut: 5000})
+                               if(err.responseText){
+                                    toastr.error(err.responseText, 'Notification', {timeOut: 5000})
+                               }else{
+                                    toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
+                               }
                             }
                     });
                     
@@ -181,11 +185,11 @@
                             toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
                         } ,
                         error: function(err) {
-                            if(err){
-                                toastr.error(err, 'Notification', {timeOut: 5000})
-                            }else{
-                                toastr.error('An error occurred', 'Notification', {timeOut: 5000})
-                            }
+                            if(err.responseText){
+                                    toastr.error(err.responseText, 'Notification', {timeOut: 5000})
+                               }else{
+                                    toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
+                               }
                         }
                     });    
 
@@ -223,7 +227,11 @@
                         toastr.success('Project deleted successfully', 'Notification', {timeOut: 5000})
                         } ,
                         error: function(err) {
-                            toastr.error(error, 'Notification', {timeOut: 5000})
+                            if(err.responseText){
+                                    toastr.error(err.responseText, 'Notification', {timeOut: 5000})
+                               }else{
+                                    toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
+                               }
                         }
                     });
             });

@@ -38,13 +38,14 @@
                 modules:    conf.modules
             });
 
-            var urlPath = '../php/projecttype/';
+            //TODO://
+            var urlPath = '../php/categories/';
 
             ////////////////////////////////////////////////////
             
             ////////////////////////////////////////////////////
 
-            //Get all projects
+            //Get all categories
             $.ajax({
                 url: urlPath + 'get.php',
                 method:'GET',
@@ -66,13 +67,14 @@
                         ],
                         data:data.data,
                         columns:[
-                            {'data':'projectTypeId'},
-                            {'data':'projectTypeName'},
+                            //TODO://
+                            {'data':'categoryId'},
+                            {'data':'categoryName'},
                             {   'data':null,
                                 'render': function ( data, type, full, meta ) {
                                     //set data-row attr as the datatable row -> give access the save changes to update row data localy
-                                    return "<button class='btn btn-xs btn-success' scrollto='#editmode' id='editProject' data-row='"+meta.row+"' data-project='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
-                                      "<a class='btn btn-xs btn-danger' id='deleteProject' data-row='"+meta.row+"' project-id='"+full.projectTypeId+"' href='#'> <i class='fa fa-trash'></i> </a> "
+                                    return "<button class='btn btn-xs btn-success' scrollto='#editFormContainer' id='editRecord' data-row='"+meta.row+"' data-record='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
+                                      "<a class='btn btn-xs btn-danger' id='deleteRecord' data-row='"+meta.row+"' record-id='"+full.brandId+"' href='#'> <i class='fa fa-trash'></i> </a> "
                                 },
                                 
                             }
@@ -83,59 +85,60 @@
                 }
             })
 
-            $('#canelEditPro').click(function(){
-                $('#editmode').hide(700);
+            $('#cancelEditForm').click(function(){
+                $('#editFormContainer').hide(700);
             });
 
-            //Edit project btn Clicked
-           $('#datatable3 tbody').on( 'click', '#editProject', function (event) {
+            //Edit category btn Clicked
+           $('#datatable3 tbody').on( 'click', '#editRecord', function (event) {
 
                 event.preventDefault();
                 event.stopPropagation();
 
-                $('#editmode').show(700);
+                $('#editFormContainer').show(700);
                 
-                //var product = JSON.parse($(this).attr('project-id')) 
-                var project = $(this).data().project;
+                //var product = JSON.parse($(this).attr('record-id')) 
+                var mainRecord = $(this).attr('data-record');
+                mainRecord = JSON.parse(mainRecord);
                 var datatableRow = $(this).attr('data-row');
                 
-                //set datatable row in data-row attr to for saveEditPro(Save button) to have the access for datatable row
-                $('#editmode').find('#saveEditPro').attr("data-row",datatableRow)
+                //set datatable row in data-row attr to for saveEditForm(Save button) to have the access for datatable row
+                $('#editFormContainer').find('#saveEditForm').attr("data-row",datatableRow)
 
-                // $('#editmode').find('#proNameBox').html(datatableRow)
-                $('#editmode').find('#proNameBox').html(project.projectTypeName)
-                $('#editmode').find('#projectTypeName').val(project.projectTypeName)
-                $('#editmode').find('#projectTypeId').val(project.projectTypeId)
+                //TODO://
+                $('#editFormContainer').find('#nfBoxName').html(mainRecord.categoryName)
+                $('#editFormContainer').find('#categoryName').val(mainRecord.categoryName)
+                $('#editFormContainer').find('#categoryId').val(mainRecord.categoryId)
            
             });
 
-            // Edit project form submited
-            $('#saveEditPro').click(function(){
-               if( !$('#editProForm').isValid(conf.language, conf, true) ) {
+            // Edit category form submited
+            $('#saveEditForm').click(function(){
+               if( !$('#editForm').isValid(conf.language, conf, true) ) {
                     // displayErrors( errors );
                    } else {
                         $.ajax({
                             url: urlPath + 'update.php',
                             method:'POST',
-                            data: $('#editProForm').serialize(),
+                            data: $('#editForm').serialize(),
                             success:function(data){ 
                             // Serialize the form to Json 
-                            var localProject = $('#editProForm').serializeFormJSON()
+                            var localRecord = $('#editForm').serializeFormJSON()
 
                             //Get the datatable row from the button attr and emit changes
-                            var datatableRow_ = $('#saveEditPro').attr("data-row");
+                            var datatableRow_ = $('#saveEditForm').attr("data-row");
                             //get the dt instance
                             var myDataTable= $('#datatable3').DataTable();
                             // get / set dt row
                             var row = myDataTable.row(datatableRow_);
                             //Change row.projectName
                             //
-                            myDataTable.row(row).data(localProject).draw();
-                            $('#editmode').hide(700);
-                            toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
+                            myDataTable.row(row).data(localRecord).draw();
+                            $('#editFormContainer').hide(700);
+                            toastr.success('category updated successfully', 'Notification', {timeOut: 5000})
                             } ,
                             error: function(err) {
-                                if(err.responseText){
+                               if(err.responseText){
                                     toastr.error(err.responseText, 'Notification', {timeOut: 5000})
                                }else{
                                     toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
@@ -148,22 +151,22 @@
             });
 
 
-            // New project btn clicked -> show the form
-            $('#newProOpen').click(function(){
-                $('#newProForm').show(800);
+            // New category btn clicked -> show the form
+            $('#openNewRecordForm').click(function(){
+                $('#newFormContainer').show(800);
 
             });
 
-            // New Project canceled
-            $('#canelNewPro').click(function(){
-                $('#newProForm').hide(700);
+            // New category canceled
+            $('#cancelNewForm').click(function(){
+                $('#newFormContainer').hide(700);
             });
 
                 
 
 
-            //CREATE NEW PROJECT IN PROCESS
-            $('#saveNewPro').click(function(){
+            //CREATE NEW category IN PROCESS
+            $('#saveNewForm').click(function(){
                 
                    if( !$('#newform').isValid(conf.language, conf, true) ) {
                     // displayErrors( errors );
@@ -175,17 +178,17 @@
                         data: $('#newform').serialize(),
                         success:function(data){ 
 
-                            var _newProduct = JSON.parse(data)
+                            var _newRecord = JSON.parse(data)
 
                             var myDataTable= $('#datatable3').DataTable();
                             
-                            myDataTable.row.add(_newProduct  ).draw( false )
+                            myDataTable.row.add(_newRecord ).draw( false )
                             
-                            $('#newProForm').hide(700);
-                            toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
+                            $('#newFormContainer').hide(700);
+                            toastr.success('category updated successfully', 'Notification', {timeOut: 5000})
                         } ,
                         error: function(err) {
-                            if(err.responseText){
+                           if(err.responseText){
                                     toastr.error(err.responseText, 'Notification', {timeOut: 5000})
                                }else{
                                     toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
@@ -201,10 +204,10 @@
             });
 
 
-        //DELETE PROJECT CLICKED
-        $('#datatable3 tbody').on( 'click', '#deleteProject', function (event) {
-            var thisProject = $(this);
-            var projectTypeId = $(this).attr('project-id');
+        //DELETE category CLICKED
+        $('#datatable3 tbody').on( 'click', '#deleteRecord', function (event) {
+            var thisDeleteBtn = $(this);
+            var RecordId = $(this).attr('record-id');
             var inst = $('[data-remodal-id=modal]').remodal();
                     
             inst.open();
@@ -214,20 +217,21 @@
                 $.ajax({
                         url: urlPath + 'delete.php',
                         method:'POST',
-                        data: {projectTypeId:projectTypeId},
+                        //TODO:??
+                        data: {categoryId:RecordId},
                         success:function(data){ 
 
                         //get the dt instance
                         var myDataTable= $('#datatable3').DataTable();
 
                         // get / set dt row
-                        var row = myDataTable.row($(thisProject).parents('tr')).remove().draw();;
-
+                        var row = myDataTable.row($(thisDeleteBtn).parents('tr')).remove().draw();;
+                        
                         inst.close();
-                        toastr.success('Project deleted successfully', 'Notification', {timeOut: 5000})
+                        toastr.success('category deleted successfully', 'Notification', {timeOut: 5000})
                         } ,
                         error: function(err) {
-                            if(err.responseText){
+                           if(err.responseText){
                                     toastr.error(err.responseText, 'Notification', {timeOut: 5000})
                                }else{
                                     toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
@@ -241,9 +245,6 @@
             });
 
         });
-
-
-
 
         });//end
 

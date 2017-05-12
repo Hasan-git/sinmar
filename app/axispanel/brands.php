@@ -290,7 +290,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
   </div>
   <!-- End: Main -->
 
-      <!-- MODAL TEMPLATE for delete Brand -->
+    <!-- MODAL TEMPLATE for delete Brand -->
     <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
       <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
       <div>
