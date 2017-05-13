@@ -331,77 +331,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 
 
 <script type="text/javascript">
-    // jQuery(document).ready(function() {
 
-    //     "use strict";
-
-    //     // Init Theme Core
-    //     Core.init();
-
-    //     // Init Demo JS
-    //     Demo.init();
-
-    //     // Init Widget Demo JS
-    //     // demoHighCharts.init();
-
-    //     // Because we are using Admin Panels we use the OnFinish
-    //     // callback to activate the demoWidgets. It's smoother if
-    //     // we let the panels be moved and organized before
-    //     // filling them with content from various plugins
-
-    //     // Init plugins used on this page
-    //     // HighCharts, JvectorMap, Admin Panels
-
-    //     // Init Admin Panels on widgets inside the ".admin-panels" container
-    //     //   $('.admin-panels').adminpanel({
-    //     //     grid: '.admin-grid',
-    //     //     draggable: true,
-    //     //     preserveGrid: true,
-    //     //     mobile: false,
-    //     //     onStart: function() {
-    //     //       // Do something before AdminPanels runs
-    //     //     },
-    //     //    onFinish: function() {
-    //     //       $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
-
-    //     // Init the rest of the plugins now that the panels
-    //     // have had a chance to be moved and organized.
-    //     // It's less taxing to organize empty panels
-
-    //     //    },
-    //     //    onSave: function() {
-    //     //      $(window).trigger('resize');
-    //     //    }
-    //     //  });
-
-    //     // MISC DATATABLE HELPER FUNCTIONS
-    //     $('#datatable3').dataTable({
-    //         "aoColumnDefs": [{
-    //             'bSortable': false,
-    //             'aTargets': [-1]
-    //         }],
-    //         "oLanguage": {
-    //             "oPaginate": {
-    //                 "sPrevious": "",
-    //                 "sNext": ""
-    //             }
-    //         },
-    //         "iDisplayLength": 10,
-    //         "aLengthMenu": [
-    //             [5, 10, 25, 50, -1],
-    //             [5, 10, 25, 50, "All"]
-    //         ],
-    //         "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
-    //         "oTableTools": {
-    //             "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-    //         }
-    //     });
-
-    //     // Add Placeholder text to datatables filter bar
-    //     $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
-
-
-    // });
 </script>
 
 <!-- END: PAGE SCRIPTS -->

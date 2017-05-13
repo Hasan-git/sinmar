@@ -24697,3 +24697,6 @@ body.timeline-page .panel-clone {
 .j-hide{
     display: none;
 }
+.pointer{
+  cursor: pointer;
+}
