@@ -2,9 +2,6 @@
 include_once('../../axispanel/includes/connect.php');
 
 if ( !empty( $_FILES ) && isset($_POST['itemName'])  ) {
-
-    var_dump($_POST);
-    var_dump($_FILES);
     
 	    $itemName = $_POST['itemName'];
 

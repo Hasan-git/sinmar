@@ -320,21 +320,9 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 
     </head>
 
-    <body class="datatables-page sb-l-o sb-r-c">
+<body class="datatables-page sb-l-o sb-r-c">
 
-    <!-------------------------------------------------------------+
-      <body> Helper Classes:
-    ---------------------------------------------------------------+
-      '.sb-l-o' - Sets Left Sidebar to "open"
-      '.sb-l-m' - Sets Left Sidebar to "minified"
-      '.sb-l-c' - Sets Left Sidebar to "closed"
 
-      '.sb-r-o' - Sets Right Sidebar to "open"
-      '.sb-r-c' - Sets Right Sidebar to "closed"
-    ---------------------------------------------------------------+
-     Example: <body class="example-page sb-l-o sb-r-c">
-     Results: Sidebar left Open, Sidebar right Closed
-    --------------------------------------------------------------->
 
     <?php include_once('includes/themes.php') ?>
 
@@ -355,7 +343,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
             <!-- begin: .tray-center -->
             <div class="tray tray-center">
                 <div class="col-md-12">
-
                     <!-- NEW ITEM -->
                     <!-- NEW ITEM -->
                     <!-- NEW ITEM -->
@@ -476,7 +463,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         </div>
                     </div>
                     <div class="clearfix"></div>
-
 
                         <!-- EDIT ITEM -->
                         <!-- EDIT ITEM -->
@@ -742,66 +728,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     <script src="assets/js/demo/demo.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/controllers/hardware.js"></script>
-
-
-    <script type="text/javascript">
-
-
-    //     jQuery(document).ready(function() {
-    // $('.tabs').tabslet();
-
-    //         "use strict";
-
-    //         // Init Theme Core
-    //         Core.init();
-
-    //         // Init Demo JS
-    //         Demo.init();
-
-    //         // Init Select2 - Basic Single
-    //         $(".select2-single").select2();
-
-    //         //Enable, Disable checkbox
-    //         $("#offer").click(function () {
-    //             if ($(this).is(":checked")) {
-    //                 $("#offerprice").removeAttr("disabled");
-    //                 $("#offerprice").focus();
-    //             } else {
-    //                 $("#offerprice").attr("disabled", "disabled");
-    //             }
-    //         });
-
-    //         // MISC DATATABLE HELPER FUNCTIONS
-    //         $('#datatable3').dataTable({
-    //             "aoColumnDefs": [{
-    //                 'bSortable': false,
-    //                 'aTargets': [-1]
-    //             }],
-    //             "oLanguage": {
-    //                 "oPaginate": {
-    //                     "sPrevious": "",
-    //                     "sNext": ""
-    //                 }
-    //             },
-    //             "iDisplayLength": 10,
-    //             "aLengthMenu": [
-    //                 [5, 10, 25, 50, -1],
-    //                 [5, 10, 25, 50, "All"]
-    //             ],
-    //             "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
-    //             "oTableTools": {
-    //                 "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-    //             }
-    //         });
-
-    //         // Add Placeholder text to datatables filter bar
-    //         $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
-
-
-    //     });
-    </script>
-
-    <!-- END: PAGE SCRIPTS -->
 
 
     </body>
