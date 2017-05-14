@@ -86,10 +86,10 @@
             </a>
             <ul class="nav sub-nav">
               <li>
-                <a href="items.php?type=Appliances"> Home Appliances </a>
+                <a href="appliances.php?type=Applicances"> Home Appliances </a>
               </li>
               <li>
-                <a href="items.php?type=Hardware"> Hardware </a>
+                <a href="hardware.php?type=Hardware"> Hardware </a>
               </li>
             </ul>
           </li>
