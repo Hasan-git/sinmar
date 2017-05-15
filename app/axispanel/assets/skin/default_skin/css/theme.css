@@ -24700,3 +24700,44 @@ body.timeline-page .panel-clone {
 .pointer{
   cursor: pointer;
 }
+
+.select2-container {
+    width: 100%!important;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 250px;
+    display: inline;
+}
+.image-wrapper p {
+    position: absolute;
+    left: 108px;
+    background-color: rgba(12, 12, 12, 0.51);
+    top: -32px;
+    padding: 1px 5px;
+    font-size: 10px;
+    width: 54px;
+    color: #FFF;
+    text-align: center;
+    margin: 52px 3px 4px -103px;
+    display: inline-block;
+    z-index: 100;
+}
+.image-viewer .col--2{
+    white-space: nowrap;
+    width: 1%;
+    margin: 8px;
+    display: inline-table;
+    border: 1px solid #f6bb42;
+    padding: 0px 4px 3px 4px;
+}
+.image-viewer .img-thumbnail {
+    max-width: 103px;
+}
+.image-viewer div > i{
+    display: block;
+    text-align: center;
+    margin: 0px -4px 5px -5px;
+    border-radius: 0;
+}

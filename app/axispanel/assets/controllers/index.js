@@ -92,7 +92,7 @@
 
                 event.preventDefault();
                 event.stopPropagation();
-
+                $('#editProForm').find("input[type=text],input[type=file],select, textarea").val("")
                 $('#editmode').show(700);
                 
                 //var product = JSON.parse($(this).attr('project-id')) 
@@ -150,6 +150,7 @@
 
             // New project btn clicked -> show the form
             $('#newProOpen').click(function(){
+                $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
                 $('#newProForm').show(800);
 
             });

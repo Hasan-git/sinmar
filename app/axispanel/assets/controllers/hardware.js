@@ -234,7 +234,7 @@
 
                 event.preventDefault();
                 event.stopPropagation();
-
+                $('#editForm').find("input[type=text],input[type=file],select, textarea").val("")
                 //var product = JSON.parse($(this).attr('record-id')) 
                 var mainRecord = $(this).attr('data-record');
                 mainRecord = JSON.parse(mainRecord);
@@ -317,6 +317,7 @@
             $('#openNewRecordForm').click(function() {
                 services.getBrandsNewForm()
                 services.getCategoriesNewForm()
+                $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
                 $('#newFormContainer').show(800);
 
             });

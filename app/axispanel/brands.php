@@ -207,7 +207,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
   					</form>
   				  </div>
   				</div>
-  				
   			  </div>
   			</div>			  
   			<div class="clearfix"></div>

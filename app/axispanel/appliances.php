@@ -305,7 +305,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
         <!-- Tabs -->
         <link rel="stylesheet" type="text/css" href="vendor/plugins/tabs/stylesheets/styles.css">
 
-        <!-- Tabs -->
+        <!-- dropzone -->
         <link rel="stylesheet" type="text/css" href="vendor/plugins/dropzone.v2/dropzone.css">
 
         <!-- Favicon -->
