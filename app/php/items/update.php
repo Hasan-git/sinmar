@@ -22,20 +22,21 @@ include_once('../../axispanel/includes/connect.php');
         if(isset($_FILES['itemImage']) && $_FILES['itemImage']['size'] > 0){
             $itemimage  =   $_FILES['itemImage'] ;
             $tmp_name = $itemimage["tmp_name"];
-            $path = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR .basename($itemimage["name"]);
-            $itemImageName = $itemimage["name"];
+            $guid = uniqid();
+            $path = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR .basename( $itemimage["name"].'@'.$guid);
+            $itemImageName =  $itemimage["name"].'@'.$guid;
             move_uploaded_file($tmp_name, $path);
         }else{
             $itemImageName =$_POST['itemImageName'];
         }
 
-            $updateQuery = "UPDATE tblitems SET itemtype='$itemtype',itemname='$itemname',brandname='$brandname',categoryname='$categoryname',price='$price',model='$model',itemsize='$itemsize',color='$color',description='$description',new='$new',offer='$offer',offerprice='$offerprice',itemImage='$itemImageName' WHERE itemId='$itemId'";
+            $updateQuery = "UPDATE tblitems SET itemtype='$itemtype',itemname='$itemname',brandname='$brandname',categoryname='$categoryname',price='$price',model='$model',itemsize='$itemsize',color='$color',description='$description',new=".($new?1:0).",offer=".($offer?1:0).",offerprice='$offerprice',itemImage='$itemImageName' WHERE itemId='$itemId'";
             if(mysqli_query($conn, $updateQuery)){
 
                 header("HTTP/1.0 200 OK");
-                echo "Brand updated successfully";
+                echo "updated";
             }else{
-
+                echo mysqli_error($conn);                
                 header("HTTP/1.0 500 Internal Server Error");
                 echo "An error occurred";
             }

@@ -358,25 +358,26 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                     <!-- <span class="text-danger-darker">Fields with * are required</span> -->
                                     <form class="form-horizontal" name="newform" id="newform" method="POST" action="" enctype="multipart/form-data" role="form">
 
+                                        <input type="hidden" name="itemType" value="Hardware">   
                                         <div class="form-group admin-form">
-                                            <div class="col-sm-2">
+                                            <!-- <div class="col-sm-2">
                                                 <label class="control-label">Item Type*</label>
                                                 <select data-validation="required" name="itemType" class="form-control" required>
                                                     <option value="Hardware" selected="selected">Hardware</option>
-                                                    <!-- <option value="Appliances" >Appliances</option> -->
+                                                <option value="Appliances" >Appliances</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                             <div class="col-sm-4">
                                                 <label class="control-label">Item Name*</label>
                                                 <input type="text" data-validation="required" name="itemName" id="itemName" class="form-control" placeholder="Item Name..." required>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <label class="control-label">Item Brand*</label>
                                                 <select name="brandName" data-validation="required" id="brandName" class="select2-single form-control" required>
                                                     <option value="">Select Brand</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <label class="control-label">Item Category*</label>
                                                 <select name="categoryName" data-validation="required" id="categoryName" class="select2-single form-control" required>
                                                     <option value="">Select Category</option>

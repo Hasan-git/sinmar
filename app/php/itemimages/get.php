@@ -26,15 +26,16 @@ if ($result) {
 		  $images = json_encode($_image);
 		  header("HTTP/1.0 200 OK");
 		  echo $images;
+		}else{
+			$_item['data'] = array();
+			$items = json_encode($_item);
+			echo $items;
 		}
 
     }else{
         header("HTTP/1.0 500 Internal Server Error");
         echo "An error occurred";
     }
-
-
-
 }else{
 	header("HTTP/1.0 400 Bad Request");
     echo "Something went wrong";

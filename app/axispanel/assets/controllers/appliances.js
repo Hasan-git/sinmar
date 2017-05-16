@@ -137,7 +137,6 @@
 
             //Enable, Disable checkbox
             $("#newFormContainer #offer").click(function() {
-                console.log($(this))
                 if ($(this).is(":checked")) {
                     $("#newFormContainer #offerPrice").removeAttr("disabled");
                     $("#newFormContainer #offerPrice").focus();
@@ -146,8 +145,7 @@
                 }
             });
 
-            $("#editFormContainer #offer").click(function() {
-                console.log($(this))
+            $("#editFormContainer #offer").change(function() {
                 if ($(this).is(":checked")) {
                     $("#editFormContainer #offerPrice").removeAttr("disabled");
                     $("#editFormContainer #offerPrice").focus();
@@ -228,9 +226,13 @@
             //Edit category btn Clicked
             $('#datatable3 tbody').on('click', '#editRecord', function(event) {
 
+                $('#editForm').find("input[type=text],input[type=file],select, textarea input[type=number]").val("").change()
+                $('#editForm').find('#price').val(0)
+                $('#editForm').get(0).reset();
+
                 event.preventDefault();
                 event.stopPropagation();
-                $('#editform').find("input[type=text],input[type=file],select, textarea").val("")
+                $('#editForm').find("input[type=text],input[type=file],select, textarea").val("").change();
                 //var product = JSON.parse($(this).attr('record-id')) 
                 var mainRecord = $(this).attr('data-record');
                 mainRecord = JSON.parse(mainRecord);
@@ -243,6 +245,7 @@
                 services.getBrandsEditForm(mainRecord.brandName)
                 services.getCategoriesEditForm(mainRecord.categoryName)
 
+                console.log(mainRecord)
                 //TODO://
                 $('#editFormContainer').find('#nfBoxName').html(mainRecord.itemName)
                 $('#editFormContainer').find('#itemName').val(mainRecord.itemName)
@@ -253,10 +256,11 @@
                 $('#editFormContainer').find('#price').val(mainRecord.price)
                 $('#editFormContainer').find('#description').val(mainRecord.description)
                 $('#editFormContainer').find('#new').prop('checked', mainRecord.new == 1 ? true : false)
-                $('#editFormContainer').find('#offer').prop('checked', mainRecord.offer == 1 ? true : false)
+                $('#editFormContainer').find('#offer').prop('checked', mainRecord.offer == 1 ? true : false).change()
                 $('#editFormContainer').find('#offerPrice').val(mainRecord.offerPrice)
                 $('#editFormContainer').find('#itemType').val(mainRecord.itemType).change()
-                $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImage)
+                // $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImage)
+                $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImageName || mainRecord.itemImage)
                 $('#editFormContainer').find('#itemId').val(mainRecord.itemId)
 
                 $('#editFormContainer').show(700);
@@ -313,7 +317,9 @@
             $('#openNewRecordForm').click(function() {
                 services.getBrandsNewForm()
                 services.getCategoriesNewForm()
-                $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
+                $('#newform').find("input[type=text],input[type=file],select, textarea input[type=number]").val("").change()
+                $('#newform').find('#price').val(0)
+                $('#newform').get(0).reset();
                 $('#newFormContainer').show(800);
 
             });
@@ -362,12 +368,7 @@
                             }
                         }
                     });
-
-
                 }
-
-
-
             });
 
 
@@ -452,6 +453,8 @@
                             // var data = $('#editForm').serialize()
                             // fd.append('itemImage', $('#newform input[type=file]')[0].files[0]); 
 
+                            // fd.append('itemType', '' )
+
                             $.ajax({
                                 url: "../php/items/post.php",
                                 type: "POST",
@@ -474,9 +477,7 @@
                                 idz = data.itemId;
                                 itemName = data.itemName;
                                 console.log(idz, itemName);
-                                toastr.success("Item created successfully", 'Notification', {
-                                    timeOut: 5000
-                                });
+                                toastr.success("Item created successfully", 'Notification', {timeOut: 5000});
                                 // myDropzone.on('sendingmultiple', function(data, xhr, formData) {
                                 //     formData.append("itemId", idz);
                                 //     formData.append("itemName", itemName);
@@ -557,7 +558,8 @@
                 });
                 file.previewElement.appendChild(removeButton);
             });
-            $('#datatable3 tbody').on('click', '#editRecord', function(event) {
+            $('#datatable3 tbody').on('click', '#editRecord', function(event) {               
+
                 myDropzoneEdit.removeAllFiles(true);
             })
 
@@ -588,11 +590,14 @@
 
                         var itemId_ = $('#editFormContainer').find('#itemName').val()
                         $.get('../php/itemimages/get.php?itemName=' + itemId_, function(data) {
-                            data = JSON.parse(data)
-                            $.each(data, function(key, value) {
+
+                            var images = JSON.parse(data)
+                            if(images.length){
+                                $.each(images, function(key, value) {
                                 var mockFile = {
                                     name: value.imageName,
-                                    imageId: value.ImageId
+                                    imageId: value.ImageId,
+                                    size : ''
                                 };
                                 // myDropzoneEdit.options.addedfile.call(myDropzoneEdit, mockFile);
                                 myDropzoneEdit.emit("addedfile", mockFile);
@@ -600,10 +605,11 @@
                                 myDropzoneEdit.emit("thumbnail", mockFile, "images/" + value.imageName);
                                 myDropzoneEdit.files.push(mockFile);
                             });
+                            }
                         });
                     });
 
-
+                    // SAVE EDIT FORM CHANGES
                     submitButton.addEventListener("click", function() {
 
                         if ($('#editForm').isValid(conf.language, conf, true)) {
@@ -628,7 +634,7 @@
                                 var localRecord = $('#editForm').serializeFormJSON()
 
                                 localRecord.new = !!localRecord.new
-                                localRecord.offer = !!localRecord.new
+                                localRecord.offer = !!localRecord.offer
 
                                 //Get the datatable row from the button attr and emit changes
                                 var datatableRow_ = $('#saveEditForm').attr("data-row");
@@ -637,13 +643,13 @@
                                 // // get / set dt row
                                 var row = myDataTable.row(datatableRow_);
                                 // //Change row.projectName
-                                // //
+
                                 myDataTable.row(row).data(localRecord).draw();
 
-                                console.log(myDataTable.row(row).data())
+                                // console.log(myDataTable.row(row).data(),localRecord)
                                     // idz = data.itemId;
                                 itemName = localRecord.itemName;
-                                toastr.success("Item created successfully", 'Notification', {
+                                toastr.success("Item updated successfully", 'Notification', {
                                     timeOut: 5000
                                 });
                                 // myDropzoneEdit.on('sendingmultiple', function(data, xhr, formData) {
@@ -660,9 +666,7 @@
 
                                 myDropzoneEdit.on("queuecomplete", function(file, res) {
                                     if (myDropzoneEdit.files[0].status != Dropzone.SUCCESS) {
-                                        toastr.error("Failed to upload images", 'Notification', {
-                                            timeOut: 5000
-                                        })
+                                        toastr.error("Failed to upload images", 'Notification', {timeOut: 5000})
                                         $('#editFormContainer').hide(700);
                                         myDropzoneEdit.removeAllFiles(true);
                                         $('#editForm').find("input[type=text],input[type=file],select, textarea").val("")
@@ -672,9 +676,9 @@
                                         });
                                         $('#editFormContainer').hide(700);
                                         myDropzoneEdit.removeAllFiles(true);
-                                        $('#editForm').find("input[type=text],input[type=file],select, textarea").val("")
-
+                                        $('#editForm').find("input[type=text],input[type=file],select, textarea").val("").change()
                                     }
+
                                 });
 
 

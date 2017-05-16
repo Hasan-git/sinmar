@@ -371,24 +371,25 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                     <!-- <span class="text-danger-darker">Fields with * are required</span> -->
                                     <form class="form-horizontal" name="newform" id="newform" method="POST" action="" enctype="multipart/form-data" role="form">
 
+                                        <input type="hidden" name="itemType" value="Appliances">   
                                         <div class="form-group admin-form">
-                                            <div class="col-sm-2">
+                                            <!-- <div class="col-sm-2">
                                                 <label class="control-label">Item Type*</label>
                                                 <select data-validation="required" name="itemType" class="form-control" required>
                                                     <option value="Appliances" selected="selected">Appliances</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                             <div class="col-sm-4">
                                                 <label class="control-label">Item Name*</label>
                                                 <input type="text" data-validation="required" name="itemName" id="itemName" class="form-control" placeholder="Item Name..." required>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <label class="control-label">Item Brand*</label>
                                                 <select name="brandName" data-validation="required" id="brandName" class="select2-single form-control" required>
                                                     <option value="">Select Brand</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <label class="control-label">Item Category*</label>
                                                 <select name="categoryName" data-validation="required" id="categoryName" class="select2-single form-control" required>
                                                     <option value="">Select Category</option>
@@ -490,23 +491,24 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                 <div class="panel-body">
                                     <span class="text-danger-darker">Fields with * are required</span>
                                     <form class="form-horizontal" name="editform" id="editForm" method="POST" action="" enctype="multipart/form-data" role="form">
+                                        <input type="hidden" name="itemType" value="Appliances"> 
                                         <div class="form-group admin-form">
-                                            <div class="col-sm-2">
+                                           <!--  <div class="col-sm-2">
                                                 <label class="control-label">Item Type*</label>
                                                 <select data-validation="required" name="itemType"  id="itemType" class="form-control" required>
                                                     <option value="Appliances">Appliances</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                             <div class="col-sm-4">
                                                 <label class="control-label">Item Name*</label>
                                                 <input type="text" data-validation="required" name="itemName" id="itemName" value="" class="form-control" placeholder="Item Name..." required>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <label class="control-label">Item Brand*</label>
                                                 <select data-validation="required" name="brandName" id="brandName" class="select2-single form-control" required>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <label class="control-label">Item Category*</label>
                                                 <select data-validation="required" name="categoryName" id="categoryName" class="select2-single form-control" required>
                                                 </select>
@@ -594,45 +596,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                         </div>
                     </div>
                     <div class="clearfix"></div>
-
-                        <!-- <div class="row">
-                            <div class="col-md-5">
-                                <div class="panel">
-                                    <div class="panel-heading">
-                                        <span class="panel-title">Additional Images for <b class="text-info"><?php if(isset($row_add['itemName'])) {echo $row_add['itemName'];} ?></b></span>
-                                    </div>
-
-                                    <div class="panel-body">
-                                        <form class="form-horizontal" name="addform" method="POST" action="items.php" enctype="multipart/form-data" role="form">
-
-                                            <a href="#" class="btn btn-rounded btn-sm btn-info"><i class="fa fa-zoom"></i> View All Images </a>
-
-                                            <div class="form-group admin-form">
-                                                <div class="col-sm-10">
-                                                    <label class="control-label">Upload Image Item*</label>
-                                                    <label class="field prepend-icon file">
-                                                        <span class="button bg-primary" style="color: white;">Choose Image</span>
-                                                        <input type="file" class="gui-file" name="fileToUpload" id="fileToUpload" onChange="document.getElementById('imagename').value = this.value.substr(12);" required>
-                                                        <input type="text" class="gui-input" name="itemImage" id="imagename" placeholder="Please Select An Image">
-                                                        <label class="field-icon"><i class="fa fa-upload"></i></label>
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="clearfix"><br/></div>
-                                            <div align="right" class="">
-                                                <a href="items.php" class="btn btn-default " role="button"> Cancel </a>
-                                                <button type="submit" name="submitadd" class="btn btn-primary">Submit</button>
-                                                <input type="hidden" name="itemId" value="<?php echo $row_add['itemId']; ?>">
-                                                <input type="hidden" name="itemName" value="<?php echo $row_add['itemName']; ?>" >
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="clearfix"></div> -->
 
                     <button class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"><i class="fa fa-plus"></i> Add New Item </button>
 

@@ -136,7 +136,6 @@
 
             //Enable, Disable checkbox
             $("#newFormContainer #offer").click(function() {
-                console.log($(this))
                 if ($(this).is(":checked")) {
                     $("#newFormContainer #offerPrice").removeAttr("disabled");
                     $("#newFormContainer #offerPrice").focus();
@@ -145,8 +144,7 @@
                 }
             });
 
-            $("#editFormContainer #offer").click(function() {
-                console.log($(this))
+            $("#editFormContainer #offer").change(function() {
                 if ($(this).is(":checked")) {
                     $("#editFormContainer #offerPrice").removeAttr("disabled");
                     $("#editFormContainer #offerPrice").focus();
@@ -257,10 +255,11 @@
                 $('#editFormContainer').find('#price').val(mainRecord.price)
                 $('#editFormContainer').find('#description').val(mainRecord.description)
                 $('#editFormContainer').find('#new').prop('checked', mainRecord.new == 1 ? true : false)
-                $('#editFormContainer').find('#offer').prop('checked', mainRecord.offer == 1 ? true : false)
+                $('#editFormContainer').find('#offer').prop('checked', mainRecord.offer == 1 ? true : false).change()
                 $('#editFormContainer').find('#offerPrice').val(mainRecord.offerPrice)
                 $('#editFormContainer').find('#itemType').val(mainRecord.itemType).change()
-                $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImage)
+                // $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImage)
+                $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImageName || mainRecord.itemImage)
                 $('#editFormContainer').find('#itemId').val(mainRecord.itemId)
 
                 $('#editFormContainer').show(700);
@@ -317,7 +316,10 @@
             $('#openNewRecordForm').click(function() {
                 services.getBrandsNewForm()
                 services.getCategoriesNewForm()
-                $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
+                $('#newform').find("input[type=text],input[type=file],select, textarea input[type=number]").val("").change()
+                $('#newform').find('#price').val(0)
+                $('#newform').get(0).reset();
+
                 $('#newFormContainer').show(800);
 
             });
@@ -592,18 +594,21 @@
 
                         var itemId_ = $('#editFormContainer').find('#itemName').val()
                         $.get('../php/itemimages/get.php?itemName=' + itemId_, function(data) {
-                            data = JSON.parse(data)
-                            $.each(data, function(key, value) {
-                                var mockFile = {
-                                    name: value.imageName,
-                                    imageId: value.ImageId
-                                };
-                                // myDropzoneEdit.options.addedfile.call(myDropzoneEdit, mockFile);
-                                myDropzoneEdit.emit("addedfile", mockFile);
-                                // myDropzoneEdit.options.thumbnail.call(myDropzoneEdit, mockFile, "images/"+value.imageName);
-                                myDropzoneEdit.emit("thumbnail", mockFile, "images/" + value.imageName);
-                                myDropzoneEdit.files.push(mockFile);
-                            });
+                             var images = JSON.parse(data)
+                            if(images.length){
+                                $.each(data, function(key, value) {
+                                    var mockFile = {
+                                        name: value.imageName,
+                                        imageId: value.ImageId
+                                    };
+                                    // myDropzoneEdit.options.addedfile.call(myDropzoneEdit, mockFile);
+                                    myDropzoneEdit.emit("addedfile", mockFile);
+                                    // myDropzoneEdit.options.thumbnail.call(myDropzoneEdit, mockFile, "images/"+value.imageName);
+                                    myDropzoneEdit.emit("thumbnail", mockFile, "images/" + value.imageName);
+                                    myDropzoneEdit.files.push(mockFile);
+                                });
+                            }
+                            
                         });
                     });
 
@@ -632,7 +637,7 @@
                                 var localRecord = $('#editForm').serializeFormJSON()
 
                                 localRecord.new = !!localRecord.new
-                                localRecord.offer = !!localRecord.new
+                                localRecord.offer = !!localRecord.offer
 
                                 //Get the datatable row from the button attr and emit changes
                                 var datatableRow_ = $('#saveEditForm').attr("data-row");
@@ -644,7 +649,7 @@
                                 // //
                                 myDataTable.row(row).data(localRecord).draw();
 
-                                console.log(myDataTable.row(row).data())
+                                // console.log(myDataTable.row(row).data())
                                 // idz = data.itemId;
                                 itemName = localRecord.itemName;
                                 toastr.success("Item created successfully", 'Notification', {
