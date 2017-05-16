@@ -3,103 +3,6 @@
 } ?>
 <?php include_once('includes/auth.php'); ?>
 <?php include_once('includes/logout.php'); ?>
-<?php include_once('includes/connect.php'); ?>
-<?php
-// Query
-// $sql = "SELECT projectId, projectName FROM tblprojects ORDER BY projectId DESC";
-// $result = mysqli_query($conn, $sql);
-
-//insert record
-// if(isset($_POST['newproject']) && isset($_POST['submitnew'])) {
-//     $new = $_POST['newproject'];
-
-//     $sqlnew = "INSERT INTO tblprojects (projectName) VALUES ('$new')";
-
-//     if (mysqli_query($conn, $sqlnew)) {
-//         $text = "Record Inserted successfully.";
-//         $color = "blue";
-//     }
-//     else {
-//         $text = 'Error: ' . mysqli_error($conn);
-//         $color = "red";
-//     }
-//     $insertGoTo = sprintf("projectnames.php?action=new&text=%s&color=%s",$text,$color);
-//     header(sprintf("Location: %s", $insertGoTo));
-// }
-
-//query for edit form
-if(isset($_GET['action']) && $_GET['action']=='edit' && isset($_GET['projectId'])) {
-    $projectid = $_GET['projectId'];
-
-    $sqledit = sprintf("SELECT projectId, projectName FROM tblprojects WHERE projectId = %u",$projectid);
-    $resultedit = mysqli_query($conn, $sqledit);
-    $row_edit = mysqli_fetch_assoc($resultedit);
-}
-
-//Updating Record
-if(isset($_POST['submitedit']) && isset($_POST['editprojectName']) && isset($_POST['editprojectId']))	{
-    $projectname = $_POST['editprojectName'];
-    $projectid = $_POST['editprojectId'];
-
-    $sqlupdate = sprintf("UPDATE tblprojects SET projectName='%s' WHERE projectId=%u", $projectname, $projectid);
-
-    if (mysqli_query($conn, $sqlupdate)) {
-        $text = "Record updated successfully.";
-        $color = "orange";
-    } else {
-        $text = "Error updating record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projectnames.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//query for delete form
-if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['projectId'])) {
-    $projectid = $_GET['projectId'];
-
-    $sqldelete = sprintf("SELECT projectId, projectName FROM tblprojects WHERE projectId = %u",$projectid);
-    $resultdelete = mysqli_query($conn, $sqldelete);
-    $row_delete = mysqli_fetch_assoc($resultdelete);
-}
-
-//Deleting record
-if(isset($_POST['submitdelete']) && isset($_POST['deleteprojectId'])) {
-    $projectid = $_POST['deleteprojectId'];
-
-    $sqldelete = sprintf("DELETE FROM tblprojects WHERE projectId = %u",$projectid);
-
-    if (mysqli_query($conn, $sqldelete)) {
-        $text = "Record deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projectnames.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//Delete selected record
-if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
-    $list = $_POST['checknum'];
-
-    foreach($list as $name) {
-        $sqlalldelete = sprintf("DELETE FROM tblprojects WHERE projectName = '%s'",$name);
-        $resultalldelete = mysqli_query($conn, $sqlalldelete);
-    }
-
-    if (mysqli_query($conn, $sqlalldelete)) {
-        $text = "All Records deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting records: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projectnames.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-?>
 
 <?php $pagename="Project Names"; ?>
     <!DOCTYPE html>
@@ -243,69 +146,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 
                         <div class="clearfix"></div>
 
-                    <?php if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['projectId'])) { ?>
-                        <div class="row">
-                            <div class="col-md-6">
-
-                                <!-- Input Fields -->
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <span class="panel-title">Are you sure you want to Delete <?php if(isset($row_delete['projectName'])) {echo $row_delete['projectName'];} ?>?</span>
-                                    </div>
-
-                                    <div class="panel-body">
-                                        <form class="form-horizontal" name="deleteform" method="POST" action="projectnames.php" role="form">
-                                            <div class="form-group">
-                                                <input type="hidden" name="deleteprojectId" value="<?php if(isset($row_delete['projectId'])){ echo $row_delete['projectId'];} ?>" >
-                                                <h4>&emsp;&emsp;<?php if(isset($row_delete['projectName'])){ echo $row_delete['projectName'];} ?></h4>
-                                            </div>
-                                            <div align="right" class="">
-                                                <a href="projectnames.php" class="btn btn-default " role="button"> Cancel Delete </a>
-                                                <button type="submit" name="submitdelete" class="btn btn-danger">Delete Project</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    <?php } ?>
-
-                    <?php if(isset($_POST['deleteall']) && isset($_POST['checknum'])) { ?>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!-- Input Fields -->
-                                <div class="panel panel-danger">
-                                    <div class="panel-heading">
-                                        <span class="panel-title">Are you sure you want to Delete Records?</span>
-                                    </div>
-
-                                    <div class="panel-body">
-                                        <form class="form-horizontal" name="deleteallform" method="POST" action="projectnames.php" role="form">
-                                            <div class="form-group">
-
-                                                <?php
-                                                $list = $_POST['checknum'];
-                                                foreach($list as $name) { ?>
-                                                    <input type="hidden" name="checknum[]" value="<?php echo $name; ?>" checked >
-                                                    <p>&emsp;&emsp;<?php echo $name; ?></p>
-                                                <?php } ?>
-
-                                            </div>
-                                            <div align="right" class="">
-                                                <a href="projectnames.php" class="btn btn-default " role="button"> Cancel Delete </a>
-                                                <button type="submit" name="submitalldelete" class="btn btn-danger">Delete Projects</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    <?php } ?>
-
                     <!-- CREATE NEW PROJECT BTN -->
                     <button class="btn btn-default btn-gradient" scrollto="#newProForm" id="newProOpen"><i class="fa fa-plus"></i> Create New Project </button>
 
@@ -319,7 +159,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                 <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <!-- <th>Select</th> -->
                                         <th>Id</th>
                                         <th>Project Name</th>
                                         <th>Actions</th>
@@ -327,32 +166,17 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <!-- <th>Select</th> -->
                                         <th>Id</th>
                                         <th>Project Name</th>
                                         <th>Actions</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
-<!--                                     <?php if (mysqli_num_rows($result) > 0) {
-                                        $i=1;
-                                        while($row = mysqli_fetch_assoc($result)) { ?>
-                                            <tr>
-                                                <td>&emsp;<input type="checkbox" name="checknum[]" value="<?php echo $row['projectName']; ?>"></td>
-                                                <td><?php echo $i; ?></td>
-                                                <td><?php echo $row['projectName']; ?></td>
-                                                <td>
-                                                    <a href="projectnames.php?action=edit&projectId=<?php echo $row['projectId']; ?>" class="btn btn-warning btn-sm btn-rounded btn-gradient"><i class="fa fa-pencil"></i> Edit </a>
-                                                    <a href="projectnames.php?action=delete&projectId=<?php echo $row['projectId']; ?>" class="btn btn-danger btn-sm btn-rounded btn-gradient"><i class="fa fa-times-circle"></i> Delete </a>
-                                                </td>
-                                            </tr>
-                                            <?php $i++; }/*whileend*/
-                                    }/*ifend*/ ?> -->
 
 
                                     </tbody>
                                 </table>
-                                <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
+
                             </form>
                         </div>
                     </div>
@@ -414,14 +238,5 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     </body>
 
     </html>
-<?php
-mysqli_free_result($result);
-if(isset($_GET['action']) && $_GET['action']=='edit') {
-    mysqli_free_result($resultedit);
-}
-if(isset($_GET['action']) && $_GET['action']=='delete') {
-    mysqli_free_result($resultdelete);
-}
-mysqli_close($conn);
-?>
+
 

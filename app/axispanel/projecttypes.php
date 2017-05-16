@@ -3,103 +3,6 @@
 } ?>
 <?php include_once('includes/auth.php'); ?>
 <?php include_once('includes/logout.php'); ?>
-<?php include_once('includes/connect.php'); ?>
-<?php
-// Query
-$sql = "SELECT projectTypeId, projectTypeName FROM tblprojecttype ORDER BY projectTypeId DESC";
-$result = mysqli_query($conn, $sql);
-
-//insert record
-if(isset($_POST['newprojecttype']) && isset($_POST['submitnew'])) {
-    $new = $_POST['newprojecttype'];
-
-    $sqlnew = "INSERT INTO tblprojecttype (projectTypeName) VALUES ('$new')";
-
-    if (mysqli_query($conn, $sqlnew)) {
-        $text = "Record Inserted successfully.";
-        $color = "blue";
-    }
-    else {
-        $text = 'Error: ' . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projecttypes.php?action=new&text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//query for edit form
-if(isset($_GET['action']) && $_GET['action']=='edit' && isset($_GET['projectTypeId'])) {
-    $projecttypeid = $_GET['projectTypeId'];
-
-    $sqledit = sprintf("SELECT projectTypeId, projectTypeName FROM tblprojecttype WHERE projectTypeId = %u",$projecttypeid);
-    $resultedit = mysqli_query($conn, $sqledit);
-    $row_edit = mysqli_fetch_assoc($resultedit);
-}
-
-//Updating Record
-if(isset($_POST['submitedit']) && isset($_POST['editprojecttypename']) && isset($_POST['editprojecttypeId']))	{
-    $projecttypename = $_POST['editprojecttypename'];
-    $projecttypeid = $_POST['editprojecttypeId'];
-
-    $sqlupdate = sprintf("UPDATE tblprojecttype SET projectTypeName='%s' WHERE projectTypeId=%u", $projecttypename, $projecttypeid);
-
-    if (mysqli_query($conn, $sqlupdate)) {
-        $text = "Record updated successfully.";
-        $color = "orange";
-    } else {
-        $text = "Error updating record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projecttypes.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//query for delete form
-if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['projectTypeId'])) {
-    $projecttypeid = $_GET['projectTypeId'];
-
-    $sqldelete = sprintf("SELECT projectTypeId, projectTypeName FROM tblprojecttype WHERE projectTypeId = %u",$projecttypeid);
-    $resultdelete = mysqli_query($conn, $sqldelete);
-    $row_delete = mysqli_fetch_assoc($resultdelete);
-}
-
-//Deleting record
-if(isset($_POST['submitdelete']) && isset($_POST['deleteprojecttypeId'])) {
-    $projecttypeid = $_POST['deleteprojecttypeId'];
-
-    $sqldelete = sprintf("DELETE FROM tblprojecttype WHERE projectTypeId = %u",$projecttypeid);
-
-    if (mysqli_query($conn, $sqldelete)) {
-        $text = "Record deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projecttypes.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//Delete selected record
-if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
-    $list = $_POST['checknum'];
-
-    foreach($list as $name) {
-        $sqlalldelete = sprintf("DELETE FROM tblprojecttype WHERE projectTypeName = '%s'",$name);
-        $resultalldelete = mysqli_query($conn, $sqlalldelete);
-    }
-
-    if (mysqli_query($conn, $sqlalldelete)) {
-        $text = "All Records deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting records: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projecttypes.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-?>
 
 <?php $pagename="Project Types"; ?>
     <!DOCTYPE html>
@@ -203,7 +106,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                             </div>
                                             <div align="right" class="">
                                                 <button type="button" class="btn btn-default" role="button" id="canelNewPro" > Cancel </button>
-                                                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewPro" > Create Project</button>
+                                                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewPro" > Create Type</button>
                                             </div>
                                         </form>
                                     </div>
@@ -274,7 +177,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                   
                                     </tbody>
                                 </table>
-                                <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
+
                             </form>
                         </div>
                     </div>
@@ -340,13 +243,3 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
     </body>
 
     </html>
-<?php
-mysqli_free_result($result);
-if(isset($_GET['action']) && $_GET['action']=='edit') {
-    mysqli_free_result($resultedit);
-}
-if(isset($_GET['action']) && $_GET['action']=='delete') {
-    mysqli_free_result($resultdelete);
-}
-mysqli_close($conn);
-?>

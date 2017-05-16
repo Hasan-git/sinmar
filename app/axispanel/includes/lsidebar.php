@@ -23,15 +23,7 @@
         <ul class="nav sidebar-menu">
 
           <li class="sidebar-label pt20">Main Menu</li>
-          <li <?php if(isset($pagename) && $pagename=='Calendar') { echo 'class="active"'; } ?>>
-            <a href="#">
-              <span class="fa fa-calendar"></span>
-              <span class="sidebar-title">Calendar</span>
-              <span class="sidebar-title-tray">
-                <span class="label label-xs bg-info">Comming Soon</span>
-              </span>
-            </a>
-          </li>
+
           <li <?php if(isset($pagename) && $pagename=='Dashboard') { echo 'class="active"'; } ?>>
             <a href="index.php">
               <span class="glyphicon glyphicon-home"></span>
@@ -40,6 +32,7 @@
           </li>
 
             <?php
+            include_once('includes/connect.php');
             //Project Types query
             //project types Query
             $sqlsidetypes = "SELECT * FROM tblprojecttype ORDER BY projectTypeName ASC";
@@ -61,7 +54,7 @@
               <li>
                 <a href="projectdetails.php?projecttype=<?php echo $siderow['projectTypeName']; ?>"> <?php echo $siderow['projectTypeName']; ?> </a>
               </li>
-            <?php } } else echo '<li><a href="#"> No Types </a></li>'; ?>
+            <?php } } else echo '<li><a href="#"> No Types </a></li>'; mysqli_free_result($resultsidetypes); mysqli_close($conn); ?>
             </ul>
           </li>
 		  <li <?php if(isset($pagename) && $pagename=='Project Names') { echo 'class="active"'; } ?>>
