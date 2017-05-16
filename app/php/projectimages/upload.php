@@ -11,7 +11,7 @@ if (  isset($_FILES['imageBeforeFile']) && $_FILES['imageBeforeFile']['size'] > 
         $tmp_nameBefore = $imageBefore["tmp_name"];
         $nameBefore = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($imageBefore["name"]);
         $imageBefore_ = $imageBefore["name"];
-
+                
         //IMAGE AFTER
         $tmp_nameAfter = $imageAfter["tmp_name"];
         $nameAfter = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($imageAfter["name"]);
@@ -27,17 +27,14 @@ if (  isset($_FILES['imageBeforeFile']) && $_FILES['imageBeforeFile']['size'] > 
                             if (mysqli_query($conn, $sqlnew)) {
                                 header("HTTP/1.0 200 OK");
                                 echo "uploaded";
-
                             }else{
                                 header("HTTP/1.0 500 Internal Server Error");
                                 echo "An error occurred";
                             }
-
                     }else{
                         header("HTTP/1.0 500 Internal Server Error");
                         echo "failed to upload";
                     }
-
                 }else{
                         header("HTTP/1.0 500 Internal Server Error");
                         echo "failed to upload";

@@ -132,13 +132,56 @@
     //      CTRL
     //---------------------
 
+     $.ajax({
+            url: '../php/projecttype/get.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // $('#projectTypeCtrl').find('option').remove().end().append('<option value="">Select Type</option>')
+
+                $.each(data.data, function(key, value) {
+                    $('#projectTypeCtrl')
+                        .append($("<option></option>").attr("value", value.projectTypeName).text(value.projectTypeName));
+                });
+                $('#projectTypeCtrl option:first-child').trigger('change');
+            }
+        });
 
 
-    $(".select2-single").select2();
+    $('#projectTypeCtrl').change(function(){
+        var prTypeName = $('#projectTypeCtrl').val()
+        $.ajax({
+                url: urlPath + 'get.php?projecttype='+prTypeName,
+                method:'GET',
+                dataType:'json',
+                success:function(data){
+
+                    $('#imagesContainer').hide(700);
+                    $('#editFormContainer').hide(700);
+                    $('#newFormContainer').hide(700);
+
+                    $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
+                    $('#editForm').find("input[type=text],input[type=file],select, textarea").val("")
+                    $('#imagesform').find("input[type=text],input[type=file],select, textarea").val("")
+
+                    var myDataTable= $('#datatable3').DataTable();                        
+                    myDataTable.clear();
+                    myDataTable.rows.add(data.data);
+                    myDataTable.draw();
+
+                    toastr.success(prTypeName + ' loaded successfully', 'Notification', {timeOut: 1400})
+                 }
+            })
+    })
+
+
+
+    var projectTypeName = $('#projectTypeCtrl').val()
+
 
     //Get all records
     $.ajax({
-        url: urlPath + 'get.php?projecttype='+typeParam,
+        url: urlPath + 'get.php?projecttype='+projectTypeName,
         method:'GET',
         dataType:'json',
         success:function(data){

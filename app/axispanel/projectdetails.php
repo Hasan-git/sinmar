@@ -575,8 +575,18 @@ if(isset($_POST['submitadd'])) {
         </div>
         <div class="clearfix"></div>
 
-    <button class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"  ><i class="fa fa-plus"></i> Create New Project Detail </button>
+        <div class="row">
+            <div class="col-xs-2">
+                <button class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"  ><i class="fa fa-plus"></i> Create New Project Detail </button>
+            </div>
+            <div class="col-xs-5">
+                <select id="projectTypeCtrl" class="form-control">
+                </select>
+            </div>
+        </div>
 
+        
+    
     <div class="panel panel-visible">
         <div class="panel-heading">
             <div class="panel-title hidden-xs" ><span class="glyphicon glyphicon-tags"></span><b class="text-primary" id="PDName" ></b> Project Details</div>
