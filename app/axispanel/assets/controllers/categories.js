@@ -68,7 +68,11 @@
                         data:data.data,
                         columns:[
                             //TODO://
-                            {'data':'categoryId'},
+                            {'data':'categoryId',
+                             'render': function ( data, type, full, meta ) {
+                                    return meta.row+1
+                                } 
+                            },
                             {'data':'categoryName'},
                             {   'data':null,
                                 'render': function ( data, type, full, meta ) {
@@ -78,8 +82,23 @@
                                 },
                                 
                             }
-                        ]
+                        ],
+                        "fnDrawCallback": function ( oSettings ) {
+                            /* Need to redo the counters if filtered or sorted */
+                            if ( oSettings.bSorted || oSettings.bFiltered )
+                            {
+                                for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+                                {
+                                    $('td:eq(0)', oSettings.aoData[ oSettings.aiDisplay[i] ].nTr ).html( i+1 );
+                                }
+                            }
+                        },
+                        "aoColumnDefs": [
+                            { "bSortable": false, "aTargets": [ 0 ] }
+                        ],
+                        "aaSorting": [[ 1, 'asc' ]]
                     })     
+
                 // Add Placeholder text to datatables filter bar
                 $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  
                 }

@@ -320,7 +320,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                     <thead>
                                     <tr>
                                         <!-- <th>Select</th> -->
-                                        <th>Id</th>
+                                        <th>Index</th>
                                         <th>Project Name</th>
                                         <th>Actions</th>
                                     </tr>
@@ -328,7 +328,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                     <tfoot>
                                     <tr>
                                         <!-- <th>Select</th> -->
-                                        <th>Id</th>
+                                        <th>Index</th>
                                         <th>Project Name</th>
                                         <th>Actions</th>
                                     </tr>
