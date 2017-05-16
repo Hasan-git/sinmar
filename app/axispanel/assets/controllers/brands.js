@@ -92,7 +92,7 @@
 
                 event.preventDefault();
                 event.stopPropagation();
-
+                $('#editForm').find("input[type=text],input[type=file],select, textarea").val("")
                 $('#editFormContainer').show(700);
                 
                 //var product = JSON.parse($(this).attr('record-id')) 
@@ -152,6 +152,7 @@
 
             // New brand btn clicked -> show the form
             $('#openNewRecordForm').click(function(){
+                $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
                 $('#newFormContainer').show(800);
 
             });

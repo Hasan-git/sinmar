@@ -295,6 +295,13 @@ if(isset($_POST['submitadd'])) {
         <!-- Select2 Plugin CSS  -->
         <link rel="stylesheet" type="text/css" href="vendor/plugins/select2/css/core.css">
 
+        <!-- toastr -->
+        <link rel="stylesheet" type="text/css" href="vendor/plugins/toaster/toastr.min.css">
+
+        <!-- Modal -->
+        <link rel="stylesheet" href="vendor/plugins/modal/remodal.css">
+        <link rel="stylesheet" href="vendor/plugins/modal/remodal-default-theme.css">
+
         <!-- Favicon -->
         <link rel="shortcut icon" href="assets/img/favicon.ico">
 
@@ -303,24 +310,9 @@ if(isset($_POST['submitadd'])) {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-
     </head>
 
     <body class="datatables-page sb-l-o sb-r-c">
-
-    <!-------------------------------------------------------------+
-      <body> Helper Classes:
-    ---------------------------------------------------------------+
-      '.sb-l-o' - Sets Left Sidebar to "open"
-      '.sb-l-m' - Sets Left Sidebar to "minified"
-      '.sb-l-c' - Sets Left Sidebar to "closed"
-
-      '.sb-r-o' - Sets Right Sidebar to "open"
-      '.sb-r-c' - Sets Right Sidebar to "closed"
-    ---------------------------------------------------------------+
-     Example: <body class="example-page sb-l-o sb-r-c">
-     Results: Sidebar left Open, Sidebar right Closed
-    --------------------------------------------------------------->
 
     <?php include_once('includes/themes.php') ?>
 
@@ -341,73 +333,63 @@ if(isset($_POST['submitadd'])) {
     <div class="tray tray-center">
     <div class="col-md-12">
 
-    <?php if(isset($_GET['text'])){ echo '<h2 style="color:'. $_GET['color'] .';">' . $_GET['text'] . '</h2>';} ?>
-    <?php if(isset($_SESSION['uploaderror'])){echo '<h3>' . $_SESSION['uploaderror'] . '</h3>'; } ?>
-    <?php if(isset($_SESSION['uploadimage'])){echo '<h3>' . $_SESSION['uploadimage'] . '</h3>'; } ?>
-
-    <?php if(isset($_GET['action']) && $_GET['action']=='new'){ ?>
-        <div class="row">
+              <!-- NEW PROJECT -->
+              <!-- NEW PROJECT -->
+              <!-- NEW PROJECT -->
+        <div class="row j-hide" id="newFormContainer" >
             <div class="col-md-10">
-
-                <!-- Input Fields -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <span>Adding New Title</span>
+                        <span>Create New Title</span>
                     </div>
 
                     <div class="panel-body">
                         <span class="text-danger-darker">Fields with * are required</span>
-                        <form class="form-horizontal" name="newform" method="POST" action="projectdetails.php" enctype="multipart/form-data" role="form">
+                        <form class="form-horizontal" name="newform" id="newform"  method="POST" action="" enctype="multipart/form-data" role="form">
                             <div class="form-group admin-form">
                                 <div class="col-sm-6">
                                     <label class="control-label">Detail Title*</label>
-                                    <input type="text" name="prdetailsTitle" class="form-control" placeholder="Project Detail Title ..." required>
+                                    <input type="text" data-validation="required" name="prdetailsTitle" id="prdetailsTitle" class="form-control" placeholder="Project Detail Title ..." required>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="control-label">Project Name*</label>
-                                    <select name="prdetailsName" class="select2-single form-control" required>
+                                    <select data-validation="required" name="prdetailsName" id="prdetailsName" class="select2-single form-control" required>
                                         <option>Select Project</option>
-                                        <?php while($rowproject = mysqli_fetch_assoc($resultprojects)) { ?>
-                                            <option><?php echo $rowproject['projectName']; ?></option>
-                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-6">
                                     <label class="control-label">Detail Type*</label>
-                                    <select name="prdetailsType" class="select2-single form-control" required>
-                                        <option><?php echo $_SESSION['projecttype'] ?></option>
-                                        <?php while($rowtype = mysqli_fetch_assoc($resulttypes)) { ?>
-                                            <option><?php echo $rowtype['projectTypeName']; ?></option>
-                                        <?php } ?>
+                                    <select data-validation="required" name="prdetailsType" id="prdetailsType" class="select2-single form-control" required>
+                                        
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="control-label">Detail SubType</label>
-                                    <input type="text" name="prdetailsSubtype" class="form-control" placeholder="Sub Type If Needed..." >
+                                    <input type="text" name="prdetailsSubtype" id="prdetailsSubtype" class="form-control" placeholder="Sub Type If Needed..." >
                                 </div>
                             </div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-12">
                                     <label class="control-label">Title Description</label>
-                                    <textarea name="description" class="form-control textarea-grow" rows="4" placeholder="Write Description Here..."></textarea>
+                                    <textarea name="description" id="description" class="form-control textarea-grow" rows="4" placeholder="Write Description Here..."></textarea>
                                 </div>
                             </div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-12">
                                     <label class="control-label">Title Notes</label>
-                                    <textarea name="notes" class="form-control textarea-grow" rows="4" placeholder="Write Notes Here..."></textarea>
+                                    <textarea name="notes" id="notes" class="form-control textarea-grow" rows="4" placeholder="Write Notes Here..."></textarea>
                                 </div>
                             </div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-3">
                                     <label class="control-label">Location</label>
-                                    <input type="text" name="location" class="form-control" placeholder="Location..." >
+                                    <input type="text" name="location" id="location" class="form-control" placeholder="Location..." >
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="control-label">Project Date</label>
-                                    <input type="date" name="projectDate" class="form-control" placeholder="Date..." required="required" >
+                                    <label class="control-label">Project Date*</label>
+                                    <input data-validation="required" type="date" name="projectDate" id="projectDate" class="form-control" placeholder="Date..." required="required" >
                                 </div>
                                 <div class="col-sm-1">
                                     <label class="control-label" for="new">Is New?</label>
@@ -420,94 +402,85 @@ if(isset($_POST['submitadd'])) {
                                     <label class="control-label">Upload Image*</label>
                                     <label class="field prepend-icon file">
                                         <span class="button bg-primary" style="color: white;">Choose Image</span>
-                                        <input type="file" class="gui-file" name="fileToUpload" id="fileToUpload" onChange="document.getElementById('imagename').value = this.value.substr(12);" required>
-                                        <input type="text" class="gui-input" name="projectImage" id="imagename" placeholder="Please Select An Image">
+                                        <input type="file" class="gui-file" name="projectImage" id="projectImage" onChange="document.getElementById('imagename').value = this.value.substr(12);" required>
+                                        <input data-validation="required" type="text" class="gui-input" name="projectImageName" id="imagename" placeholder="Please Select An Image">
                                         <label class="field-icon"><i class="fa fa-upload"></i></label>
                                     </label>
                                 </div>
                             </div>
                             <div class="clearfix"><br/></div>
                             <div align="right" class="">
-                                <a href="projectdetails.php" class="btn btn-default " role="button"> Cancel </a>
-                                <button type="submit" name="submitnew" class="btn btn-primary"> Save Record </button>
+                                <button type="button" class="btn btn-default" role="button" id="cancelNewForm" > Cancel </button>
+                                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewForm" > Create Brand</button>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="clearfix"></div>
-    <?php } ?>
 
-    <?php if(isset($_GET['action']) && $_GET['action']=='edit'){ ?>
-        <div class="row">
+        <!-- EDIT PROJECT -->
+        <!-- EDIT PROJECT -->
+        <!-- EDIT PROJECT -->
+        <div class="row j-hide" id="editFormContainer">
             <div class="col-md-10">
-
-                <!-- Input Fields -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <span class="panel-title">Edit <?php if(isset($row_edit['prdetailsTitle'])) {echo $row_edit['prdetailsTitle'];} ?></span>
+                        <span class="panel-title">Edit <span class="text-info" id="nfBoxName"></span></span>
                     </div>
 
                     <div class="panel-body">
                         <span class="text-danger-darker">Fields with * are required</span>
-                        <form class="form-horizontal" name="editform" method="POST" action="projectdetails.php" enctype="multipart/form-data" role="form">
+                        <form class="form-horizontal" name="editform" id="editForm" method="POST" action="" enctype="multipart/form-data" role="form">
                             <div class="form-group admin-form">
                                 <div class="col-sm-6">
                                     <label class="control-label">Detail Title*</label>
-                                    <input type="text" name="prdetailsTitle" value="<?php echo $row_edit['prdetailsTitle']; ?>" class="form-control" placeholder="Project Detail Title ..." required>
+                                    <input data-validation="required" type="text" name="prdetailsTitle" id="prdetailsTitle" value="" class="form-control" placeholder="Project Detail Title ..." required>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="control-label">Project Name*</label>
-                                    <select name="prdetailsName" class="select2-single form-control" required>
-                                        <option><?php echo $row_edit['prdetailsName']; ?></option>
-                                        <?php while($rowproject = mysqli_fetch_assoc($resultprojects)) { ?>
-                                            <option><?php echo $rowproject['projectName']; ?></option>
-                                        <?php } ?>
+                                    <select data-validation="required" name="prdetailsName" id="prdetailsName" class="select2-single form-control" required>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-6">
                                     <label class="control-label">Detail Type*</label>
-                                    <select name="prdetailsType" class="select2-single form-control" required>
-                                        <option><?php echo $row_edit['prdetailsType']; ?></option>
-                                        <?php while($rowtype = mysqli_fetch_assoc($resulttypes)) { ?>
-                                            <option><?php echo $rowtype['projectTypeName']; ?></option>
-                                        <?php } ?>
+                                    <select data-validation="required" name="prdetailsType" id="prdetailsType" class="select2-single form-control" required>
+                                        
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="control-label">Detail SubType</label>
-                                    <input type="text" name="prdetailsSubtype" value="<?php echo $row_edit['prdetailsSubtype']; ?>" class="form-control" >
+                                    <input type="text" name="prdetailsSubtype" id="prdetailsSubtype" value="" class="form-control" >
                                 </div>
                             </div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-12">
                                     <label class="control-label">Title Description</label>
-                                    <textarea name="description" class="form-control textarea-grow" rows="4"><?php echo $row_edit['description']; ?></textarea>
+                                    <textarea name="description" id="description"  class="form-control textarea-grow" rows="4"></textarea>
                                 </div>
                             </div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-12">
                                     <label class="control-label">Title Notes</label>
-                                    <textarea name="notes" class="form-control textarea-grow" rows="4"><?php echo $row_edit['notes']; ?></textarea>
+                                    <textarea name="notes" id="notes" class="form-control textarea-grow" rows="4"></textarea>
                                 </div>
                             </div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-3">
                                     <label class="control-label">Location</label>
-                                    <input type="text" name="location" value="<?php echo $row_edit['location']; ?>" class="form-control">
+                                    <input type="text" name="location" id="location" value="" class="form-control">
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="control-label">Project Date</label>
-                                    <input type="date" name="projectDate" value="<?php echo $row_edit['projectDate']; ?>" class="form-control" required="required" >
+                                    <label class="control-label">Project Date*</label>
+                                    <input data-validation="required" type="date" name="projectDate" id="projectDate" value="" class="form-control" required="required" >
                                 </div>
                                 <div class="col-sm-1">
                                     <label class="control-label" for="new">Is New?</label>
                                     <div class="checkbox-custom checkbox-primary mb10">
-                                        <input type="checkbox" id="new" name="new" <?php if($row_edit['new']) {echo 'checked';} ?>>
+                                        <input type="checkbox" id="new" name="new" >
                                         <label for="new"></label>
                                     </div>
                                 </div>
@@ -515,17 +488,17 @@ if(isset($_POST['submitadd'])) {
                                     <label class="control-label">Upload Image*</label>
                                     <label class="field prepend-icon file">
                                         <span class="button bg-primary" style="color: white;">Choose Image</span>
-                                        <input type="file" class="gui-file" name="fileToUpload" id="fileToUpload" onChange="document.getElementById('imagename').value = this.value.substr(12);">
-                                        <input type="text" class="gui-input" value="<?php echo $row_edit['projectImage']; ?>" name="projectImage" id="imagename" placeholder="Please Select An Image">
+                                        <input type="file" class="gui-file" name="projectImage" id="projectImage" onChange="document.getElementById('imagename2').value = this.value.substr(12);">
+                                        <input data-validation="required" type="text" class="gui-input" value="" name="projectImageName" id="imagename2" placeholder="Please Select An Image">
                                         <label class="field-icon"><i class="fa fa-upload"></i></label>
                                     </label>
                                 </div>
                             </div>
                             <div class="clearfix"><br/></div>
                             <div align="right" class="">
-                                <a href="projectdetails.php" class="btn btn-default " role="button"> Cancel </a>
-                                <button type="submit" name="submitedit" class="btn btn-primary">Edit Item</button>
-                                <input type="hidden" name="prdetailsId" value="<?php echo $row_edit['prdetailsId']; ?>">
+                                <button type="button" class="btn btn-default " role="button" id="cancelEditForm"> Cancel </button>
+                                <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveEditForm">Save changes</button>
+                                <input type="hidden" name="prdetailsId" id="prdetailsId" value="">
                             </div>
                         </form>
                     </div>
@@ -534,57 +507,65 @@ if(isset($_POST['submitadd'])) {
             </div>
         </div>
         <div class="clearfix"></div>
-    <?php } ?>
 
-    <?php if(isset($_GET['action']) && $_GET['action']=='addimage'){ ?>
-        <div class="row">
-            <div class="col-md-6">
-
-                <!-- Input Fields -->
+        <div class="row j-hide" id="imagesContainer">
+            <div class="col-xs-12">
                 <div class="panel">
                     <div class="panel-heading">
-                        <span class="panel-title">Additional Images for <b class="text-info"><?php if(isset($row_add['prdetailsTitle'])) {echo $row_add['prdetailsTitle'];} ?></b></span>
+                        <span class="panel-title">Additional Images for <b class="text-info" id='iboxname'></b></span>
                     </div>
 
                     <div class="panel-body">
 
-                        <form class="form-horizontal" name="addform" method="POST" action="projectdetails.php" enctype="multipart/form-data" role="form">
+                    <!-- SHOW IMAGES -->
+                    <button type="button" style="margin:10px;" class="btn btn-info" data-toggle="collapse" data-target="#images-viewer">Images Panel</button>
+                    
+                    <!-- IMAGES CONTAINER -->
+                    <div class="image-viewer collapse" id="images-viewer">
+                        <!-- <div class="col--2 ">
+                            <i class="fa fa-trash btn btn-warning btn-xs"></i>
+                            <div class="image-wrapper" >
+                                <img src="projectImages/Desert.jpg" class="img-thumbnail" alt="Cinque Terre" width="100" height="236"> 
+                                    <p class=''> Before </p>
+                            </div>
+                            <div class="image-wrapper" >
+                                <img src="projectImages/Penguins.jpg" class="img-thumbnail" alt="Cinque Terre" width="100" height="236"> 
+                                    <p class=''> After </p>
+                            </div>
+                        </div> -->
+                    </div>
 
-                            <a href="#" class="btn btn-rounded btn-sm btn-info"><i class="fa fa-zoom"></i> View All Images </a>
+                        <form class="form-horizontal" name="imagesform" id="imagesform" method="POST" action="" enctype="multipart/form-data" role="form">
 
                             <div class="clearfix"><br/></div>
                             <div class="form-group admin-form">
                                 <div class="col-sm-10">
-                                    <label class="control-label">Upload Image*</label>
+                                    <label class="control-label">Image (Before)*</label>
                                     <label class="field prepend-icon file">
                                         <span class="button bg-primary" style="color: white;">Choose Image</span>
-                                        <input type="file" class="gui-file" name="fileToUpload" id="fileToUpload" onChange="document.getElementById('imagename').value = this.value.substr(12);" required>
-                                        <input type="text" class="gui-input" name="imageName" id="imagename" placeholder="Please Select An Image">
+                                        <input type="file" data-validation="required" class="gui-file" name="imageBeforeFile" id="imageBeforeFile" onChange="document.getElementById('imageBefore').value = this.value.substr(12);" required>
+                                        <input type="text" data-validation="required" class="gui-input" name="imageBefore" id="imageBefore" placeholder="Please Select An Image">
                                         <label class="field-icon"><i class="fa fa-upload"></i></label>
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group admin-form">
-                                <div class="col-sm-5">
-                                    <label class="control-label">Image Type*</label>
-                                    <select name="imageType" class="select2-single form-control" required>
-                                        <option>Select Image Type</option>
-                                        <option>After</option>
-                                        <option>Before</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-5">
-                                    <label class="control-label">Image Sort*</label>
-                                    <input type="text" name="imageSort" class="form-control" >
+                                <div class="col-sm-10">
+                                    <label class="control-label">Image (After)*</label>
+                                    <label class="field prepend-icon file">
+                                        <span class="button bg-primary" style="color: white;">Choose Image</span>
+                                        <input type="file" data-validation="required" class="gui-file" name="imageAfterFile" id="imageAfterFile" onChange="document.getElementById('imageAfter').value = this.value.substr(12);" required>
+                                        <input type="text" data-validation="required" class="gui-input" name="imageAfter" id="imageAfter" placeholder="Please Select An Image">
+                                        <label class="field-icon"><i class="fa fa-upload"></i></label>
+                                    </label>
                                 </div>
                             </div>
-
                             <div class="clearfix"><br/></div>
                             <div align="right" class="">
-                                <a href="projectdetails.php" class="btn btn-default " role="button"> Cancel </a>
-                                <button type="submit" name="submitadd" class="btn btn-primary"> Add Image </button>
-                                <input type="hidden" name="prdetailsId" value="<?php echo $row_add['prdetailsId']; ?>">
-                                <input type="hidden" name="projectTitle" value="<?php echo $row_add['prdetailsTitle']; ?>" >
+                                <button type="button" class="btn btn-default " role="button" id="cancelImagesForm"> Cancel </button>
+                                <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveImagesForm">Save changes</button>
+                                <!-- <input type="hidden" name="prdetailsId" id="prdetailsId" value=""> -->
+                                <input type="hidden" name="projectTitle" id="projectTitle" value="" >
                             </div>
                         </form>
                     </div>
@@ -593,78 +574,12 @@ if(isset($_POST['submitadd'])) {
             </div>
         </div>
         <div class="clearfix"></div>
-    <?php } ?>
 
-    <?php if(isset($_GET['action']) && $_GET['action']=='delete') { ?>
-        <div class="row">
-            <div class="col-md-6">
-
-                <!-- Input Fields -->
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <span class="panel-title">Are you sure you want to Delete <?php if(isset($row_delete['prdetailsTitle'])) {echo $row_delete['prdetailsTitle'];} ?>?</span>
-                    </div>
-
-                    <div class="panel-body">
-                        <form class="form-horizontal" name="deleteform" method="POST" action="projectdetails.php" role="form">
-                            <div class="form-group">
-                                <input type="hidden" name="deleteprojectId" value="<?php if(isset($row_delete['prdetailsId'])){ echo $row_delete['prdetailsId'];} ?>" >
-                                <input type="hidden" name="deleteprojectImage" value="<?php if(isset($row_delete['projectImage'])){ echo $row_delete['projectImage'];} ?>" >
-                                <h4>&emsp;&emsp;<?php if(isset($row_delete['prdetailsTitle'])){ echo $row_delete['prdetailsTitle'];} ?></h4>
-                            </div>
-                            <div align="right" class="">
-                                <a href="projectdetails.php" class="btn btn-default " role="button"> Cancel </a>
-                                <button type="submit" name="submitdelete" class="btn btn-danger">Delete</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    <?php } ?>
-
-    <?php if(isset($_POST['deleteall']) && isset($_POST['checknum'])) { ?>
-        <div class="row">
-            <div class="col-md-6">
-
-                <!-- Input Fields -->
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <span class="panel-title">Are you sure you want to Delete Records?</span>
-                    </div>
-
-                    <div class="panel-body">
-                        <form class="form-horizontal" name="deleteallform" method="POST" action="projectdetails.php" role="form">
-                            <div class="form-group">
-
-                                <?php
-                                $list = $_POST['checknum'];
-                                foreach($list as $name) { ?>
-                                    <input type="hidden" name="checknum[]" value="<?php echo $name; ?>" checked >
-                                    <p>&emsp;&emsp;<?php echo $name; ?></p>
-                                <?php } ?>
-
-                            </div>
-                            <div align="right" class="">
-                                <a href="projectdetails.php" class="btn btn-default " role="button"> Cancel  </a>
-                                <button type="submit" name="submitalldelete" class="btn btn-danger"> Delete All </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    <?php } ?>
-
-    <a href="projectdetails.php?action=new" class="btn btn-default btn-gradient"><i class="fa fa-plus"></i> Add New Project Detail </a>
+    <button class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"  ><i class="fa fa-plus"></i> Create New Project Detail </button>
 
     <div class="panel panel-visible">
         <div class="panel-heading">
-            <div class="panel-title hidden-xs"><span class="glyphicon glyphicon-tags"></span><b class="text-primary"><?php echo strtoupper($_SESSION['projecttype']); ?></b> Project Details</div>
+            <div class="panel-title hidden-xs" ><span class="glyphicon glyphicon-tags"></span><b class="text-primary" id="PDName" ></b> Project Details</div>
         </div>
 
         <div class="panel-body pn">
@@ -672,54 +587,31 @@ if(isset($_POST['submitadd'])) {
                 <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>Select</th>
-                        <th>ID</th>
                         <th>Title</th>
                         <th>Project</th>
                         <th>Location</th>
                         <th>Date</th>
                         <th>New</th>
-                        <th>Image</th>
+                        <!-- <th>Image</th> -->
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>Select</th>
-                        <th>ID</th>
                         <th>Title</th>
                         <th>Project</th>
                         <th>Location</th>
                         <th>Date</th>
                         <th>New</th>
-                        <th>Image</th>
+                        <!-- <th>Image</th> -->
                         <th>Action</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    <?php if (mysqli_num_rows($result) > 0) {
-                        $i=1;
-                        while($row = mysqli_fetch_assoc($result)) { ?>
-                            <tr>
-                                <td>&emsp;<input type="checkbox" name="checknum[]" value="<?php echo $row['prdetailsTitle']; ?>"></td>
-                                <td><?php echo $i; ?></td>
-                                <td><?php echo $row['prdetailsTitle']; ?></td>
-                                <td><?php echo $row['prdetailsName']; ?></td>
-                                <td><?php echo $row['location']; ?></td>
-                                <td><?php echo $row['projectDate']; ?></td>
-                                <td>&emsp;<input type="checkbox" <?php if($row['new']){echo 'checked';} ?> disabled></td>
-                                <td><?php echo $row['projectImage']; ?></td>
-                                <td>
-                                    <a href="projectdetails.php?action=addimage&prdetailsId=<?php echo $row['prdetailsId']; ?>" class="btn btn-info btn-xs btn-rounded btn-gradient"><i class="fa fa-plus"></i> Images </a>
-                                    <a href="projectdetails.php?action=edit&prdetailsId=<?php echo $row['prdetailsId']; ?>" class="btn btn-warning btn-xs btn-rounded btn-gradient"><i class="fa fa-pencil"></i> Edit </a>
-                                    <a href="projectdetails.php?action=delete&prdetailsId=<?php echo $row['prdetailsId']; ?>" class="btn btn-danger btn-xs btn-rounded btn-gradient"><i class="fa fa-times-circle"></i> Delete </a>
-                                </td>
-                            </tr>
-                            <?php $i++; }/*whileend*/
-                    }/*ifend*/ ?>
+                 
                     </tbody>
                 </table>
-                <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button>
+                <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
             </form>
         </div>
     </div>
@@ -737,6 +629,20 @@ if(isset($_POST['submitadd'])) {
 
     </div>
     <!-- End: Main -->
+
+        <!-- MODAL TEMPLATE for delete project -->
+    <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+      <div>
+        <h2 id="modal1Title">Notification</h2>
+        <p id="modal1Desc">
+          Are you sure you want to delete this project ?
+        </p>
+      </div>
+      <br>
+      <button data-remodal-action="cancel" class="remodal-cancel">No</button>
+      <button data-remodal-action="confirm" class="remodal-confirm">Yes</button>
+    </div>
 
     <!-- BEGIN: PAGE SCRIPTS -->
 
@@ -756,54 +662,16 @@ if(isset($_POST['submitadd'])) {
     <!-- Select2 Plugin Plugin -->
     <script src="vendor/plugins/select2/select2.min.js"></script>
 
+    <!-- plugins -->
+    <script src="vendor/plugins/toaster/toastr.min.js"></script>
+    <script src="vendor/plugins/modal/remodal.js"></script>
+    <script src="vendor/plugins/jqueryFormValidator/form-validator/jquery.form-validator.js"></script>
+
     <!-- Theme Javascript -->
     <script src="assets/js/utility/utility.js"></script>
     <script src="assets/js/demo/demo.js"></script>
     <script src="assets/js/main.js"></script>
-
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-
-            "use strict";
-
-            // Init Theme Core
-            Core.init();
-
-            // Init Demo JS
-            Demo.init();
-
-            // Init Select2 - Basic Single
-            $(".select2-single").select2();
-
-            // MISC DATATABLE HELPER FUNCTIONS
-            $('#datatable3').dataTable({
-                "aoColumnDefs": [{
-                    'bSortable': false,
-                    'aTargets': [-1]
-                }],
-                "oLanguage": {
-                    "oPaginate": {
-                        "sPrevious": "",
-                        "sNext": ""
-                    }
-                },
-                "iDisplayLength": 10,
-                "aLengthMenu": [
-                    [5, 10, 25, 50, -1],
-                    [5, 10, 25, 50, "All"]
-                ],
-                "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
-                "oTableTools": {
-                    "sSwfPath": "vendor/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-                }
-            });
-
-            // Add Placeholder text to datatables filter bar
-            $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
-
-
-        });
-    </script>
+    <script src="assets/controllers/projectDetails.js"></script>
 
     <!-- END: PAGE SCRIPTS -->
 

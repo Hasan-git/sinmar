@@ -19,12 +19,12 @@ include_once('../../axispanel/includes/connect.php');
         $offer      =   isset($_POST['offer']) ? $_POST['offer'] : 0 ;
         $offerprice =   isset($_POST['offerPrice']) ? (int)$_POST['offerPrice'] : 0;
 
-        if(isset($_FILES['itemImage'])){
+        if(isset($_FILES['itemImage']) && $_FILES['itemImage']['size'] > 0){
             $itemimage  =   $_FILES['itemImage'] ;
             $tmp_name = $itemimage["tmp_name"];
             $path = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR .basename($itemimage["name"]);
             $itemImageName = $itemimage["name"];
-            move_uploaded_file($tmp_name, $path));
+            move_uploaded_file($tmp_name, $path);
         }else{
             $itemImageName =$_POST['itemImageName'];
         }
