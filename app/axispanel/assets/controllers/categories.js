@@ -74,7 +74,7 @@
                                 'render': function ( data, type, full, meta ) {
                                     //set data-row attr as the datatable row -> give access the save changes to update row data localy
                                     return "<button class='btn btn-xs btn-success' scrollto='#editFormContainer' id='editRecord' data-row='"+meta.row+"' data-record='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
-                                      "<a class='btn btn-xs btn-danger' id='deleteRecord' data-row='"+meta.row+"' record-id='"+full.brandId+"' href='#'> <i class='fa fa-trash'></i> </a> "
+                                      "<a class='btn btn-xs btn-danger' id='deleteRecord' data-row='"+meta.row+"' record-id='"+full.categoryId+"' href='#'> <i class='fa fa-trash'></i> </a> "
                                 },
                                 
                             }
