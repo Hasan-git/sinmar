@@ -3,103 +3,6 @@
 } ?>
 <?php include_once('includes/auth.php'); ?>
 <?php include_once('includes/logout.php'); ?>
-<?php include_once('includes/connect.php'); ?>
-<?php
-//Brands Query
-$sql = "SELECT brandId, brandName FROM tblbrands ORDER BY brandId DESC";
-$result = mysqli_query($conn, $sql);
-
-//insert record
-if(isset($_POST['newbrand']) && isset($_POST['submitnew'])) {
-	$new = $_POST['newbrand'];
-
-	$sqlnew = "INSERT INTO tblbrands (brandName) VALUES ('$new')";
-
-	if (mysqli_query($conn, $sqlnew)) {
-        $text = "Record Inserted successfully.";
-        $color = "blue";
-    }
-    else {
-		$text = 'Error: ' . mysqli_error($conn);
-        $color = "red";
-	}
-    $insertGoTo = sprintf("brands.php?action=new&text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//query for edit form
-if(isset($_GET['action']) && $_GET['action']=='edit' && isset($_GET['brandId'])) {
-	$brandid = $_GET['brandId'];
-	
-	$sqledit = sprintf("SELECT brandId, brandName FROM tblbrands WHERE brandId = %u",$brandid);
-	$resultedit = mysqli_query($conn, $sqledit);
-    $row_edit = mysqli_fetch_assoc($resultedit);
-}
-
-//Updating Record
-if(isset($_POST['submitedit']) && isset($_POST['editbrandName']) && isset($_POST['editbrandId']))	{
-    $brandname = $_POST['editbrandName'];
-    $brandid = $_POST['editbrandId'];
-
-    $sqlupdate = sprintf("UPDATE tblbrands SET brandName='%s' WHERE brandId=%u", $brandname, $brandid);
-
-    if (mysqli_query($conn, $sqlupdate)) {
-        $text = "Record updated successfully.";
-        $color = "orange";
-    } else {
-        $text = "Error updating record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("brands.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//query for delete form
-if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['brandId'])) {
-    $brandid = $_GET['brandId'];
-
-    $sqldelete = sprintf("SELECT brandId, brandName FROM tblbrands WHERE brandId = %u",$brandid);
-    $resultdelete = mysqli_query($conn, $sqldelete);
-    $row_delete = mysqli_fetch_assoc($resultdelete);
-}
-
-//Deleting record
-if(isset($_POST['submitdelete']) && isset($_POST['deletebrandId'])) {
-    $brandid = $_POST['deletebrandId'];
-
-    $sqldelete = sprintf("DELETE FROM tblbrands WHERE brandId = %u",$brandid);
-
-    if (mysqli_query($conn, $sqldelete)) {
-        $text = "Record deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("brands.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//Delete selected record
-if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
-    $list = $_POST['checknum'];
-
-    foreach($list as $name) {
-        $sqlalldelete = sprintf("DELETE FROM tblbrands WHERE brandName = '%s'",$name);
-        $resultalldelete = mysqli_query($conn, $sqlalldelete);
-    }
-
-    if (mysqli_query($conn, $sqlalldelete)) {
-        $text = "All Records deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting records: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("brands.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-?>
 
 <?php $pagename="Item Brands"; ?>
 <!DOCTYPE html>
@@ -270,7 +173,7 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 				
                   </tbody>
                 </table>
-                  <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
+
                </form>
               </div>
             </div>
@@ -340,13 +243,3 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 </body>
 
 </html>
-<?php
-mysqli_free_result($result);
-if(isset($_GET['action']) && $_GET['action']=='edit') {
-    mysqli_free_result($resultedit);
-}
-if(isset($_GET['action']) && $_GET['action']=='delete') {
-    mysqli_free_result($resultdelete);
-}
-mysqli_close($conn);
-?>

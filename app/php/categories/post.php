@@ -28,6 +28,7 @@ if(isset($_POST['categoryName']) ) {
     header("HTTP/1.0 400 Bad Request");
     echo "Some fields are required";
 }
-    
 
+mysqli_free_result($result);
+mysqli_close($conn);
 ?>

@@ -3,103 +3,6 @@
 } ?>
 <?php include_once('includes/auth.php'); ?>
 <?php include_once('includes/logout.php'); ?>
-<?php include_once('includes/connect.php'); ?>
-<?php
-//Brands Query
-$sql = "SELECT categoryId, categoryName FROM tblcategories ORDER BY categoryId DESC";
-$result = mysqli_query($conn, $sql);
-
-//insert record
-if(isset($_POST['newcategory']) && isset($_POST['submitnew'])) {
-    $new = $_POST['newcategory'];
-
-    $sqlnew = "INSERT INTO tblcategories (categoryName) VALUES ('$new')";
-
-    if (mysqli_query($conn, $sqlnew)) {
-        $text = "Record Inserted successfully.";
-        $color = "blue";
-    }
-    else {
-        $text = 'Error: ' . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("categories.php?action=new&text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//query for edit form
-if(isset($_GET['action']) && $_GET['action']=='edit' && isset($_GET['categoryId'])) {
-    $categoryid = $_GET['categoryId'];
-
-    $sqledit = sprintf("SELECT categoryId, categoryName FROM tblcategories WHERE categoryId = %u",$categoryid);
-    $resultedit = mysqli_query($conn, $sqledit);
-    $row_edit = mysqli_fetch_assoc($resultedit);
-}
-
-//Updating Record
-if(isset($_POST['submitedit']) && isset($_POST['editcategoryName']) && isset($_POST['editcategoryId']))	{
-    $categoryname = $_POST['editcategoryName'];
-    $categoryid = $_POST['editcategoryId'];
-
-    $sqlupdate = sprintf("UPDATE tblcategories SET categoryName='%s' WHERE categoryId=%u", $categoryname, $categoryid);
-
-    if (mysqli_query($conn, $sqlupdate)) {
-        $text = "Record updated successfully.";
-        $color = "orange";
-    } else {
-        $text = "Error updating record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("categories.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//query for delete form
-if(isset($_GET['action']) && $_GET['action']=='delete' && isset($_GET['categoryId'])) {
-    $categoryid = $_GET['categoryId'];
-
-    $sqldelete = sprintf("SELECT categoryId, categoryName FROM tblcategories WHERE categoryId = %u",$categoryid);
-    $resultdelete = mysqli_query($conn, $sqldelete);
-    $row_delete = mysqli_fetch_assoc($resultdelete);
-}
-
-//Deleting record
-if(isset($_POST['submitdelete']) && isset($_POST['deletecategoryId'])) {
-    $categoryid = $_POST['deletecategoryId'];
-
-    $sqldelete = sprintf("DELETE FROM tblcategories WHERE categoryId = %u",$categoryid);
-
-    if (mysqli_query($conn, $sqldelete)) {
-        $text = "Record deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("categories.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//Delete selected record
-if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
-    $list = $_POST['checknum'];
-
-    foreach($list as $name) {
-        $sqlalldelete = sprintf("DELETE FROM tblcategories WHERE categoryName = '%s'",$name);
-        $resultalldelete = mysqli_query($conn, $sqlalldelete);
-    }
-
-    if (mysqli_query($conn, $sqlalldelete)) {
-        $text = "All Records deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting records: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("categories.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-?>
 
 <?php $pagename="Item Categories"; ?>
 <!DOCTYPE html>
@@ -272,7 +175,6 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
                                 
                                 </tbody>
                             </table>
-                            <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
                         </form>
                     </div>
                 </div>
@@ -340,12 +242,3 @@ if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
 </body>
 
 </html>
-<?php
-mysqli_free_result($result);
-if(isset($_GET['action']) && $_GET['action']=='edit') {
-    mysqli_free_result($resultedit);
-}
-if(isset($_GET['action']) && $_GET['action']=='delete') {
-    mysqli_free_result($resultdelete);
-}
-?>

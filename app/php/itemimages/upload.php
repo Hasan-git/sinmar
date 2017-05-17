@@ -41,9 +41,6 @@ if ( !empty( $_FILES ) && isset($_POST['itemName'])  ) {
     }
 
 
-
-
-
     function getGUID(){
     if (function_exists('com_create_guid')){
         return com_create_guid();
@@ -61,5 +58,7 @@ if ( !empty( $_FILES ) && isset($_POST['itemName'])  ) {
         return $uuid;
     }
 }
+
+mysqli_close($conn);
 
 ?>

@@ -28,4 +28,7 @@ if ($result) {
     }else{
         header("HTTP/1.0 500 Internal Server Error");
     }
+
+mysqli_free_result($result);
+mysqli_close($conn);
 ?> 

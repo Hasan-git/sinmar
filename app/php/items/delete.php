@@ -21,6 +21,6 @@ if(isset($_POST['itemId']) ) {
     header("HTTP/1.0 400 Bad Request");
     echo "Something went wrong";
 }
-    
 
+mysqli_close($conn);
 ?>
