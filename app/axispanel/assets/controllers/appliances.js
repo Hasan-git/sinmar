@@ -634,7 +634,7 @@
                                 // // Serialize the form to Json 
                                 var localRecord = $('#editForm').serializeFormJSON()
 
-                                 console.log(localRecord,response)
+                                 //console.log(localRecord,response)
 
                                 localRecord.new = !!localRecord.new
                                 localRecord.offer = !!localRecord.offer
