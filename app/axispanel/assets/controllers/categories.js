@@ -68,18 +68,37 @@
                         data:data.data,
                         columns:[
                             //TODO://
-                            {'data':'categoryId'},
+                            {'data':'categoryId',
+                             'render': function ( data, type, full, meta ) {
+                                    return meta.row+1
+                                } 
+                            },
                             {'data':'categoryName'},
                             {   'data':null,
                                 'render': function ( data, type, full, meta ) {
                                     //set data-row attr as the datatable row -> give access the save changes to update row data localy
                                     return "<button class='btn btn-xs btn-success' scrollto='#editFormContainer' id='editRecord' data-row='"+meta.row+"' data-record='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
-                                      "<a class='btn btn-xs btn-danger' id='deleteRecord' data-row='"+meta.row+"' record-id='"+full.brandId+"' href='#'> <i class='fa fa-trash'></i> </a> "
+                                      "<a class='btn btn-xs btn-danger' id='deleteRecord' data-row='"+meta.row+"' record-id='"+full.categoryId+"' href='#'> <i class='fa fa-trash'></i> </a> "
                                 },
                                 
                             }
-                        ]
+                        ],
+                        "fnDrawCallback": function ( oSettings ) {
+                            /* Need to redo the counters if filtered or sorted */
+                            if ( oSettings.bSorted || oSettings.bFiltered )
+                            {
+                                for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+                                {
+                                    $('td:eq(0)', oSettings.aoData[ oSettings.aiDisplay[i] ].nTr ).html( i+1 );
+                                }
+                            }
+                        },
+                        "aoColumnDefs": [
+                            { "bSortable": false, "aTargets": [ 0 ] }
+                        ],
+                        "aaSorting": [[ 1, 'asc' ]]
                     })     
+
                 // Add Placeholder text to datatables filter bar
                 $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  
                 }

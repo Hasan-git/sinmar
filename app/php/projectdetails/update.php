@@ -3,8 +3,8 @@ include_once('../../axispanel/includes/connect.php');
 
   if(isset($_POST['prdetailsTitle']) && isset($_POST['prdetailsId']) && isset($_POST['prdetailsName']) && isset($_POST['prdetailsType']) && isset($_POST['projectDate']) && isset($_POST['projectImageName'])  ) {
 
-        var_dump($_POST);
-        var_dump($_FILES);
+        // var_dump($_POST);
+        // var_dump($_FILES);
 
         $prdetailsId = $_POST['prdetailsId'];
         $prdetailsTitle = $_POST['prdetailsTitle'];

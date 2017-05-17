@@ -159,6 +159,7 @@
                                 <table class="table table-striped table-hover" id="datatable3" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
+                                        <th>Index</th>
                                         <th>Id</th>
                                         <th>Project Name</th>
                                         <th>Actions</th>
@@ -166,6 +167,7 @@
                                     </thead>
                                     <tfoot>
                                     <tr>
+                                        <th>Index</th>
                                         <th>Id</th>
                                         <th>Project Name</th>
                                         <th>Actions</th>

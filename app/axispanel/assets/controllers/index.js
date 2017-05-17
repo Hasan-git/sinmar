@@ -66,7 +66,11 @@
                         ],
                         data:data.data,
                         columns:[
-                            {'data':'projectId'},
+                            {'data': 'projectName',
+                             'render': function ( data, type, full, meta ) {
+                                    return meta.row+1
+                                } 
+                            },
                             {'data':'projectName'},
                             {   'data':null,
                                 'render': function ( data, type, full, meta ) {
@@ -74,10 +78,24 @@
                                     return "<button class='btn btn-xs btn-success' scrollto='#editmode' id='editProject' data-row='"+meta.row+"' data-project='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
                                       "<a class='btn btn-xs btn-danger' id='deleteProject' data-row='"+meta.row+"' project-id='"+full.projectId+"' href='#'> <i class='fa fa-trash'></i> </a> "
                                 },
-                                
                             }
-                        ]
-                    })     
+                        ],
+                        "fnDrawCallback": function ( oSettings ) {
+                            /* Need to redo the counters if filtered or sorted */
+                            if ( oSettings.bSorted || oSettings.bFiltered )
+                            {
+                                for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ )
+                                {
+                                    $('td:eq(0)', oSettings.aoData[ oSettings.aiDisplay[i] ].nTr ).html( i+1 );
+                                }
+                            }
+                        },
+                        "aoColumnDefs": [
+                            { "bSortable": false, "aTargets": [ 0 ] }
+                        ],
+                        "aaSorting": [[ 1, 'asc' ]]
+                            })   
+
                 // Add Placeholder text to datatables filter bar
                 $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  
                 }

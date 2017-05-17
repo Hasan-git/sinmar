@@ -18,7 +18,6 @@ include_once('../../axispanel/includes/connect.php');
         $offer      =   isset($_POST['offer']) ? $_POST['offer'] : 0 ;
         $offerprice =   isset($_POST['offerPrice']) ? (int)$_POST['offerPrice'] : 0 ;
 
-
         $tmp_name = $itemimage["tmp_name"];
         $name = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR .basename($itemimage["name"]);
         $itemImage_ = $itemimage["name"];
@@ -46,10 +45,9 @@ include_once('../../axispanel/includes/connect.php');
                             );
                 $item_ = json_encode($item);
 
-                  header("HTTP/1.0 200 OK");
-                  echo $item_;
+                header("HTTP/1.0 200 OK");
+                echo $item_;
             }else {
-                //QUERY FAILED
                 header("HTTP/1.0 500 Internal Server Error");
                 echo "An error occurred";
                 }

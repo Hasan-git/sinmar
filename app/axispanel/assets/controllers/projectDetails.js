@@ -132,18 +132,63 @@
     //      CTRL
     //---------------------
 
+     $.ajax({
+            url: '../php/projecttype/get.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // $('#projectTypeCtrl').find('option').remove().end().append('<option value="">Select Type</option>')
+
+                $.each(data.data, function(key, value) {
+                    $('#projectTypeCtrl')
+                        .append($("<option></option>").attr("value", value.projectTypeName).text(value.projectTypeName));
+                });
+                $('#projectTypeCtrl option:first-child').trigger('change');
+            }
+        });
 
 
-    $(".select2-single").select2();
+    $('#projectTypeCtrl').change(function(){
+        var prTypeName = $('#projectTypeCtrl').val()
+        $.ajax({
+                url: urlPath + 'get.php?projecttype='+prTypeName,
+                method:'GET',
+                dataType:'json',
+                success:function(data){
+
+                    $('#imagesContainer').hide(700);
+                    $('#editFormContainer').hide(700);
+                    $('#newFormContainer').hide(700);
+
+                    $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
+                    $('#editForm').find("input[type=text],input[type=file],select, textarea").val("")
+                    $('#imagesform').find("input[type=text],input[type=file],select, textarea").val("")
+
+                    var myDataTable= $('#datatable3').DataTable();                        
+                    myDataTable.clear();
+                    myDataTable.rows.add(data.data);
+                    myDataTable.draw();
+                    $('#PDName').html(prTypeName)
+
+
+                    toastr.success(prTypeName + ' loaded successfully', 'Notification', {timeOut: 1400})
+                 }
+            })
+    })
+
+
+
+    var projectTypeName = $('#projectTypeCtrl').val()
+
 
     //Get all records
     $.ajax({
-        url: urlPath + 'get.php?projecttype='+typeParam,
+        url: urlPath + 'get.php?projecttype='+projectTypeName,
         method:'GET',
         dataType:'json',
         success:function(data){
             console.log(data)
-            $('#PDName').html(typeParam)
+            $('#PDName').html(projectTypeName)
             //Datatable Initializer
             var tbl = $('#datatable3').dataTable({
                 "sDom": '<"dt-panelmenu text-center clearfix"T><"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>',
@@ -274,14 +319,7 @@
 
                     }
                 })
-
-
            }
-
-
-
-
-       
         // $('#imagesContainer').hide(700);
     });
 
@@ -302,13 +340,18 @@
 
         event.preventDefault();
         event.stopPropagation();
-        $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
+
+        $('#editForm').find("input[type=text],input[type=file],select, textarea input[type=number]").val("").change()
+        $('#editForm').get(0).reset();
+
+
         $('#editFormContainer').show(700);
         
         //var product = JSON.parse($(this).attr('record-id')) 
         var mainRecord = $(this).attr('data-record');
         mainRecord = JSON.parse(mainRecord);
        
+       console.log(mainRecord)
         //INIT
         services.getProjectNamesEditForm(mainRecord.prdetailsName)
         services.getProjectTypesEditForm(mainRecord.prdetailsType)
@@ -326,14 +369,14 @@
         $('#editFormContainer').find('#location').val(mainRecord.location)
         $('#editFormContainer').find('#projectDate').val(mainRecord.projectDate)
         $('#editFormContainer').find('#new').prop('checked', mainRecord.new == 1 ? true : false)
-        $('#editFormContainer').find('#imagename2').val(mainRecord.projectImage)
+        $('#editFormContainer').find('#imagename2').val(mainRecord.projectImage || mainRecord.projectImageName)
         $('#editFormContainer').find('#prdetailsId').val(mainRecord.prdetailsId)
 
 
 
     });
 
-    // Edit brand form submited
+    // Edit PRoJECT form submited
     $('#saveEditForm').click(function(){
        if( !$('#editForm').isValid(conf.language, conf, true) ) {
             // displayErrors( errors );
@@ -358,10 +401,11 @@
                     var row = myDataTable.row(datatableRow_);
                     //Change row.projectName
                     //
+                    console.log(localRecord,data)
                     myDataTable.row(row).data(localRecord).draw();
                     $('#editFormContainer').hide(700);
 
-                    toastr.success('Brand updated successfully', 'Notification', {timeOut: 5000})
+                    toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
                     } ,
                     error: function(err) {
                         if(err.responseText){
@@ -386,6 +430,9 @@
         $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
         services.getProjectTypesNewForm()
         services.getProjectNamesNewForm()
+        $('#newform').find("input[type=text],input[type=file],select, textarea input[type=number]").val("").change()
+        $('#newform').get(0).reset();
+
         $('#newFormContainer').show(800);
 
     });
@@ -439,45 +486,48 @@
            }
     });
 
+    // ----------------------------------------------------------------
+    //          DELETE RECORD
+    //------------------------------------------------------------------
 
     //DELETE brand CLICKED
     $('#datatable3 tbody').on( 'click', '#deleteRecord', function (event) {
-    var thisDeleteBtn = $(this);
-    var RecordId = $(this).attr('record-id');
-    var inst = $('[data-remodal-id=modal]').remodal();
-            
-    inst.open();
-
-    $(document).on('confirmation', '.remodal', function () {
-        
-        $.ajax({
-                url: urlPath + 'delete.php',
-                method:'POST',
-                data: {prdetailsId:RecordId},
-                success:function(data){ 
-
-                //get the dt instance
-                var myDataTable= $('#datatable3').DataTable();
-
-                // get / set dt row
-                var row = myDataTable.row($(thisDeleteBtn).parents('tr')).remove().draw();;
+        var thisDeleteBtn = $(this);
+        var RecordId = $(this).attr('record-id');
+        var inst = $('[data-remodal-id=modal]').remodal();
                 
-                inst.close();
-                toastr.success('Project details deleted successfully', 'Notification', {timeOut: 5000})
-                } ,
-                error: function(err) {
-                   if(err.responseText){
-                            toastr.error(err.responseText, 'Notification', {timeOut: 5000})
-                       }else{
-                            toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
-                       }
-                }
-            });
-    });
+        inst.open();
 
-    $(document).on('cancellation', '.remodal', function () {
-        inst.close();
-    });
+        $(document).on('confirmation', '.remodal', function () {
+            
+            $.ajax({
+                    url: urlPath + 'delete.php',
+                    method:'POST',
+                    data: {prdetailsId:RecordId},
+                    success:function(data){ 
+
+                    //get the dt instance
+                    var myDataTable= $('#datatable3').DataTable();
+
+                    // get / set dt row
+                    var row = myDataTable.row($(thisDeleteBtn).parents('tr')).remove().draw();;
+                    
+                    inst.close();
+                    toastr.success('Project details deleted successfully', 'Notification', {timeOut: 5000})
+                    } ,
+                    error: function(err) {
+                       if(err.responseText){
+                                toastr.error(err.responseText, 'Notification', {timeOut: 5000})
+                           }else{
+                                toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
+                           }
+                    }
+                });
+        });
+
+        $(document).on('cancellation', '.remodal', function () {
+            inst.close();
+        });
 
     });
 
