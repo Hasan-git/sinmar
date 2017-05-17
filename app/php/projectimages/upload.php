@@ -7,15 +7,19 @@ if (  isset($_FILES['imageBeforeFile']) && $_FILES['imageBeforeFile']['size'] > 
         $imageAfter = $_FILES['imageAfterFile'];
         $projectTitle = $_POST['projectTitle'];
 
+
+        $guid = uniqid();
+        $guidAfer = uniqid();
         //IMAGE BEFORE
         $tmp_nameBefore = $imageBefore["tmp_name"];
-        $nameBefore = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($imageBefore["name"]);
-        $imageBefore_ = $imageBefore["name"];
+        $nameBefore = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($guid.'@'.$imageBefore["name"]);
+        $imageBefore_ = $guid.'@'.$imageBefore["name"];
                 
         //IMAGE AFTER
         $tmp_nameAfter = $imageAfter["tmp_name"];
-        $nameAfter = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($imageAfter["name"]);
-        $imageAfter_ = $imageAfter["name"];
+        $nameAfter = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($guidAfer.'@'.$imageAfter["name"]);
+        $imageAfter_ = $guidAfer.'@'.$imageAfter["name"];
+
 
                 //MOVE IMAGE BEFORE
                 if(move_uploaded_file($tmp_nameBefore, $nameBefore)){

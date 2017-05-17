@@ -19,8 +19,9 @@ include_once('../../axispanel/includes/connect.php');
         $offerprice =   isset($_POST['offerPrice']) ? (int)$_POST['offerPrice'] : 0 ;
 
         $tmp_name = $itemimage["tmp_name"];
-        $name = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR .basename($itemimage["name"]);
-        $itemImage_ = $itemimage["name"];
+        $guid = uniqid();
+        $name = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR .basename( $guid.'@'.$itemimage["name"]);
+        $itemImage_ =  $guid.'@'.$itemimage["name"];
         if(move_uploaded_file($tmp_name, $name)){
 
             $sqlnew = "INSERT INTO tblitems (itemType, itemName, brandName, categoryName, model, itemSize, color, price, description, new, offer, offerPrice, itemImage)

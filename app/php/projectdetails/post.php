@@ -18,8 +18,9 @@ include_once('../../axispanel/includes/connect.php');
         $notes              =  isset($_POST['notes']) ? $_POST['notes'] : '' ;
 
         $tmp_name = $projectImage["tmp_name"];
-        $name = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($projectImage["name"]);
-        $projectImage_ = $projectImage["name"];
+        $guid = uniqid();       
+        $name = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($guid.'@'.$projectImage["name"]);
+        $projectImage_ = $guid.'@'.$projectImage["name"];
         if(move_uploaded_file($tmp_name, $name)){
 
             $sqlnew = "INSERT INTO tblprojectdetails (prdetailsTitle, prdetailsName, prdetailsType, prdetailsSubtype, location, projectDate, description, new, notes, projectImage)

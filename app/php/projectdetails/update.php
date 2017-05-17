@@ -21,9 +21,10 @@ include_once('../../axispanel/includes/connect.php');
 
         if(isset($_FILES['projectImage']) && $_FILES['projectImage']['size'] > 0){
             $itemimage  =   $_FILES['projectImage'] ;
+            $guid = uniqid();
             $tmp_name = $itemimage["tmp_name"];
-            $path = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($itemimage["name"]);
-            $itemImageName = $itemimage["name"];
+            $path = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($guid.'@'.$itemimage["name"]);
+            $itemImageName = $guid.'@'.$itemimage["name"];
             move_uploaded_file($tmp_name, $path);
         }else{
             $itemImageName =$_POST['projectImageName'];
@@ -34,8 +35,25 @@ include_once('../../axispanel/includes/connect.php');
             if(mysqli_query($conn, $updateQuery)){
                 echo mysqli_error($conn);
 
-                header("HTTP/1.0 200 OK");
-                echo "Project details updated successfully";
+
+                 $record['data'] = array(
+                                'prdetailsId' => $prdetailsId,
+                                'prdetailsTitle' => $prdetailsTitle,
+                                'prdetailsName' => $prdetailsName,
+                                'prdetailsType' => $prdetailsType,
+                                'prdetailsSubtype' => $prdetailsSubtype,
+                                'location' => $location,
+                                'projectDate' => $projectDate,
+                                'description' => $description,
+                                'new' => $new?1:0,
+                                'notes' => $notes,
+                                'projectImage' => $itemImageName,
+                            );
+                $response = json_encode($record);
+
+                  header("HTTP/1.0 200 OK");
+                  echo $response;
+                // echo "Project details updated successfully";
             }else{
                 echo mysqli_error($conn);
                 header("HTTP/1.0 500 Internal Server Error");

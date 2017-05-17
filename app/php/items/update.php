@@ -23,8 +23,8 @@ include_once('../../axispanel/includes/connect.php');
             $itemimage  =   $_FILES['itemImage'] ;
             $tmp_name = $itemimage["tmp_name"];
             $guid = uniqid();
-            $path = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR .basename( $itemimage["name"].'@'.$guid);
-            $itemImageName =  $itemimage["name"].'@'.$guid;
+            $path = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR .basename( $guid.'@'.$itemimage["name"]);
+            $itemImageName =  $guid.'@'.$itemimage["name"];
             move_uploaded_file($tmp_name, $path);
         }else{
             $itemImageName =$_POST['itemImageName'];
@@ -33,16 +33,32 @@ include_once('../../axispanel/includes/connect.php');
             $updateQuery = "UPDATE tblitems SET itemtype='$itemtype',itemname='$itemname',brandname='$brandname',categoryname='$categoryname',price='$price',model='$model',itemsize='$itemsize',color='$color',description='$description',new=".($new?1:0).",offer=".($offer?1:0).",offerprice='$offerprice',itemImage='$itemImageName' WHERE itemId='$itemId'";
             if(mysqli_query($conn, $updateQuery)){
 
-                header("HTTP/1.0 200 OK");
-                echo "updated";
+
+                $record['data'] = array(
+                    'itemId' => $itemId,
+                    'itemType' => $itemtype,
+                    'itemName' => $itemname,
+                    'brandName' => $brandname,
+                    'categoryName' => $categoryname,
+                    'model' => $model,
+                    'itemSize' => $itemsize,
+                    'color' => $color,
+                    'price' => $price,
+                    'description' => $description,
+                    'new' => $new?true:false,
+                    'offer' => $offer?true:false,
+                    'offerPrice' => $offerprice,
+                    'itemImageName' => $itemImageName,
+                     );
+
+                    $response = json_encode($record);
+                    header("HTTP/1.0 200 OK");
+                    echo $response;
             }else{
-                echo mysqli_error($conn);                
+                // echo mysqli_error($conn);                
                 header("HTTP/1.0 500 Internal Server Error");
                 echo "An error occurred";
             }
-
-
-
     }else{
 
             header("HTTP/1.0 400 Bad Request");
