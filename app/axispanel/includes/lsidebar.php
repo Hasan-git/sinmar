@@ -47,7 +47,7 @@
             ?>
 		  <!-- sidebar bullets -->
           <li class="sidebar-label pt20">Projects</li>
-          <li <?php if(isset($pagename) && $pagename=='Project Details') { echo 'class="active"'; } ?>>
+          <!-- <li <?php if(isset($pagename) && $pagename=='Project Details') { echo 'class="active"'; } ?>>
             <a class="accordion-toggle" href="#">
               <span class="fa fa-columns"></span>
               <span class="sidebar-title">Project Details</span>
@@ -63,6 +63,12 @@
               </li>
             <?php } } else echo '<li><a href="#"> No Types </a></li>'; ?>
             </ul>
+          </li> -->
+          <li <?php if(isset($pagename) && $pagename=='Project Details') { echo 'class="active"'; } ?>>
+            <a href="projectdetails.php">
+              <span class="fa fa-plus-square-o"></span>
+              <span class="sidebar-title">Project Details</span>
+            </a>
           </li>
 		  <li <?php if(isset($pagename) && $pagename=='Project Names') { echo 'class="active"'; } ?>>
             <a href="projectnames.php">
