@@ -28,6 +28,6 @@ if(isset($_POST['projectName']) ) {
     header("HTTP/1.0 400 Bad Request");
     echo "Some fields are required";
 }
-    
 
+mysqli_close($conn);
 ?>

@@ -58,4 +58,7 @@ if ($result) {
     }else{
     	header("HTTP/1.0 400 Bad Request");
     }
+
+mysqli_free_result($result);
+mysqli_close($conn);
 ?> 

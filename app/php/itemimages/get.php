@@ -40,4 +40,6 @@ if ($result) {
     echo "Something went wrong";
 }
 
+mysqli_free_result($result);
+mysqli_close($conn);
 ?> 

@@ -26,6 +26,6 @@ if(isset($_POST['ImageId']) ) {
     header("HTTP/1.0 400 Bad Request");
     echo "Something went wrong";
 }
-    
 
+mysqli_close($conn);
 ?>

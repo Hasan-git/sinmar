@@ -39,4 +39,5 @@ if ( !empty( $_FILES ) && isset($_POST['itemName'])  ) {
     	echo "Something went wrong";
     }
 
+mysqli_close($conn);
 ?>

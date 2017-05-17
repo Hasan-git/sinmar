@@ -48,4 +48,6 @@ include_once('../../axispanel/includes/connect.php');
             echo "Some fields are required";
     }
 
+
+mysqli_close($conn);
 ?>

@@ -47,6 +47,7 @@ if (  isset($_FILES['imageBeforeFile']) && $_FILES['imageBeforeFile']['size'] > 
                 header("HTTP/1.0 500 Internal Server Error");
                 echo "failed to upload";
              }
-        
 
+
+mysqli_close($conn);
 ?>

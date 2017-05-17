@@ -3,266 +3,6 @@
 } ?>
 <?php include_once('includes/auth.php'); ?>
 <?php include_once('includes/logout.php'); ?>
-<?php include_once('includes/connect.php'); ?>
-<?php
-function uploadimages() {
-    $target_dir = "../images/projects/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submitnew"])||isset($_POST["submitedit"])||isset($_POST["submitadd"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            $_SESSION['uploadimage'] = "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            $_SESSION['uploadimage'] =  "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        $_SESSION['uploadimage'] =  "Sorry, image already exists.";
-        $uploadOk = 0;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 350000) {
-        $_SESSION['uploadimage'] =  "Sorry, your image is too large.";
-        $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
-        $_SESSION['uploadimage'] =  "Sorry, only JPG, JPEG & PNG files are allowed.";
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        $_SESSION['uploadOk'] = 0;
-        $_SESSION['uploaderror'] =  "Sorry, your image was not uploaded.";
-        // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $_SESSION['uploadOk'] = 1;
-            $_SESSION['uploaderror'] =  "The image ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        } else {
-            $_SESSION['uploadOk'] = 0;
-            $_SESSION['uploaderror'] =  "Sorry, there was an error uploading your image.";
-        }
-    }
-}
-?>
-<?php
-// Projects Query
-if(isset($_GET['projecttype']) || isset($type)) {
-    $_SESSION['projecttype'] = $_GET['projecttype'];
-}
-$type = $_SESSION['projecttype'];
-$sql = sprintf("SELECT * FROM tblprojectdetails WHERE prdetailsType Like '%s' ORDER BY prdetailsId DESC", $type);
-$result = mysqli_query($conn, $sql);
-
-
-//Projects Names Query
-$sqlprojects = "SELECT * FROM tblprojects ORDER BY projectName ASC";
-$resultprojects = mysqli_query($conn, $sqlprojects);
-
-
-//project types Query
-$sqltypes = "SELECT * FROM tblprojecttype ORDER BY projectTypeName ASC";
-$resulttypes = mysqli_query($conn, $sqltypes);
-
-
-//insert record
-if(isset($_POST['submitnew'])) {
-    $title = $_POST['prdetailsTitle'];
-    $projectname = $_POST['prdetailsName'];
-    $projecttype = $_POST['prdetailsType'];
-    $projectsubtype = $_POST['prdetailsSubtype'];
-    $location = $_POST['location'];
-    $projectdate = $_POST['projectDate'];
-    $description = $_POST['description'];
-    $notes = $_POST['notes'];
-    $new = $_POST['new'];
-    $projectimage = $_POST['projectImage'];
-
-    $sqlnew = "INSERT INTO tblprojectdetails (prdetailsTitle, prdetailsName, prdetailsType, prdetailsSubtype, location, projectDate, description, notes, new, projectImage)
-           VALUES ('$title', '$projectname', '$projecttype', '$projectsubtype', '$location', '$projectdate', '$description', '$notes', ".($new?1:0).", '$projectimage')";
-
-    if (mysqli_query($conn, $sqlnew)) {
-        $text = "Record Inserted successfully.";
-        $color = "blue";
-        uploadimages();
-    }
-    else {
-        $text = 'Error: ' . mysqli_error($conn);
-        $color = "red";
-    }
-
-    $insertGoTo = sprintf("projectdetails.php?action=new&text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-
-}
-
-//query for edit form
-if(isset($_GET['action']) && $_GET['action']=='edit') {
-    $prdetailsid = $_GET['prdetailsId'];
-
-    $sqledit = sprintf("SELECT * FROM tblprojectdetails WHERE prdetailsId = %u",$prdetailsid);
-    $resultedit = mysqli_query($conn, $sqledit);
-    $row_edit = mysqli_fetch_assoc($resultedit);
-}
-
-//Updating Record
-if(isset($_POST['submitedit']))	{
-    $projectdetailid = $_POST['prdetailsId'];
-    $title = $_POST['prdetailsTitle'];
-    $projectname = $_POST['prdetailsName'];
-    $projecttype = $_POST['prdetailsType'];
-    $projectsubtype = $_POST['prdetailsSubtype'];
-    $location = $_POST['location'];
-    $projectdate = $_POST['projectDate'];
-    $description = $_POST['description'];
-    $notes = $_POST['notes'];
-    $new = $_POST['new'];
-    $projectimage = $_POST['projectImage'];
-    uploadimages();
-
-    $sqlupdate = sprintf("UPDATE tblprojectdetails SET prdetailsTitle='%s', prdetailsName='%s', prdetailsType='%s', prdetailsSubtype='%s', location='%s',
-                              projectDate='%s', description='%s', notes='%s', new='%s', projectImage='%s'
-                         WHERE prdetailsId=%u", $title, $projectname, $projecttype, $projectsubtype, $location, $projectdate,
-                                $description, $notes, $new?1:0, $projectimage, $projectdetailid);
-
-    if($_SESSION['uploadOk']==1){
-        if (mysqli_query($conn, $sqlupdate)) {
-            $text = "Record updated successfully.";
-            $color = "orange";
-        } else {
-            $text = "Image Uploaded but Error updating record: " . mysqli_error($conn);
-            $color = "red";
-        }
-        $insertGoTo = sprintf("projectdetails.php?text=%s&color=%s",$text,$color);
-        header(sprintf("Location: %s", $insertGoTo));
-    }
-    else
-    {
-        if (mysqli_query($conn, $sqlupdate)) {
-            $text = "Record updated successfully, But Image Error.";
-            $color = "orange";
-        } else {
-            $text = "Error updating record: " . mysqli_error($conn);
-            $color = "red";
-        }
-        $insertGoTo = sprintf("projectdetails.php?text=%s&color=%s",$text,$color);
-        header(sprintf("Location: %s", $insertGoTo));
-    }
-}
-
-//query for delete form
-if(isset($_GET['action']) && $_GET['action']=='delete') {
-    $projectdetailid = $_GET['prdetailsId'];
-
-    $sqldelete = sprintf("SELECT * FROM tblprojectdetails WHERE prdetailsId = %u",$projectdetailid);
-    $resultdelete = mysqli_query($conn, $sqldelete);
-    $row_delete = mysqli_fetch_assoc($resultdelete);
-}
-
-//Deleting record
-if(isset($_POST['submitdelete']) && isset($_POST['deleteprojectId'])) {
-    $projectdetailid = $_POST['deleteprojectId'];
-    $projectimage = $_POST['deleteprojectImage'];
-
-    $sqldelete = sprintf("DELETE FROM tblprojectdetails WHERE prdetailsId = %u",$projectdetailid);
-
-    if (file_exists("../images/projects/".$projectimage)) {
-        unlink("../images/projects/".$projectimage);
-    }
-
-    if (mysqli_query($conn, $sqldelete)) {
-        $text = "Record deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting record: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projectdetails.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-//Delete selected record
-if(isset($_POST['submitalldelete']) && isset($_POST['checknum'])) {
-    $list = $_POST['checknum'];
-
-    foreach($list as $name) {
-        $sqldeleteall = sprintf("SELECT projectImage FROM tblprojectdetails WHERE prdetailsTitle = '%s'",$name);
-        $resultdeleteall = mysqli_query($conn, $sqldeleteall);
-        $row_deleteall = mysqli_fetch_assoc($resultdeleteall);
-        $projectimage = $row_deleteall['projectImage'];
-
-        if (file_exists("../images/projects/".$projectimage)) {
-            unlink("../images/projects/".$projectimage);
-        }
-
-        $sqlalldelete = sprintf("DELETE FROM tblprojectdetails WHERE prdetailsTitle = '%s'",$name);
-        $resultalldelete = mysqli_query($conn, $sqlalldelete);
-    }
-
-    if (mysqli_query($conn, $sqlalldelete)) {
-        $text = "All Records deleted successfully";
-        $color = "#660000";
-    } else {
-        $text = "Error deleting records: " . mysqli_error($conn);
-        $color = "red";
-    }
-    $insertGoTo = sprintf("projectdetails.php?text=%s&color=%s",$text,$color);
-    header(sprintf("Location: %s", $insertGoTo));
-}
-
-
-//query for Additional Images
-if(isset($_GET['action']) && $_GET['action']=='addimage' && isset($_GET['prdetailsId'])) {
-    $prdetailsId = $_GET['prdetailsId'];
-
-    $sqladd = sprintf("SELECT * FROM tblprojectdetails WHERE prdetailsId = %u",$prdetailsId);
-    $resultadd = mysqli_query($conn, $sqladd);
-    $row_add = mysqli_fetch_assoc($resultadd);
-}
-
-//insert additional Item images
-if(isset($_POST['submitadd'])) {
-    $projectImageId = $_POST['prdetailsId'];
-    $projectTitle = $_POST['projectTitle'];
-    $imageName = $_POST['imageName'];
-    $imageType = $_POST['imageType'];
-    $imageSort = $_POST['imageSort'];
-    uploadimages();
-
-    if($_SESSION['uploadOk']==1){
-
-        $sqlnewimage = "INSERT INTO tblprojectimages (imageType, projectTitle, imageName, imageSort)
-           VALUES ('$imageType', '$projectTitle', '$imageName', '$imageSort')";
-
-        if (mysqli_query($conn, $sqlnewimage)) {
-            $text = "Record Inserted successfully.";
-            $color = "blue";
-        }
-        else {
-            $text = 'Error: ' . mysqli_error($conn);
-            $color = "red";
-        }
-
-        $insertGoTo = sprintf("projectdetails.php?action=addimage&prdetailsId=%s&text=%s&color=%s",$projectImageId, $text, $color);
-        header(sprintf("Location: %s", $insertGoTo));
-    }
-    else
-    {
-        $text = 'Error: Image Error ';
-        $color = "red";
-        $insertGoTo = sprintf("projectdetails.php?action=addimage&prdetailsId=%s&text=%s&color=%s",$projectImageId, $text, $color);
-        header(sprintf("Location: %s", $insertGoTo));
-    }
-}
-
-?>
 
 <?php $pagename="Project Details"; ?>
     <!DOCTYPE html>
@@ -522,17 +262,7 @@ if(isset($_POST['submitadd'])) {
                     
                     <!-- IMAGES CONTAINER -->
                     <div class="image-viewer collapse" id="images-viewer">
-                        <!-- <div class="col--2 ">
-                            <i class="fa fa-trash btn btn-warning btn-xs"></i>
-                            <div class="image-wrapper" >
-                                <img src="projectImages/Desert.jpg" class="img-thumbnail" alt="Cinque Terre" width="100" height="236"> 
-                                    <p class=''> Before </p>
-                            </div>
-                            <div class="image-wrapper" >
-                                <img src="projectImages/Penguins.jpg" class="img-thumbnail" alt="Cinque Terre" width="100" height="236"> 
-                                    <p class=''> After </p>
-                            </div>
-                        </div> -->
+
                     </div>
 
                         <form class="form-horizontal" name="imagesform" id="imagesform" method="POST" action="" enctype="multipart/form-data" role="form">
@@ -564,7 +294,7 @@ if(isset($_POST['submitadd'])) {
                             <div align="right" class="">
                                 <button type="button" class="btn btn-default " role="button" id="cancelImagesForm"> Cancel </button>
                                 <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveImagesForm">Save changes</button>
-                                <!-- <input type="hidden" name="prdetailsId" id="prdetailsId" value=""> -->
+
                                 <input type="hidden" name="projectTitle" id="projectTitle" value="" >
                             </div>
                         </form>
@@ -592,7 +322,7 @@ if(isset($_POST['submitadd'])) {
                         <th>Location</th>
                         <th>Date</th>
                         <th>New</th>
-                        <!-- <th>Image</th> -->
+
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -603,7 +333,7 @@ if(isset($_POST['submitadd'])) {
                         <th>Location</th>
                         <th>Date</th>
                         <th>New</th>
-                        <!-- <th>Image</th> -->
+
                         <th>Action</th>
                     </tr>
                     </tfoot>
@@ -611,7 +341,7 @@ if(isset($_POST['submitadd'])) {
                  
                     </tbody>
                 </table>
-                <!-- <button type="submit" name="deleteall" class="btn btn-danger btn-md dark">Delete Selected</button> -->
+
             </form>
         </div>
     </div>
@@ -679,22 +409,3 @@ if(isset($_POST['submitadd'])) {
     </body>
 
     </html>
-
-<?php
-unset($_SESSION['uploaderror']);
-unset($_SESSION['uploadimage']);
-
-mysqli_free_result($result);
-mysqli_free_result($resultprojects);
-mysqli_free_result($resulttypes);
-if(isset($_GET['action']) && $_GET['action']=='edit') {
-    mysqli_free_result($resultedit);
-}
-if(isset($_GET['action']) && $_GET['action']=='delete') {
-    mysqli_free_result($resultdelete);
-}
-if(isset($_GET['action']) && $_GET['action']=='addimage') {
-    mysqli_free_result($resultadd);
-}
-mysqli_close($conn);
-?>
