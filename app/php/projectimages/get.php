@@ -30,6 +30,12 @@ if ($result) {
 		  $response = json_encode($_object);
 		  header("HTTP/1.0 200 OK");
 		  echo $response;
+		}else{
+
+		 	header("HTTP/1.0 200 OK");
+			$_object['data'] = array();
+			$response = json_encode($_object);
+			echo $response;
 		}
 
     }else{

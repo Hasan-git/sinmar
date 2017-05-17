@@ -238,6 +238,7 @@
     //------------------------------------------------------------------
 
     
+    //OPEN IMAGES CONTAINER and append item images to the form
     $('#datatable3 tbody').on( 'click', '#openImageContainer', function (event) { 
 
         event.preventDefault();
@@ -250,13 +251,15 @@
         $('#imagesContainer').find('#projectTitle').val(projectTitle)
 
         $.ajax({
-                url: urlPath + '../projectimages/get.php?projectTitle='+projectTitle,
-                method:'GET',
-                success:function(data){ 
-                    var response = JSON.parse(data)
-                    $('#imagesContainer').find(".image-viewer").empty()
+            url: urlPath + '../projectimages/get.php?projectTitle='+projectTitle,
+            method:'GET',
+            success:function(data){ 
+                $('#imagesContainer').find(".image-viewer").empty()
+                var response = JSON.parse(data)
+                console.log(response)
 
-                     $.each(response.data, function(key, value) {
+                if(response.data.length){
+                    $.each(response.data, function(key, value) {
                         var images ='<div class="col--2 ">'+
                                         '<i class="fa fa-trash btn btn-warning btn-xs" id="deleteImages" record-id="'+value.projectImageId+'"></i>'+
                                         '<div class="image-wrapper" >'+
@@ -270,9 +273,17 @@
                                     '</div>';
                         $('.image-viewer').append(images)
                     });
-                $('#imagesContainer').show(700);
+                }else{
+                     var message ='<div class="col-xs-8"> <b><i class="fa fa-briefcase fa-lg"></i>There is no images</b> </div>';
+                     var message_ = '<div class="col-xs-8 alert alert-warning m-l-sm">'+
+                                      '<strong><i class="fa fa-briefcase fa-lg m-r-xs"></i></strong> No images found !'+
+                                    '</div> '
+                     $('.image-viewer').append(message_)
                 }
-            });
+            }
+        });
+        $('#imagesContainer').show(700);
+    
     });
 
     $('#imagesContainer').on( 'click', '#deleteImages', function (event) {
@@ -393,6 +404,10 @@
                     // Serialize the form to Json 
                     var localRecord = $('#editForm').serializeFormJSON()
 
+                    var response = JSON.parse(data)
+
+                    console.log(localRecord,response)
+
                     //Get the datatable row from the button attr and emit changes
                     var datatableRow_ = $('#saveEditForm').attr("data-row");
                     //get the dt instance
@@ -401,8 +416,8 @@
                     var row = myDataTable.row(datatableRow_);
                     //Change row.projectName
                     //
-                    console.log(localRecord,data)
-                    myDataTable.row(row).data(localRecord).draw();
+                    // console.log(localRecord,data)
+                    myDataTable.row(row).data(response.data).draw();
                     $('#editFormContainer').hide(700);
 
                     toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
@@ -466,11 +481,11 @@
 
                     var _newRecord = JSON.parse(data);
 
-                    if(_newRecord.prdetailsType == typeParam){
+                    // if(_newRecord.prdetailsType == typeParam){
                         // _newRecord.new = _newRecord.new==1 ? true : false;
                         var myDataTable= $('#datatable3').DataTable();                        
                         myDataTable.row.add(_newRecord ).draw( false )
-                    }
+                    // }
 
                     $('#newFormContainer').hide(700);
                     toastr.success('Project details created successfully', 'Notification', {timeOut: 5000})

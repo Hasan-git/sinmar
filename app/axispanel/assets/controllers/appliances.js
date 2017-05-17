@@ -629,9 +629,12 @@
 
                                 // data = JSON.parse(data)
                                 // var _newRecord = data
+                                var response = JSON.parse(data)
 
                                 // // Serialize the form to Json 
                                 var localRecord = $('#editForm').serializeFormJSON()
+
+                                 //console.log(localRecord,response)
 
                                 localRecord.new = !!localRecord.new
                                 localRecord.offer = !!localRecord.offer
@@ -644,7 +647,7 @@
                                 var row = myDataTable.row(datatableRow_);
                                 // //Change row.projectName
 
-                                myDataTable.row(row).data(localRecord).draw();
+                                myDataTable.row(row).data(response.data).draw();
 
                                 // console.log(myDataTable.row(row).data(),localRecord)
                                     // idz = data.itemId;
