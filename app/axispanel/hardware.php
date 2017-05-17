@@ -98,18 +98,26 @@
                                     <form class="form-horizontal" name="newform" id="newform" method="POST" action="" enctype="multipart/form-data" role="form">
 
                                         <div class="form-group admin-form">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
+                                                <label class="control-label">Item Type*</label>
+
+                                                <select name="itemType" data-validation="required" id="itemType" class="form-control" required>
+                                                    <option value="">Hardware</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-sm-3">
                                                 <label class="control-label">Item Name*</label>
                                                 <input type="text" data-validation="required" name="itemName" id="itemName" class="form-control" placeholder="Item Name..." required>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <label class="control-label">Item Brand*</label>
                                                 <br>
                                                 <select name="brandName" data-validation="required" id="brandName" class="select2-single form-control" required>
                                                     <option value="">Select Brand</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <label class="control-label">Item Category*</label>
                                                 <br>
                                                 <select name="categoryName" data-validation="required" id="categoryName" class="select2-single form-control" required>
@@ -186,7 +194,7 @@
                                             </div>
                                         </div>
                                         <div class="clearfix"><br/></div>
-                                        <input type="hidden" name="itemType" value="Hardware">
+
                                         <div align="right" class="">
                                             <button type="button" class="btn btn-default" role="button" id="cancelNewForm" > Cancel </button>
                                             <button type="button" name="submitnew" class="btn btn-primary" id="saveNewForm" > Create Item</button>
@@ -213,17 +221,24 @@
                                     <span class="text-danger-darker">Fields with * are required</span>
                                     <form class="form-horizontal" name="editform" id="editForm" method="POST" action="" enctype="multipart/form-data" role="form">
                                         <div class="form-group admin-form">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
+                                                <label class="control-label">Item Type*</label>
+
+                                                <select name="itemType" data-validation="required" id="itemType" class="form-control" required>
+                                                    <option value="Hardware">Hardware</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
                                                 <label class="control-label">Item Name*</label>
                                                 <input type="text" data-validation="required" name="itemName" id="itemName" value="" class="form-control" placeholder="Item Name..." required>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <label class="control-label">Item Brand*</label>
                                                 <br>
                                                 <select data-validation="required" name="brandName" id="brandName" class="select2-single form-control" required>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <label class="control-label">Item Category*</label>
                                                 <br>
                                                 <select data-validation="required" name="categoryName" id="categoryName" class="select2-single form-control" required>
@@ -301,7 +316,6 @@
                                         </div>
                                         <div class="clearfix"><br/></div>
                                             <input type="hidden" name="itemId" id="itemId" value="">
-                                        <input type="hidden" name="itemType" value="Hardware">
                                         <div align="right" class="">
                                             <button type="button" class="btn btn-default " role="button" id="cancelEditForm"> Cancel </button>
                                             <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveEditForm">Save changes</button>
