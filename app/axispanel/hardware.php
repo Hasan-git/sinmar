@@ -94,21 +94,17 @@
                                 </div>
 
                                 <div class="panel-body">
-                                    <!-- <span class="text-danger-darker">Fields with * are required</span> -->
+                                     <span class="text-danger-darker">Fields with * are required</span>
                                     <form class="form-horizontal" name="newform" id="newform" method="POST" action="" enctype="multipart/form-data" role="form">
 
                                         <input type="hidden" name="itemType" id="itemType" value="Hardware">   
                                         <div class="form-group admin-form">
 
-                                            <!-- <div class="col-sm-2">
-                                                <label class="control-label">Item Type*</label>
-                                                <select data-validation="required" name="itemType" class="form-control" required>
-                                                    <option value="Hardware" selected="selected">Hardware</option>
-                                                <option value="Appliances" >Appliances</option>
-                                                </select>
-                                            </div> 
-                                                -->
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-2">
+                                                <h2>&ensp;Hardware</h2>
+                                            </div>
+
+                                            <div class="col-sm-4">
                                                 <label class="control-label">Item Name*</label>
                                                 <input type="text" data-validation="required" name="itemName" id="itemName" class="form-control" placeholder="Item Name..." required>
                                             </div>
@@ -225,14 +221,12 @@
                                     <form class="form-horizontal" name="editform" id="editForm" method="POST" action="" enctype="multipart/form-data" role="form">
                                         <input type="hidden" name="itemType" id="itemType" value="Hardware">   
                                         <div class="form-group admin-form">
-                                            <!-- <div class="col-sm-3">
-                                                <label class="control-label">Item Type*</label>
 
-                                                <select name="itemType" data-validation="required" id="itemType" class="form-control" required>
-                                                    <option value="Hardware">Hardware</option>
-                                                </select>
-                                            </div> -->
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-2">
+                                                <h2>&ensp;Hardware</h2>
+                                            </div>
+
+                                            <div class="col-sm-4">
                                                 <label class="control-label">Item Name*</label>
                                                 <input type="text" data-validation="required" name="itemName" id="itemName" value="" class="form-control" placeholder="Item Name..." required>
                                             </div>

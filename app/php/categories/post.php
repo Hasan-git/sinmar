@@ -29,6 +29,5 @@ if(isset($_POST['categoryName']) ) {
     echo "Some fields are required";
 }
 
-mysqli_free_result($result);
 mysqli_close($conn);
 ?>
