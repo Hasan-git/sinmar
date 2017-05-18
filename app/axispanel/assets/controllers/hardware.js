@@ -257,7 +257,7 @@
                 $('#editFormContainer').find('#new').prop('checked', mainRecord.new == 1 ? true : false)
                 $('#editFormContainer').find('#offer').prop('checked', mainRecord.offer == 1 ? true : false).change()
                 $('#editFormContainer').find('#offerPrice').val(mainRecord.offerPrice)
-                $('#editFormContainer').find('#itemType').val(mainRecord.itemType).change()
+                // $('#editFormContainer').find('#itemType').val(mainRecord.itemType)
                 // $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImage)
                 $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImageName || mainRecord.itemImage)
                 $('#editFormContainer').find('#itemId').val(mainRecord.itemId)
@@ -473,6 +473,7 @@
                                 var _newRecord = data
 
                                 var myDataTable = $('#datatable3').DataTable();
+
 
                                 myDataTable.row.add(_newRecord).draw(false);
 

@@ -41,6 +41,8 @@
     var urlPath   = '../php/projectdetails/';
     var typeParam = getUrlParameter('projecttype');
 
+    $(".select2-single").select2();
+
     ////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////
@@ -57,7 +59,7 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    $('#newFormContainer #prdetailsType').find('option').remove().end().append('<option value="">Select Type</option>')
+                    $('#newFormContainer #prdetailsType').find('option').remove().end().append('<option value="" selected="selected">Select Type</option>').attr("selected", "selected").change()
 
                     $.each(data.data, function(key, value) {
                         $('#newFormContainer').find('#prdetailsType')
@@ -72,7 +74,7 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    $('#newFormContainer #prdetailsName').find('option').remove().end().append('<option value="">Select Project</option>')
+                    $('#newFormContainer #prdetailsName').find('option').remove().end().append('<option value="">Select Project</option>').attr("selected", "selected").change()
 
                     $.each(data.data, function(key, value) {
                         $('#newFormContainer').find('#prdetailsName')
@@ -155,14 +157,15 @@
                 method:'GET',
                 dataType:'json',
                 success:function(data){
+            console.log(data)
 
                     $('#imagesContainer').hide(700);
                     $('#editFormContainer').hide(700);
                     $('#newFormContainer').hide(700);
 
-                    $('#newform').find("input[type=text],input[type=file],select, textarea").val("")
-                    $('#editForm').find("input[type=text],input[type=file],select, textarea").val("")
-                    $('#imagesform').find("input[type=text],input[type=file],select, textarea").val("")
+                    $('#newform').find("input[type=text],input[type=file],select, textarea").val("").change()
+                    $('#editForm').find("input[type=text],input[type=file],select, textarea").val("").change()
+                    $('#imagesform').find("input[type=text],input[type=file],select, textarea").val("").change()
 
                     var myDataTable= $('#datatable3').DataTable();                        
                     myDataTable.clear();

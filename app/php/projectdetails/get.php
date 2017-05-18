@@ -45,7 +45,7 @@ if ($result) {
 		  echo $response;
 
 		}else{
-			echo mysqli_error($conn);
+			// echo mysqli_error($conn);
 			$_record['data'] = array();
 			$response = json_encode($_record);
 			echo $response;

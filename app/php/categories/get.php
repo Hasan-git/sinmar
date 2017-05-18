@@ -21,6 +21,10 @@ if ($result) {
 		  $categories = json_encode($_object);
 		  header("HTTP/1.0 200 OK");
 		  echo $categories;
+		}else{
+			$record['data'] = array();
+			$response = json_encode($record);
+			echo $response;
 		}
 
     }else{

@@ -57,7 +57,7 @@
                         method: 'GET',
                         dataType: 'json',
                         success: function(data) {
-                            $('#newFormContainer #brandName').find('option').remove().end().append('<option value="">Select Brand</option>')
+                            $('#newFormContainer #brandName').find('option').remove().end().append('<option value="">Select Brand</option>').attr("selected", "selected").change()
 
                             $.each(data.data, function(key, value) {
                                 $('#newFormContainer').find('#brandName')
@@ -73,7 +73,7 @@
                         method: 'GET',
                         dataType: 'json',
                         success: function(data) {
-                            $('#newFormContainer #categoryName').find('option').remove().end().append('<option value="">Select Category</option>')
+                            $('#newFormContainer #categoryName').find('option').remove().end().append('<option value="">Select Category</option>').attr("selected", "selected").change()
 
                             $.each(data.data, function(key, value) {
                                 $('#newFormContainer').find('#categoryName')
@@ -258,7 +258,7 @@
                 $('#editFormContainer').find('#new').prop('checked', mainRecord.new == 1 ? true : false)
                 $('#editFormContainer').find('#offer').prop('checked', mainRecord.offer == 1 ? true : false).change()
                 $('#editFormContainer').find('#offerPrice').val(mainRecord.offerPrice)
-                $('#editFormContainer').find('#itemType').val(mainRecord.itemType).change()
+                // $('#editFormContainer').find('#itemType').val(mainRecord.itemType).change()
                 // $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImage)
                 $('#editFormContainer').find('#imagenameEdit').val(mainRecord.itemImageName || mainRecord.itemImage)
                 $('#editFormContainer').find('#itemId').val(mainRecord.itemId)

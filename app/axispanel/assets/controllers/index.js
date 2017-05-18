@@ -50,6 +50,7 @@
                 method:'GET',
                 dataType:'json',
                 success:function(data){
+                    console.log(data)
                     //Datatable Initializer
                     var tbl = $('#datatable3').dataTable({
                         "sDom": '<"dt-panelmenu text-center clearfix"T><"dt-panelmenu clearfix"lfr>t<"dt-panelfooter clearfix"ip>',

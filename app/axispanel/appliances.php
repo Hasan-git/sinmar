@@ -110,7 +110,7 @@
                                     <!-- <span class="text-danger-darker">Fields with * are required</span> -->
                                     <form class="form-horizontal" name="newform" id="newform" method="POST" action="" enctype="multipart/form-data" role="form">
 
-                                        <input type="hidden" name="itemType" value="Appliances">   
+                                        <input type="hidden" name="itemType" id="itemType" value="Appliances">   
                                         <div class="form-group admin-form">
 
                                             <div class="col-sm-2">
@@ -234,7 +234,7 @@
                                 <div class="panel-body">
                                     <span class="text-danger-darker">Fields with * are required</span>
                                     <form class="form-horizontal" name="editform" id="editForm" method="POST" action="" enctype="multipart/form-data" role="form">
-                                        <input type="hidden" name="itemType" value="Appliances"> 
+                                        <input type="hidden" name="itemType" id="itemType"  value="Appliances"> 
                                         <div class="form-group admin-form">
 
                                             <div class="col-sm-2">
