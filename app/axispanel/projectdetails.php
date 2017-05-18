@@ -80,7 +80,7 @@
             <div class="col-md-10">
                 <div class="panel">
                     <div class="panel-heading">
-                        <span>Create New Title</span>
+                        <span>Create New Detail</span>
                     </div>
 
                     <div class="panel-body">
@@ -151,7 +151,7 @@
                             <div class="clearfix"><br/></div>
                             <div align="right" class="">
                                 <button type="button" class="btn btn-default" role="button" id="cancelNewForm" > Cancel </button>
-                                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewForm" > Create Brand</button>
+                                <button type="button" name="submitnew" class="btn btn-primary" id="saveNewForm" > Create Detail</button>
                             </div>
                         </form>
                     </div>
@@ -181,6 +181,7 @@
                                 <div class="col-sm-6">
                                     <label class="control-label">Project Name*</label>
                                     <select data-validation="required" name="prdetailsName" id="prdetailsName" class="select2-single form-control" required>
+                                        <option value="">Select Project</option>
                                     </select>
                                 </div>
                             </div>
@@ -188,7 +189,7 @@
                                 <div class="col-sm-6">
                                     <label class="control-label">Detail Type*</label>
                                     <select data-validation="required" name="prdetailsType" id="prdetailsType" class="select2-single form-control" required>
-                                        
+                                        <option value="">Select Type</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
@@ -249,7 +250,7 @@
         <div class="clearfix"></div>
 
         <div class="row j-hide" id="imagesContainer">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <div class="panel">
                     <div class="panel-heading">
                         <span class="panel-title">Additional Images for <b class="text-info" id='iboxname'></b></span>
@@ -309,11 +310,13 @@
             <div class="col-xs-2">
                 <button class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"  ><i class="fa fa-plus"></i> Create New Project Detail </button>
             </div>
+            <div class="col-xs-4"></div>
             <div class="col-xs-5 input-group" style="padding-left:50px;">
                 <span class="input-group-addon" id="basic-addon1">Switch Project</span>            
                 <select id="projectTypeCtrl" class="form-control">
                 </select>
             </div>
+            <div class="col-xs-1"></div>
         </div>
 
         
