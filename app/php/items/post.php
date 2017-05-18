@@ -40,9 +40,10 @@ include_once('../../axispanel/includes/connect.php');
                                 'color' => $color,
                                 'price' => $price,
                                 'description' => $description,
-                                'new' => $new,
-                                'offer' => $offer,
+                                'new' => $new?1:0,
+                                'offer' => $new?1:0,
                                 'offerprice' => $offerprice,
+                                'itemImage' => $itemImage_,
                             );
                 $item_ = json_encode($item);
 

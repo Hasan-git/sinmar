@@ -23,6 +23,10 @@ if ($result) {
 		  $brands = json_encode($_brand);
 		  header("HTTP/1.0 200 OK");
 		  echo $brands;
+		}else{
+			$record['data'] = array();
+			$response = json_encode($record);
+			echo $response;
 		}
 
     }else{

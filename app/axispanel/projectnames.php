@@ -160,7 +160,7 @@
                                     <thead>
                                     <tr>
                                         <th>Index</th>
-                                        <th>Id</th>
+                                        <!-- <th>Id</th> -->
                                         <th>Project Name</th>
                                         <th>Actions</th>
                                     </tr>
@@ -168,7 +168,7 @@
                                     <tfoot>
                                     <tr>
                                         <th>Index</th>
-                                        <th>Id</th>
+                                        <!-- <th>Id</th> -->
                                         <th>Project Name</th>
                                         <th>Actions</th>
                                     </tr>

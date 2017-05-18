@@ -23,6 +23,10 @@ if ($result) {
 		  $projects = json_encode($_projects);
 		  header("HTTP/1.0 200 OK");
 		  echo $projects;
+		}else{
+			$record['data'] = array();
+			$response = json_encode($record);
+			echo $response;
 		}
 
     }else{

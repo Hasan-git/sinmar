@@ -219,8 +219,8 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <label class="control-label" for="new">Is New?</label>
-                                    <div class="checkbox-custom checkbox-primary mb10">
-                                        <input type="checkbox" id="new" name="new" >
+                                    <div class="">
+                                        <input type="checkbox" style="width: 40px;" class="form-control" id="new" name="new" >
                                         <label for="new"></label>
                                     </div>
                                 </div>
