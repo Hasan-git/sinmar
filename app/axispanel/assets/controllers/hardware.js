@@ -201,7 +201,11 @@
                             {
                                 'data': 'price',
                                 'render': function(data, type, full, meta) {
-                                    return "$ " + data;
+                                    if(full.offerPrice >= 0 && full.offer== true){
+                                        return ' $ '+ full.offerPrice +' <i class="fa fa-shopping-cart text-danger"></i>';
+                                    }else{
+                                        return "$ " + data;
+                                    }
                                 }
                             },
                             // {'data':'description'},
