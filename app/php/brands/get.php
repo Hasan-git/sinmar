@@ -4,8 +4,6 @@ include_once('../../axispanel/includes/connect.php');
 $sql = "SELECT * FROM tblbrands ORDER BY brandId DESC";
 $result = mysqli_query($conn, $sql);
 
-
-
 if ($result) {
 
 	if (mysqli_num_rows($result) > 0) { 

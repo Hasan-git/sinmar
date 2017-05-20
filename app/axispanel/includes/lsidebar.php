@@ -31,32 +31,8 @@
             </a>
           </li>
 
-            <?php
-            include_once('includes/connect.php');
-            //Project Types query
-            //project types Query
-            $sqlsidetypes = "SELECT * FROM tblprojecttype ORDER BY projectTypeName ASC";
-            $resultsidetypes = mysqli_query($conn, $sqlsidetypes);
-            ?>
 		  <!-- sidebar bullets -->
           <li class="sidebar-label pt20">Projects</li>
-          <!-- <li <?php if(isset($pagename) && $pagename=='Project Details') { echo 'class="active"'; } ?>>
-            <a class="accordion-toggle" href="#">
-              <span class="fa fa-columns"></span>
-              <span class="sidebar-title">Project Details</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-            <?php
-                if (mysqli_num_rows($resultsidetypes) > 0) {
-                    while($siderow = mysqli_fetch_assoc($resultsidetypes)) {
-            ?>
-              <li>
-                <a href="projectdetails.php?projecttype=<?php echo $siderow['projectTypeName']; ?>"> <?php echo $siderow['projectTypeName']; ?> </a>
-              </li>
-            <?php } } else echo '<li><a href="#"> No Types </a></li>'; mysqli_free_result($resultsidetypes); mysqli_close($conn); ?>
-            </ul>
-          </li> -->
           <li <?php if(isset($pagename) && $pagename=='Project Details') { echo 'class="active"'; } ?>>
             <a href="projectdetails.php">
               <span class="fa fa-plus-square-o"></span>

@@ -38,7 +38,7 @@
                 modules:    conf.modules
             });
 
-            var urlPath = '../php/brands/';
+            var urlPath = 'http://sinmar-lb.com/php/brands/';
 
             ////////////////////////////////////////////////////
             
