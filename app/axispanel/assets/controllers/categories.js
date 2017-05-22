@@ -96,7 +96,7 @@
                         "aoColumnDefs": [
                             { "bSortable": false, "aTargets": [ 0 ] }
                         ],
-                        "aaSorting": [[ 1, 'asc' ]]
+                        // "aaSorting": [[ 1, 'asc' ]]
                     })     
 
                 // Add Placeholder text to datatables filter bar
