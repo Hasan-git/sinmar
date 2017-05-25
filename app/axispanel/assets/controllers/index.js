@@ -38,7 +38,7 @@
                 modules:    conf.modules
             });
 
-            var urlPath = '../php/projects/';
+            var urlPath = 'http://sinmar-lb.com/php/projects/';
 
             ////////////////////////////////////////////////////
             

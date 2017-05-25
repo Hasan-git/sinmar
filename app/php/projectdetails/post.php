@@ -1,7 +1,7 @@
 <?php
 include_once('../../axispanel/includes/connect.php');
 
-    if( isset($_POST['prdetailsTitle']) && isset($_POST['prdetailsName']) && !empty($_POST['prdetailsName']) && isset($_POST['prdetailsType']) && !empty($_POST['prdetailsType']) && isset($_POST['projectDate'])  && isset($_FILES['projectImage']) ) {
+    if( isset($_POST['prdetailsTitle']) && isset($_POST['prdetailsName']) && !empty($_POST['prdetailsName']) && isset($_POST['prdetailsType']) && !empty($_POST['prdetailsType']) && isset($_FILES['projectImage']) ) {
 
 
 
@@ -12,7 +12,7 @@ include_once('../../axispanel/includes/connect.php');
 
         $prdetailsSubtype   =  isset($_POST['prdetailsSubtype']) ? $_POST['prdetailsSubtype'] :'' ;
         $location           =  isset($_POST['location']) ? $_POST['location'] :'' ;
-        $projectDate        =  isset($_POST['projectDate']) ? $_POST['projectDate'] : date('Y-m-d H:i:s') ;
+        $projectDate        =  isset($_POST['projectDate']) ? $_POST['projectDate'] : date('Y-m-d') ;
         $description        =  isset($_POST['description']) ? $_POST['description'] :'' ;
         $new                =  isset($_POST['new']) ? $_POST['new'] : 0 ;
         $notes              =  isset($_POST['notes']) ? $_POST['notes'] : '' ;

@@ -39,7 +39,7 @@
             });
 
             //TODO://
-            var urlPath = '../php/items/';
+            var urlPath = 'http://sinmar-lb.com/php/items/';
 
 
             ////////////////////////////////////////////////////
