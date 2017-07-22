@@ -78,7 +78,6 @@
                                     return "<button class='btn btn-xs btn-success' scrollto='#editFormContainer' id='editRecord' data-row='"+meta.row+"' data-record='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
                                       "<a class='btn btn-xs btn-danger' id='deleteRecord' data-row='"+meta.row+"' record-id='"+full.brandId+"' href='#'> <i class='fa fa-trash'></i> </a> "
                                 },
-                                
                             }
                         ],
                         "fnDrawCallback": function ( oSettings ) {
@@ -94,7 +93,7 @@
                         "aoColumnDefs": [
                             { "bSortable": false, "aTargets": [ 0 ] }
                         ],
-                        "aaSorting": [[ 1, 'asc' ]]
+                        // "aaSorting": [[ 1, 'asc' ]]
                     })     
                 // Add Placeholder text to datatables filter bar
                 $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  

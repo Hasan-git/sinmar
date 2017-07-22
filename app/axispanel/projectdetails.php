@@ -374,7 +374,7 @@
     </div>
     <!-- End: Main -->
 
-        <!-- MODAL TEMPLATE for delete project -->
+    <!-- MODAL TEMPLATE for delete project -->
     <div class="remodal" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
       <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
       <div>
