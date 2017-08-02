@@ -26,7 +26,7 @@
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
                 }
-            //VALIDATION CONFIGURATION    
+            //VALIDATION CONFIGURATION
             var conf = $.formUtils.defaultConfig();
             conf.language = 'en';
             conf.modules =  'security, date';
@@ -38,15 +38,16 @@
                 modules:    conf.modules
             });
 
-            var urlPath = 'http://sinmar-lb.com/php/projecttype/';
+            var urlPath = '../php/projecttype/';
+            // var urlPath = 'http://sinmar-lb.com/php/projecttype/';
 
             ////////////////////////////////////////////////////
-            
+
             ////////////////////////////////////////////////////
 
             //Get all projects
             $.ajax({
-                url: urlPath + 'get.php',
+                url: '../php/projecttype/get.php',
                 method:'GET',
                 dataType:'json',
                 success:function(data){
@@ -69,7 +70,7 @@
                             {'data':'projectTypeId',
                              'render': function ( data, type, full, meta ) {
                                     return meta.row+1
-                                } 
+                                }
                             },
                             {'data':'projectTypeName'},
                             {   'data':null,
@@ -78,7 +79,7 @@
                                     return "<button class='btn btn-xs btn-success' scrollto='#editmode' id='editProject' data-row='"+meta.row+"' data-project='"+JSON.stringify(full)+"'  > <i class='fa fa-edit'></i> </button> "+
                                       "<a class='btn btn-xs btn-danger' id='deleteProject' data-row='"+meta.row+"' project-id='"+full.projectTypeId+"' href='#'> <i class='fa fa-trash'></i> </a> "
                                 },
-                                
+
                             }
                         ],
                         "fnDrawCallback": function ( oSettings ) {
@@ -95,9 +96,9 @@
                             { "bSortable": false, "aTargets": [ 0 ] }
                         ],
                         // "aaSorting": [[ 1, 'asc' ]]
-                    })     
+                    })
                 // Add Placeholder text to datatables filter bar
-                $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  
+                $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
                 }
             })
 
@@ -112,11 +113,11 @@
                 event.stopPropagation();
                 $('#editProForm').find("input[type=text],input[type=file],select, textarea").val("")
                 $('#editmode').show(700);
-                
-                //var product = JSON.parse($(this).attr('project-id')) 
+
+                //var product = JSON.parse($(this).attr('project-id'))
                 var project = $(this).data().project;
                 var datatableRow = $(this).attr('data-row');
-                
+
                 //set datatable row in data-row attr to for saveEditPro(Save button) to have the access for datatable row
                 $('#editmode').find('#saveEditPro').attr("data-row",datatableRow)
 
@@ -124,7 +125,7 @@
                 $('#editmode').find('#proNameBox').html(project.projectTypeName)
                 $('#editmode').find('#projectTypeName').val(project.projectTypeName)
                 $('#editmode').find('#projectTypeId').val(project.projectTypeId)
-           
+
             });
 
             // Edit project form submited
@@ -133,11 +134,12 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url: urlPath + 'update.php',
+                            url: '../php/projecttype/update.php',
                             method:'POST',
+                            cache : false,
                             data: $('#editProForm').serialize(),
-                            success:function(data){ 
-                            // Serialize the form to Json 
+                            success:function(data){
+                            // Serialize the form to Json
                             var localProject = $('#editProForm').serializeFormJSON()
 
                             //Get the datatable row from the button attr and emit changes
@@ -160,7 +162,7 @@
                                }
                             }
                     });
-                    
+
                    }
 
             });
@@ -178,28 +180,29 @@
                 $('#newProForm').hide(700);
             });
 
-                
+
 
 
             //CREATE NEW PROJECT IN PROCESS
             $('#saveNewPro').click(function(){
-                
+
                    if( !$('#newform').isValid(conf.language, conf, true) ) {
                     // displayErrors( errors );
                    } else {
                    // The form is valid
                     $.ajax({
-                        url: urlPath + 'post.php',
+                        url: '../php/projecttype/post.php',
                         method:'POST',
+                        cache : false,
                         data: $('#newform').serialize(),
-                        success:function(data){ 
+                        success:function(data){
 
                             var _newProduct = JSON.parse(data)
 
                             var myDataTable= $('#datatable3').DataTable();
-                            
+
                             myDataTable.row.add(_newProduct  ).draw( false )
-                            
+
                             $('#newProForm').hide(700);
                             toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
                         } ,
@@ -210,12 +213,12 @@
                                     toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
                                }
                         }
-                    });    
+                    });
 
 
                    }
-               
-                
+
+
 
             });
 
@@ -225,16 +228,17 @@
             var thisProject = $(this);
             var projectTypeId = $(this).attr('project-id');
             var inst = $('[data-remodal-id=modal]').remodal();
-                    
+
             inst.open();
 
             $(document).on('confirmation', '.remodal', function () {
-                
+
                 $.ajax({
-                        url: urlPath + 'delete.php',
+                        url: '../php/projecttype/delete.php',
                         method:'POST',
+                        cache : false,
                         data: {projectTypeId:projectTypeId},
-                        success:function(data){ 
+                        success:function(data){
 
                         //get the dt instance
                         var myDataTable= $('#datatable3').DataTable();

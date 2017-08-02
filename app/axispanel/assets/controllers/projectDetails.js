@@ -26,7 +26,7 @@
           "showMethod": "fadeIn",
           "hideMethod": "fadeOut"
         }
-    //VALIDATION CONFIGURATION    
+    //VALIDATION CONFIGURATION
     var conf = $.formUtils.defaultConfig();
     conf.language = 'en';
     conf.modules =  'security, date';
@@ -58,6 +58,7 @@
                 url: '../php/projecttype/get.php',
                 method: 'GET',
                 dataType: 'json',
+                cache : false,
                 success: function(data) {
                     $('#newFormContainer #prdetailsType').find('option').remove().end().append('<option value="" selected="selected">Select Type</option>').attr("selected", "selected").change()
 
@@ -73,6 +74,7 @@
                 url: '../php/projects/get.php',
                 method: 'GET',
                 dataType: 'json',
+                cache : false,
                 success: function(data) {
                     $('#newFormContainer #prdetailsName').find('option').remove().end().append('<option value="">Select Project</option>').attr("selected", "selected").change()
 
@@ -87,6 +89,7 @@
                     $.ajax({
                         url: '../php/projecttype/get.php',
                         method: 'GET',
+                        cache : false,
                         dataType: 'json',
                         success: function(data) {
                             $('#editFormContainer #prdetailsType').find('option').remove()
@@ -110,6 +113,7 @@
                     url: '../php/projects/get.php',
                     method: 'GET',
                     dataType: 'json',
+                    cache : false,
                     success: function(data) {
                         $('#editFormContainer #prdetailsName').find('option').remove()
 
@@ -138,6 +142,7 @@
             url: '../php/projecttype/get.php',
             method: 'GET',
             dataType: 'json',
+            cache : false,
             success: function(data) {
                 // $('#projectTypeCtrl').find('option').remove().end().append('<option value="">Select Type</option>')
 
@@ -153,9 +158,10 @@
     $('#projectTypeCtrl').change(function(){
         var prTypeName = $('#projectTypeCtrl').val()
         $.ajax({
-                url: urlPath + 'get.php?projecttype='+prTypeName,
+                url: '../php/projectdetails/get.php?projecttype='+prTypeName,
                 method:'GET',
                 dataType:'json',
+                cache : false,
                 success:function(data){
             console.log(data)
 
@@ -167,7 +173,7 @@
                     $('#editForm').find("input[type=text],input[type=file],select, textarea").val("").change()
                     $('#imagesform').find("input[type=text],input[type=file],select, textarea").val("").change()
 
-                    var myDataTable= $('#datatable3').DataTable();                        
+                    var myDataTable= $('#datatable3').DataTable();
                     myDataTable.clear();
                     myDataTable.rows.add(data.data);
                     myDataTable.draw();
@@ -186,9 +192,10 @@
 
     //Get all records
     $.ajax({
-        url: urlPath + 'get.php?projecttype='+projectTypeName,
+        url: '../php/projectdetails/get.php?projecttype='+projectTypeName,
         method:'GET',
         dataType:'json',
+        cache : false,
         success:function(data){
             console.log(data)
             $('#PDName').html(projectTypeName)
@@ -226,9 +233,9 @@
                         },
                     }
                 ]
-            })     
+            })
         // Add Placeholder text to datatables filter bar
-        $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  
+        $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
         }
     })
 
@@ -240,9 +247,9 @@
     //          IMAGES FORM
     //------------------------------------------------------------------
 
-    
+
     //OPEN IMAGES CONTAINER and append item images to the form
-    $('#datatable3 tbody').on( 'click', '#openImageContainer', function (event) { 
+    $('#datatable3 tbody').on( 'click', '#openImageContainer', function (event) {
 
         event.preventDefault();
         event.stopPropagation();
@@ -254,9 +261,10 @@
         $('#imagesContainer').find('#projectTitle').val(projectTitle)
 
         $.ajax({
-            url: urlPath + '../projectimages/get.php?projectTitle='+projectTitle,
+            url: '../php/projectimages/get.php?projectTitle='+projectTitle,
             method:'GET',
-            success:function(data){ 
+            cache : false,
+            success:function(data){
                 $('#imagesContainer').find(".image-viewer").empty()
                 var response = JSON.parse(data)
                 console.log(response)
@@ -286,7 +294,7 @@
             }
         });
         $('#imagesContainer').show(700);
-    
+
     });
 
     $('#imagesContainer').on( 'click', '#deleteImages', function (event) {
@@ -295,10 +303,11 @@
         var imageId = $(this).attr('record-id');
 
         $.ajax({
-                url: urlPath + '../projectimages/delete.php',
+                url: '../php/projectimages/delete.php',
                 method:'POST',
+                cache : false,
                 data:{projectImageId:imageId},
-                success:function(data){ 
+                success:function(data){
 
                     thisBtn.parent().hide(500, function(){ thisBtn.parent().remove(); });
 
@@ -321,12 +330,13 @@
 
              var fd = new FormData(document.getElementById("imagesform"));
             $.ajax({
-                    url: urlPath + '../projectimages/upload.php',
+                    url: '../php/projectimages/upload.php',
                     method:'POST',
+                    cache : false,
                     data: fd,
                     processData: false, // tell jQuery not to process the data
                     contentType: false, // tell jQuery not to set contentType
-                    success:function(data){ 
+                    success:function(data){
 
                         $('#imagesContainer').hide(700);
                         toastr.success('Images uploaded successfully', 'Notification', {timeOut: 5000})
@@ -360,18 +370,18 @@
 
 
         $('#editFormContainer').show(700);
-        
-        //var product = JSON.parse($(this).attr('record-id')) 
+
+        //var product = JSON.parse($(this).attr('record-id'))
         var mainRecord = $(this).attr('data-record');
         mainRecord = JSON.parse(mainRecord);
-       
+
        console.log(mainRecord)
         //INIT
         services.getProjectNamesEditForm(mainRecord.prdetailsName)
         services.getProjectTypesEditForm(mainRecord.prdetailsType)
 
         var datatableRow = $(this).attr('data-row');
-        
+
         //set datatable row in data-row attr to for saveEditForm(Save button) to have the access for datatable row
         $('#editFormContainer').find('#saveEditForm').attr("data-row",datatableRow)
         // $('#editFormContainer').find('#nfBoxName').html(datatableRow)
@@ -398,13 +408,13 @@
 
                 var fd = new FormData(document.getElementById("editForm"));
                 $.ajax({
-                    url: urlPath + 'update.php',
+                    url: '../php/projectdetails/update.php',
                     method:'POST',
                     data: fd,
                     processData: false, // tell jQuery not to process the data
                     contentType: false, // tell jQuery not to set contentType
-                    success:function(data){ 
-                    // Serialize the form to Json 
+                    success:function(data){
+                    // Serialize the form to Json
                     var localRecord = $('#editForm').serializeFormJSON()
 
                     var response = JSON.parse(data)
@@ -433,7 +443,7 @@
                        }
                     }
             });
-            
+
            }
 
     });
@@ -460,10 +470,10 @@
         $('#newFormContainer').hide(700);
     });
 
-        
+
     //CREATE NEW brand IN PROCESS
     $('#saveNewForm').click(function(){
-            
+
             var frm = $('#newform').serializeFormJSON();
             console.log(frm.prdetailsType)
            if( !$('#newform').isValid(conf.language, conf, true) || isEmpty(frm.prdetailsType) || isEmpty(frm.prdetailsName) ) {
@@ -475,18 +485,18 @@
 
 
             $.ajax({
-                url: urlPath + 'post.php',
+                url: '../php/projectdetails/post.php',
                 method:'POST',
                 data: fd,
                 processData: false, // tell jQuery not to process the data
                 contentType: false, // tell jQuery not to set contentType
-                success:function(data){ 
+                success:function(data){
 
                     var _newRecord = JSON.parse(data);
 
                     // if(_newRecord.prdetailsType == typeParam){
                         // _newRecord.new = _newRecord.new==1 ? true : false;
-                        var myDataTable= $('#datatable3').DataTable();                        
+                        var myDataTable= $('#datatable3').DataTable();
                         myDataTable.row.add(_newRecord ).draw( false )
                     // }
 
@@ -500,7 +510,7 @@
                             toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
                        }
                 }
-            });    
+            });
            }
     });
 
@@ -513,23 +523,23 @@
         var thisDeleteBtn = $(this);
         var RecordId = $(this).attr('record-id');
         var inst = $('[data-remodal-id=modal]').remodal();
-                
+
         inst.open();
 
         $(document).on('confirmation', '.remodal', function () {
-            
+
             $.ajax({
-                    url: urlPath + 'delete.php',
+                    url: '../php/projectdetails/delete.php',
                     method:'POST',
                     data: {prdetailsId:RecordId},
-                    success:function(data){ 
+                    success:function(data){
 
                     //get the dt instance
                     var myDataTable= $('#datatable3').DataTable();
 
                     // get / set dt row
                     var row = myDataTable.row($(thisDeleteBtn).parents('tr')).remove().draw();;
-                    
+
                     inst.close();
                     toastr.success('Project details deleted successfully', 'Notification', {timeOut: 5000})
                     } ,

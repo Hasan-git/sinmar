@@ -1,16 +1,14 @@
-<?php 
+<?php
 include_once('../../axispanel/includes/connect.php');
 
-$sql = "SELECT projectId, projectName FROM tblprojects ORDER BY projectId DESC";
+$sql = "SELECT projectId, projectName FROM tblprojects  ORDER BY projectId DESC  ";
 $result = mysqli_query($conn, $sql);
-
-
 
 if ($result) {
 
-	if (mysqli_num_rows($result) > 0) { 
+	if (mysqli_num_rows($result) > 0) {
 
-		 while($row = mysqli_fetch_assoc($result)) {
+		 while( $row = mysqli_fetch_assoc($result) ) {
 
 			 	$projectId=$row['projectId'];
 				$projectName=$row['projectName'];
@@ -35,4 +33,4 @@ if ($result) {
 
 mysqli_free_result($result);
 mysqli_close($conn);
-?> 
+?>

@@ -26,7 +26,7 @@
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-                //VALIDATION CONFIGURATION    
+                //VALIDATION CONFIGURATION
             var conf = $.formUtils.defaultConfig();
             conf.language = 'en';
             conf.modules = 'security, date';
@@ -39,7 +39,8 @@
             });
 
             //TODO://
-            var urlPath = 'http://sinmar-lb.com/php/items/';
+            // var urlPath = 'http://sinmar-lb.com/php/items/';
+            var urlPath = '../php/';
 
 
             ////////////////////////////////////////////////////
@@ -56,6 +57,7 @@
                         url: '../php/brands/get.php',
                         method: 'GET',
                         dataType: 'json',
+                        cache : false,
                         success: function(data) {
                             $('#newFormContainer #brandName').find('option').remove().end().append('<option value="">Select Brand</option>').attr("selected", "selected").change()
 
@@ -72,6 +74,7 @@
                         url: '../php/categories/get.php',
                         method: 'GET',
                         dataType: 'json',
+                        cache : false,
                         success: function(data) {
                             $('#newFormContainer #categoryName').find('option').remove().end().append('<option value="">Select Category</option>').attr("selected", "selected").change()
 
@@ -87,6 +90,7 @@
                         url: '../php/brands/get.php',
                         method: 'GET',
                         dataType: 'json',
+                        cache : false,
                         success: function(data) {
                             $('#editFormContainer #brandName').find('option').remove()
                             $.each(data.data, function(key, value) {
@@ -109,6 +113,7 @@
                         url: '../php/categories/get.php',
                         method: 'GET',
                         dataType: 'json',
+                        cache : false,
                         success: function(data) {
                             $('#editFormContainer #categoryName').find('option').remove()
 
@@ -156,7 +161,7 @@
 
             //Get all categories
             $.ajax({
-                url: urlPath + 'get.php?itemType=Appliances',
+                url: '../php/items/get.php?itemType=Appliances',
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -237,7 +242,7 @@
                 event.preventDefault();
                 event.stopPropagation();
                 $('#editForm').find("input[type=text],input[type=file],select, textarea").val("").change();
-                //var product = JSON.parse($(this).attr('record-id')) 
+                //var product = JSON.parse($(this).attr('record-id'))
                 var mainRecord = $(this).attr('data-record');
                 mainRecord = JSON.parse(mainRecord);
                 var datatableRow = $(this).attr('data-row');
@@ -278,11 +283,12 @@
                     // displayErrors( errors );
                 } else {
                     $.ajax({
-                        url: urlPath + 'update.php',
+                        url: '../php/items/update.php',
+                        cache : false,
                         method: 'POST',
                         data: $('#editForm').serialize(),
                         success: function(data) {
-                            // Serialize the form to Json 
+                            // Serialize the form to Json
                             var localRecord = $('#editForm').serializeFormJSON()
 
                             //Get the datatable row from the button attr and emit changes
@@ -344,8 +350,9 @@
                 } else {
                     // The form is valid
                     $.ajax({
-                        url: urlPath + 'post.php',
+                        url: '../php/items/post.php',
                         method: 'POST',
+                        cache : false,
                         data: $('#newform').serialize(),
                         success: function(data) {
 
@@ -387,8 +394,9 @@
                 $(document).on('confirmation', '.remodal', function() {
 
                     $.ajax({
-                        url: urlPath + 'delete.php',
+                        url: '../php/items/delete.php',
                         method: 'POST',
+                        cache : false,
                         //TODO:??
                         data: {
                             itemId: RecordId
@@ -455,7 +463,7 @@
 
                             var fd = new FormData(document.getElementById("newform"));
                             // var data = $('#editForm').serialize()
-                            // fd.append('itemImage', $('#newform input[type=file]')[0].files[0]); 
+                            // fd.append('itemImage', $('#newform input[type=file]')[0].files[0]);
 
                             // fd.append('itemType', '' )
 
@@ -463,6 +471,7 @@
                                 url: "../php/items/post.php",
                                 type: "POST",
                                 data: fd,
+                                cache : false,
                                 enctype: 'multipart/form-data',
                                 processData: false, // tell jQuery not to process the data
                                 contentType: false // tell jQuery not to set contentType
@@ -542,7 +551,7 @@
                 }
             });
 
-            // LOOP OVER QUEUE -> Good when parallelUploads is less than max files 
+            // LOOP OVER QUEUE -> Good when parallelUploads is less than max files
             myDropzone.on('success', myDropzone.processQueue.bind(myDropzone));
 
             // ADD  REMOVE BTN MANUALLY
@@ -562,7 +571,7 @@
                 });
                 file.previewElement.appendChild(removeButton);
             });
-            $('#datatable3 tbody').on('click', '#editRecord', function(event) {               
+            $('#datatable3 tbody').on('click', '#editRecord', function(event) {
 
                 myDropzoneEdit.removeAllFiles(true);
             })
@@ -588,7 +597,7 @@
                     var idz;
                     var itemName;
 
-                    //GET FILES FROM SERVER -> FILES TO DROPZONE 
+                    //GET FILES FROM SERVER -> FILES TO DROPZONE
                     $('#datatable3 tbody').on('click', '#editRecord', function(event) {
                         myDropzoneEdit.removeAllFiles(true);
 
@@ -620,12 +629,13 @@
 
                             var fd = new FormData(document.getElementById("editForm"));
                             // var data = $('#editForm').serialize()
-                            // fd.append('itemImage', $('#newform input[type=file]')[0].files[0]); 
+                            // fd.append('itemImage', $('#newform input[type=file]')[0].files[0]);
 
                             $.ajax({
                                 url: "../php/items/update.php",
                                 type: "POST",
                                 data: fd,
+                                cache : false,
                                 enctype: 'multipart/form-data',
                                 processData: false, // tell jQuery not to process the data
                                 contentType: false // tell jQuery not to set contentType
@@ -635,7 +645,7 @@
                                 // var _newRecord = data
                                 var response = JSON.parse(data)
 
-                                // // Serialize the form to Json 
+                                // // Serialize the form to Json
                                 var localRecord = $('#editForm').serializeFormJSON()
 
                                  //console.log(localRecord,response)
@@ -717,7 +727,7 @@
                 }
             });
 
-            // LOOP OVER QUEUE -> Good when parallelUploads is less than max files 
+            // LOOP OVER QUEUE -> Good when parallelUploads is less than max files
             myDropzoneEdit.on('success', myDropzoneEdit.processQueue.bind(myDropzoneEdit));
 
             // ADD  REMOVE BTN MANUALLY
@@ -733,7 +743,8 @@
                         e.preventDefault();
                         e.stopPropagation();
                         $.ajax({
-                            url: urlPath + '../itemimages/delete.php',
+                            cache : false,
+                            url:  '../php/itemimages/delete.php',
                             method: 'POST',
                             data: {
                                 ImageId: file.imageId
