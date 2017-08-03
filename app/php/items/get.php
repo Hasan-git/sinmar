@@ -1,6 +1,6 @@
 <?php 
 include_once('../../axispanel/includes/connect.php');
-if(isset($_GET['itemType'])){
+if(isset($_GET['itemType'])) {
 
 	$itemType = $_GET['itemType'];
 

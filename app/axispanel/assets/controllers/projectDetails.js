@@ -38,8 +38,9 @@
         modules:    conf.modules
     });
 
-    var urlPath   = 'http://sinmar-lb.com/php/projectdetails/';
-    var typeParam = getUrlParameter('projecttype');
+    //var urlPath   = 'http://sinmar-lb.com/php/projectdetails/';
+        var urlPath   = '../php/projectdetails/';
+        var typeParam = getUrlParameter('projecttype');
 
     $(".select2-single").select2();
 
