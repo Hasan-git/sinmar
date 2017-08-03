@@ -112,9 +112,9 @@ jQuery(document).ready(function() {
                     newItemBox.find("#itemName").html(value.itemName);
                     newItemBox.find("#categoryName").html(value.categoryName);
                     newItemBox.find("#brandName").html(value.brandName);
-                    newItemBox.find("#oldPrice").html(value.price);
-                    newItemBox.find("#price").html('$'+value.price);
-                    newItemBox.find("#offerPrice").html(value.offerPrice);
+                    newItemBox.find("#oldPrice").html(value.price.currencyDisplay());
+                    newItemBox.find("#price").html('$'+value.price.currencyDisplay());
+                    newItemBox.find("#offerPrice").html(value.offerPrice.currencyDisplay());
                     newItemBox.find("#image").attr('src',"axispanel/images/" + value.itemImage);
                     newItemBox.find("#itemLink").attr('href', 'shopsingle.php?id=' + value.itemId);
 

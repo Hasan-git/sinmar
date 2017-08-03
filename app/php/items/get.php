@@ -1,12 +1,19 @@
-<?php 
+<?php
 include_once('../../axispanel/includes/connect.php');
-if(isset($_GET['itemType'])){
+
+if(isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM tblitems WHERE itemId = '$id'";
+    $result = mysqli_query($conn, $sql);
+}
+elseif(isset($_GET['itemType'])){
 
 	$itemType = $_GET['itemType'];
 
 	$sql = "SELECT * FROM tblitems WHERE itemType = '$itemType' ORDER BY itemId DESC";
 	$result = mysqli_query($conn, $sql);
-
+}
 	if ($result) {
 
 		if (mysqli_num_rows($result) > 0) {
@@ -54,13 +61,12 @@ if(isset($_GET['itemType'])){
 				$items = json_encode($_item);
 				echo $items;
 			}
-
+			mysqli_free_result($result);
+			mysqli_close($conn);
 		}else{
 			header("HTTP/1.0 500 Internal Server Error");
 		}
 
-}
 
-mysqli_free_result($result);
-mysqli_close($conn);
-?> 
+
+?>

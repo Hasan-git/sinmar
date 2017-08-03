@@ -8029,7 +8029,7 @@ ul.sidebar-style-2 li a {
 .product-info .price {
   color: #222222;
 }
-.product-info .price span.old-price {
+.product-info .price span.old-price,.single-product-detail span.old-price {
   color: #666;
   text-decoration: line-through;
   margin-right: 7px;

@@ -224,7 +224,7 @@
                                                         <!-- if offer == 1 display offer price and del price -->
                                                         <span id="offerBox" class="hidden">
 	                                                        $<span class="old-price" id="oldPrice" >price</span>
-																													$<span id="offerPrice">offerPrice</span>
+														      $<span id="offerPrice">offerPrice</span>
                                                         </span>
                                                         <!-- else display price -->
                                                         <span id="price" class="hidden" >price</span>
