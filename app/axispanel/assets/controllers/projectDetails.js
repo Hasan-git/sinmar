@@ -419,7 +419,10 @@
 
                     var response = JSON.parse(data)
 
-                    console.log(localRecord,response)
+                    console.log("edit",localRecord,response)
+
+
+
 
                     //Get the datatable row from the button attr and emit changes
                     var datatableRow_ = $('#saveEditForm').attr("data-row");
@@ -428,9 +431,19 @@
                     // get / set dt row
                     var row = myDataTable.row(datatableRow_);
                     //Change row.projectName
-                    //
-                    // console.log(localRecord,data)
-                    myDataTable.row(row).data(response.data).draw();
+
+                    //checking if the projectType changed? if changed to remove the record from the current table
+                    var prevProjectType = $('#projectTypeCtrl').val()
+                    var currentProjectType = response.data.prdetailsType
+
+                    if(prevProjectType != currentProjectType){
+                        //Different projectType than remve the record from the table
+                         myDataTable.row(row).remove().draw();
+                    }else{
+                        //Same projectType then add to the table
+                        myDataTable.row(row).data(response.data).draw();
+                    }
+
                     $('#editFormContainer').hide(700);
 
                     toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
@@ -496,8 +509,16 @@
 
                     // if(_newRecord.prdetailsType == typeParam){
                         // _newRecord.new = _newRecord.new==1 ? true : false;
+
+                    //checking if the projectType changed? if changed to remove the record from the current table
+                    var prevProjectType = $('#projectTypeCtrl').val()
+                    var currentProjectType = _newRecord.prdetailsType
+
+                    if(prevProjectType == currentProjectType){
+                        // projectTypes match than add record to the current table
                         var myDataTable= $('#datatable3').DataTable();
                         myDataTable.row.add(_newRecord ).draw( false )
+                    }
                     // }
 
                     $('#newFormContainer').hide(700);
@@ -538,7 +559,7 @@
                     var myDataTable= $('#datatable3').DataTable();
 
                     // get / set dt row
-                    var row = myDataTable.row($(thisDeleteBtn).parents('tr')).remove().draw();;
+                    var row = myDataTable.row($(thisDeleteBtn).parents('tr')).remove().draw();
 
                     inst.close();
                     toastr.success('Project details deleted successfully', 'Notification', {timeOut: 5000})
