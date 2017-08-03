@@ -68,7 +68,7 @@
 				</section>
 				<!-- End Section Sub Header -->
 				
-				<section class="padding padding-bottom-0">
+				<section class="padding ">
 					<div class="container">
 						<div class="row">
 							<div class="about-intro">
@@ -87,8 +87,6 @@
 				</section>	
 				<!-- End Section About Intro -->
 
-				<?php include_once('includes/team.php'); ?>
-
 				<section>
 					<div class="overlay-arc overlay-3">
 	                	<div class="layer-1 text-center">
@@ -101,69 +99,7 @@
 				</section>
 				<!-- End Section Overlay -->
 
-				<section class="padding padding-bottom-0">
-					<div class="container">
-						<div class="row">
-						<h2 class="title text-cap">What Our Client Says</h2>
-						<div class="divider divider-1">
-							<svg class="svg-triangle-icon-container">
-							  <polygon class="svg-triangle-icon" points="6 11,12 0,0 0"></polygon>
-							</svg>
-						</div>
-						<!-- End Title -->
-						<div class="testimonial-warp testimonial-2-col testimonial-2-col-about">
-				              <div class="customNavigation">
-				                <a class="btn prev-testimonials-2-columns"><i class="fa fa-angle-left"></i></a>
-				                <a class="btn next-testimonials-2-columns"><i class="fa fa-angle-right"></i></a>
-				              </div>  
-				              <div id="owl-testimonials-2-columns" class="owl-carousel owl-theme clearfix">
-					              	<div class="item ">
-						              	<div class="item-testimonials  item-testimonials-about text-left">
-						                  <p class="quote-icon">“</p>
-						                  <p><i>text text text text text text text text text text text text text text text text text text text text text text </i></p>
-						                  <div class="avatar-testimonials">
-						                    <img src="http://placehold.it/262x262/ccc.jpg" class="img-responsive" alt="Image">
-						                  </div>
-						                  <h4 class="name-testimonials text-cap">Linda Campbell</h4>
-						                  <span class="job-testimonials">CEO Finanace Theme Group</span>
-						                </div>
-						              	<div class="item-testimonials  item-testimonials-about text-left">
-						                  <p class="quote-icon">“</p>
-						                  <p><i>text text text text text text text text text text text text text text text text text text text text text text </i></p>
-						                  <div class="avatar-testimonials">
-						                    <img src="http://placehold.it/256x256/ccc.jpg" class="img-responsive" alt="Image">
-						                  </div>
-						                  <h4 class="name-testimonials text-cap">John Walker</h4>
-						                  <span class="job-testimonials">AxisMEA</span>
-						                </div>
-				              		</div><!-- end item -->
-					              	<div class="item ">
-						              	<div class="item-testimonials item-testimonials-about text-left">
-						                  <p class="quote-icon">“</p>
-						                  <p><i>text text text text text text text text text text text text text text text text text text text text text text </i></p>
-						                  <div class="avatar-testimonials">
-						                    <img src="http://placehold.it/225x225/ccc.jpg" class="img-responsive" alt="Image">
-						                  </div>
-						                  <h4 class="name-testimonials text-cap">Cheryl Cruz</h4>
-						                  <span class="job-testimonials">Marketing Manager</span>
-						                </div>
-						              	<div class="item-testimonials item-testimonials-about text-left">
-						                  <p class="quote-icon">“</p>
-						                  <p><i>text text text text text text text text text text text text text text text text text text text text text text </i></p>
-						                  <div class="avatar-testimonials">
-						                    <img src="http://placehold.it/240x240/ccc.jpg" class="img-responsive" alt="Image">
-						                  </div>
-						                  <h4 class="name-testimonials text-cap">James Smith</h4>
-						                  <span class="job-testimonials">Senior Finance Manager</span>
-						                </div>
-					              	</div><!-- end item -->
-					              	
-				              </div>
-			          		</div>
-						</div>
-					</div>
-				</section>
-				<!-- End Section Owl Testimonials -->
+				<?php include_once('includes/team.php'); ?>
 
 				<?php include_once('includes/footer.php'); ?>
 

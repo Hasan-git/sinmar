@@ -91,7 +91,7 @@
 	    			<div class="row">
 	    				<div class="col-md-12 text-center">
 
-							<p class="">Free shipping for order over $100 </p>
+							<p class="">Free shipping for order over $500 </p>
 
 	    				</div>
 	    			</div>
@@ -247,36 +247,7 @@
 				</Section> <!--End List Product -->
 
 
-				<section class="bg-promotion-product">
-					<div class="container">
-						<div class="row">
-							<div class="promotion-product-warp">
-								<div class="promotion-product-item">
-									<div class="promotion-product-item-inner">
-										<h4 class="text-cap">
-											Money back
-										</h4>
-										<p class="text-cap">
-											If you are not satisfied with your purchase
-										</p>
-									</div>
-								</div>
-
-								<div class="promotion-product-item">
-									<div class="promotion-product-item-inner">
-										<h4 class="text-cap">
-											Free Shipping
-										</h4>
-										<p class="text-cap">
-											Free shipping for standard order over $100
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				<!-- End Section Promotion Product -->
+				
 
 				<footer class="footer-v4 bg-dark">
 					<div class="container">
