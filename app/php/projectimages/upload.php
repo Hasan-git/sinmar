@@ -1,54 +1,45 @@
 <?php
-include_once('../../axispanel/includes/connect.php');
+include_once('../includes/connect.php');
 
-if (  isset($_FILES['imageBeforeFile']) && $_FILES['imageBeforeFile']['size'] > 0 && isset($_FILES['imageAfterFile']) && $_FILES['imageAfterFile']['size'] > 0 && isset($_POST['projectTitle'])  ) {
-    
-        $imageBefore = $_FILES['imageBeforeFile'];
-        $imageAfter = $_FILES['imageAfterFile'];
-        $projectTitle = $_POST['projectTitle'];
+if ( !empty( $_FILES ) && isset($_POST['projectTitle'])  ) {
 
+    $projectTitle = $_POST['projectTitle'];
 
+    foreach ($_FILES["file"]["tmp_name"] as $key => $value)
+    {
+        $tmp_name = $_FILES["file"]["tmp_name"][$key];
         $guid = uniqid();
-        $guidAfer = uniqid();
-        //IMAGE BEFORE
-        $tmp_nameBefore = $imageBefore["tmp_name"];
-        $nameBefore = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($guid.'@'.$imageBefore["name"]);
-        $imageBefore_ = $guid.'@'.$imageBefore["name"];
-                
-        //IMAGE AFTER
-        $tmp_nameAfter = $imageAfter["tmp_name"];
-        $nameAfter = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages' . DIRECTORY_SEPARATOR .basename($guidAfer.'@'.$imageAfter["name"]);
-        $imageAfter_ = $guidAfer.'@'.$imageAfter["name"];
+        $path = dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR . 'axispanel'.DIRECTORY_SEPARATOR . 'projectImages'.DIRECTORY_SEPARATOR .basename($guid.'@'.$_FILES["file"]["name"][$key]);
+        // move_uploaded_file($tmp_name, $name);
+        if(move_uploaded_file( $tmp_name, $path )){
 
 
-                //MOVE IMAGE BEFORE
-                if(move_uploaded_file($tmp_nameBefore, $nameBefore)){
-                    //MOVE IMAGE AFTER
-                    if(move_uploaded_file($tmp_nameAfter, $nameAfter)){
+            $imageAfter= $guid.'@'.$_FILES["file"]["name"][$key];
 
-                        $sqlnew = "INSERT INTO tblprojectimages (projectTitle,imageBefore,imageAfter) VALUES ('$projectTitle','$imageBefore_','$imageAfter_')";
+            $sqlnew = "INSERT INTO tblprojectimages (imageAfter,projectTitle) VALUES ('$imageAfter','$projectTitle')";
 
-                            if (mysqli_query($conn, $sqlnew)) {
-                                header("HTTP/1.0 200 OK");
-                                echo "uploaded";
-                            }else{
-                                header("HTTP/1.0 500 Internal Server Error");
-                                echo "An error occurred";
-                            }
-                    }else{
-                        header("HTTP/1.0 500 Internal Server Error");
-                        echo "failed to upload";
-                    }
-                }else{
-                        header("HTTP/1.0 500 Internal Server Error");
-                        echo "failed to upload";
-                    }
 
-             }else{
+            if (mysqli_query($conn, $sqlnew)) {
+                header("HTTP/1.0 200 OK");
+                echo "uploaded";
+            }else{
+                echo mysqli_error($conn);
                 header("HTTP/1.0 500 Internal Server Error");
-                echo "failed to upload";
-             }
+                echo "An error occurred";
+            }
 
+
+        }else{
+            header("HTTP/1.0 500 Internal Server Error");
+            echo "failed to upload";
+        }
+    }
+
+}else{
+    header("HTTP/1.0 400 Bad Request");
+    echo "Something went wrong";
+}
 
 mysqli_close($conn);
+
 ?>

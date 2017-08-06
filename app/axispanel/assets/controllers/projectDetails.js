@@ -43,6 +43,11 @@
 
     $(".select2-single").select2();
 
+    // var maxImagesSize = 300000, maxImagesWidth = 850, maxImagesHeight = 478;
+    var maxImagesSize = 900000,
+        maxImagesWidth = 8850,
+        maxImagesHeight = 8478;
+
     ////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////
@@ -260,39 +265,39 @@
         $('#iboxname').html(projectTitle)
         $('#imagesContainer').find('#projectTitle').val(projectTitle)
 
-        $.ajax({
-            url: '../php/projectimages/get.php?projectTitle='+projectTitle,
-            method:'GET',
-            cache : false,
-            success:function(data){
-                $('#imagesContainer').find(".image-viewer").empty()
-                var response = JSON.parse(data)
-                console.log(response)
+        // $.ajax({
+        //     url: '../php/projectimages/get.php?projectTitle='+projectTitle,
+        //     method:'GET',
+        //     cache : false,
+        //     success:function(data){
+        //         $('#imagesContainer').find(".image-viewer").empty()
+        //         var response = JSON.parse(data)
+        //         console.log(response)
 
-                if(response.data.length){
-                    $.each(response.data, function(key, value) {
-                        var images ='<div class="col--2 ">'+
-                                        '<i class="fa fa-trash btn btn-warning btn-xs" id="deleteImages" record-id="'+value.projectImageId+'"></i>'+
-                                        '<div class="image-wrapper" >'+
-                                            '<img src="projectImages/'+value.imageBefore+'" class="img-thumbnail" alt="Cinque Terre" width="100" height="236"> '+
-                                                '<p class=""> Before </p>'+
-                                        '</div>'+
-                                        '<div class="image-wrapper" >'+
-                                            '<img src="projectImages/'+value.imageAfter+'" class="img-thumbnail" alt="Cinque Terre" width="100" height="236"> '+
-                                               '<p class=""> After </p>'+
-                                        '</div>'+
-                                    '</div>';
-                        $('.image-viewer').append(images)
-                    });
-                }else{
-                     var message ='<div class="col-xs-8"> <b><i class="fa fa-briefcase fa-lg"></i>There is no images</b> </div>';
-                     var message_ = '<div class="col-xs-8 alert alert-warning m-l-sm">'+
-                                      '<strong><i class="fa fa-briefcase fa-lg m-r-xs"></i></strong> No images found !'+
-                                    '</div> '
-                     $('.image-viewer').append(message_)
-                }
-            }
-        });
+        //         if(response.data.length){
+        //             $.each(response.data, function(key, value) {
+        //                 var images ='<div class="col--2 ">'+
+        //                                 '<i class="fa fa-trash btn btn-warning btn-xs" id="deleteImages" record-id="'+value.projectImageId+'" ></i>'+
+        //                                 '<div class="image-wrapper" >'+
+        //                                     '<img src="projectImages/'+projectTitle+'" class="img-thumbnail" alt="Cinque Terre" width="100" height="236"> '+
+        //                                         '<p class=""> Before </p>'+
+        //                                 '</div>'+
+        //                                 '<div class="image-wrapper" >'+
+        //                                     '<img src="projectImages/'+value.imageAfter+'" class="img-thumbnail" alt="Cinque Terre" width="100" height="236"> '+
+        //                                        '<p class=""> After </p>'+
+        //                                 '</div>'+
+        //                             '</div>';
+        //                 $('.image-viewer').append(images)
+        //             });
+        //         }else{
+        //              var message ='<div class="col-xs-8"> <b><i class="fa fa-briefcase fa-lg"></i>There is no images</b> </div>';
+        //              var message_ = '<div class="col-xs-8 alert alert-warning m-l-sm">'+
+        //                               '<strong><i class="fa fa-briefcase fa-lg m-r-xs"></i></strong> No images found !'+
+        //                             '</div> '
+        //              $('.image-viewer').append(message_)
+        //         }
+        //     }
+        // });
         $('#imagesContainer').show(700);
 
     });
@@ -580,5 +585,190 @@
 
     });
 
+
+            //DROPZONE FOR EDIT ITEM
+            //DROPZONE FOR EDIT ITEM
+            //DROPZONE FOR EDIT ITEM
+            //DROPZONE FOR EDIT ITEM
+            var myDropzoneEdit = new Dropzone("div#dropzoneEdit", {
+                url: "../php/projectimages/upload.php",
+                paramName: "file",
+                uploadMultiple: true,
+                maxFiles: 10,
+                parallelUploads: 1,
+                autoProcessQueue: false,
+                addRemoveLinks: false,
+                acceptedFiles: "image/jpeg,image/jpg,image/png,image/gif",
+                init: function() {
+
+                    var submitButton = document.querySelector("#saveImagesForm");
+                    var myDropzoneEdit = this; //closure
+                    var projectTitle;
+
+                    //GET FILES FROM SERVER -> FILES TO DROPZONE
+                    $('#datatable3 tbody').on('click', '#openImageContainer', function(event) {
+                        myDropzoneEdit.removeAllFiles(true);
+
+
+                         projectTitle = $(this).attr('record-id')
+                        $.get('../php/projectimages/get.php?projectTitle=' + projectTitle, function(data) {
+
+                            var images = JSON.parse(data)
+                            if(images.data.length){
+                                $.each(images.data, function(key, value) {
+                                var mockFile = {
+                                    name: '',//value.imageAfter
+                                    imageId: value.projectImageId,
+                                    size : ''
+                                };
+                                // myDropzoneEdit.options.addedfile.call(myDropzoneEdit, mockFile);
+                                myDropzoneEdit.emit("addedfile", mockFile);
+                                // myDropzoneEdit.options.thumbnail.call(myDropzoneEdit, mockFile, "images/"+value.imageName);
+                                myDropzoneEdit.emit("thumbnail", mockFile, "projectImages/" + value.imageAfter);
+                                myDropzoneEdit.files.push(mockFile);
+                            });
+                            }
+                        });
+                    });
+
+                    // SAVE EDIT FORM CHANGES
+                    submitButton.addEventListener("click", function() {
+
+                                myDropzoneEdit.on('sending', function(data, xhr, formData) {
+                                    formData.append("projectTitle", projectTitle);
+                                });
+
+                                myDropzoneEdit.on('error', function(file, errorMessage) {
+                                    // an error occurred but is there any more files in Queue should be uploaded ?
+                                    if (this.getQueuedFiles().length > 0) {
+                                        myDropzoneEdit.processQueue();
+                                    }
+                                });
+
+                                if (myDropzoneEdit.getQueuedFiles().length >= 0) {
+                                    myDropzoneEdit.processQueue(); //tell Dropzone to process all queued files
+                                } else {
+                                    // no images to upload
+                                     $('#imagesContainer').hide(700);
+                                }
+                    }); //EVENT CLICK
+
+                    this.on("thumbnail", function(file) {
+                        // if size check if image is pushed from database
+                        if (file.size) {
+                            if (file.size >= maxImagesSize) {
+                                file.rejectSize();
+                            } else if (file.width > maxImagesWidth || file.height > maxImagesWidth) {
+                                file.rejectDimensions();
+                            } else {
+                                file.accept();
+                            }
+                        }
+                    });
+
+                    this.on("complete", function(file) {
+                        //check if all images uploaded and queue empty then edit process is done
+                        if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                            $('#imagesContainer').hide(700);
+                        }
+                    });
+
+                    this.on('error', function(file, errorMessage) {
+                        this.removeFile(file)
+                        toastr.error("'" + file.name + "' : " + errorMessage, 'Notification', {
+                            timeOut: 7000
+                        })
+                    });
+
+                },
+                    accept: function(file, done) {
+                    // console.log(file, done)
+                    file.accept = function() {
+                        done()
+                    };
+                    file.rejectDimensions = function() {
+                        done("Invalid dimension, Accepted Dimensions (" + maxImageWidth + "x" + maxImageHeight + ")");
+                    };
+                    file.rejectSize = function() {
+                        done("Invalid size, Accepted Size  (" + (maxImagesSize / 1000) + " Kb)");
+                    };
+                }
+            });
+
+                myDropzoneEdit.on("queuecomplete", function(file, res) {
+                        $.each(myDropzoneEdit.files, function(key, val) {
+                            // file size referring for none existing files in the database
+                            if (val.size && val.status != "added") {
+                                if (val.status == Dropzone.SUCCESS) {
+                                    toastr.success(val.name + " Uploaded successfully ", 'Notification', {
+                                        timeOut: 2000
+                                    })
+                                } else {
+                                    //toastr.error("/Failed to upload " + val.name , 'Notification', {timeOut: 6000})
+                                }
+                            }
+                        })
+                    });
+
+            // LOOP OVER QUEUE -> Good when parallelUploads is less than max files
+            myDropzoneEdit.on('success', myDropzoneEdit.processQueue.bind(myDropzoneEdit));
+
+            // ADD  REMOVE BTN MANUALLY
+            myDropzoneEdit.on("addedfile", function(file) {
+                var _this = this;
+
+                if (file.imageId) {
+                    var removeButtonForServer = Dropzone.createElement("<button data-dz-remove " +
+                        "class='del_thumbnail btn btn-default btn-xs btn-block m-t-xxs' " +
+                        " style='cursor:pointer;color:#C5350A;' image-id=" + file.imageId + ">Delete <span style='cursor:pointer;' class='fa fa-cloud'></span></button>");
+
+                    removeButtonForServer.addEventListener("click", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $.ajax({
+                            url: '../php/projectimages/delete.php',
+                            method: 'POST',
+                            data: {
+                                projectImageId: file.imageId
+                            },
+                            success: function(data) {
+                                toastr.success('Image deleted successfully', 'Notification', {
+                                    timeOut: 2000
+                                })
+                                _this.removeFile(file);
+                            },
+                            error: function() {
+                                toastr.error('Could not delete this image', 'Notification', {
+                                    timeOut: 2000
+                                })
+                            }
+                        })
+                    });
+                    $(file.previewElement).find('.dz-size')
+                        .html("Existing")
+                        .css({
+                            'font-size': '10px',
+                            'font-family': 'sans-serif',
+                        });
+                    $(file.previewElement)
+                        .css({
+                            'background': '#f5c12d'
+                        })
+
+                    file.previewElement.appendChild(removeButtonForServer);
+                } else {
+                    /* Maybe display some more file information on your page */
+                    var removeButton = Dropzone.createElement("<button data-dz-remove " +
+                        "class='del_thumbnail btn btn-default btn-xs btn-block m-t-xxs' " +
+                        " style='cursor:pointer;color:#C5350A;'><span style='cursor:pointer;' class='fa fa-trash'></span></button>");
+                    removeButton.addEventListener("click", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        _this.removeFile(file);
+                    });
+                    file.previewElement.appendChild(removeButton);
+                }
+            });
     });//end
 
