@@ -39,7 +39,8 @@
             });
 
             //TODO://
-            var urlPath = 'http://sinmar-lb.com/php/items/';
+            //var urlPath = 'http://sinmar-lb.com/php/items/';
+            var urlPath = '../php/hardware/';
 
             ////////////////////////////////////////////////////
 

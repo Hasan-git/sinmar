@@ -66,48 +66,15 @@
 								<img src="http://placehold.it/1920x880/000.jpg"  alt=""
 								 data-bgposition="center center" data-kenburns="on" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="120" data-scaleend="140" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 
-								<!-- LAYER NR. 1 -->
-								<div class="tp-caption heading-1 white-text text-cap "
-									 data-x="center"
-									 data-y="center" data-voffset="-80"
-									 data-transform_in="y:-50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:-50px;opacity:0;s:300;"
-									  data-start="800"
-									>SINMAR Interior Design
-								</div>
 								<!-- LAYER NR. 2 -->
-								<div class="tp-caption heading-2 white-text"
+								<div class="tp-caption heading-2 white-text text-cap "
 									 data-x="center"
-									 data-y="center"
-									 data-transform_idle="o:1;"
-
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
+									 data-y="bottom"
+									 data-transform_in="y:80px;opacity:0;s:800;e:easeInOutCubic;"
+									 data-transform_out="y:80px;opacity:0;s:300;"
 									 data-start="1400"
-									>small change, big difference
+								><b style="background-color: rgba(0,0,0,0.4);" >SINMAR Interior Design</b>
 								</div>
-								<!-- LAYER NR. 3 -->
-								<div class="tp-caption btn-1"
-									 data-x="center"  data-hoffset="-85"
-									 data-y="center"  data-voffset="80"
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
-									 data-start="1600"
-									>
-									<a href="" class="ot-btn btn-main-color text-cap ">Our Projects</a>
-
-								</div>
-								<!-- LAYER NR. 3 -->
-								<div class="tp-caption btn-2"
-									 data-x="center"  data-hoffset="85"
-									 data-y="center"  data-voffset="80"
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
-									 data-start="1600"
-									>
-									<a href="" class="ot-btn btn-sub-color text-cap  ">Get a Quote</a>
-								</div>
-
 
 							</li>
 							<!-- SLIDE  -->
@@ -117,50 +84,15 @@
 								<img src="http://placehold.it/1920x959/000.jpg"  alt=""
 								 data-bgposition="center center" data-kenburns="on" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="120" data-scaleend="140" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 
-								<!-- LAYER NR. 1 -->
-								<div class="tp-caption heading-1 white-text text-cap "
-									 data-x="center"
-									 data-y="center" data-voffset="-80"
-									 data-transform_idle="o:1;"
-
-									 data-transform_in="y:-50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:-50px;opacity:0;s:300;"
-									  data-start="800"
-									>SINMAR Decoration
-								</div>
 								<!-- LAYER NR. 2 -->
-								<div class="tp-caption heading-2 white-text"
+								<div class="tp-caption heading-2 white-text text-cap "
 									 data-x="center"
-									 data-y="center"
-									 data-transform_idle="o:1;"
-
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
+									 data-y="bottom"
+									 data-transform_in="y:80px;opacity:0;s:800;e:easeInOutCubic;"
+									 data-transform_out="y:80px;opacity:0;s:300;"
 									 data-start="1400"
-									>small change, big difference
+								><b style="background-color: rgba(0,0,0,0.4);" >SINMAR Decoration</b>
 								</div>
-								<!-- LAYER NR. 3 -->
-								<div class="tp-caption btn-1"
-									 data-x="center"  data-hoffset="-85"
-									 data-y="center"  data-voffset="80"
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
-									 data-start="1600"
-									>
-									<a href="" class="ot-btn btn-main-color text-cap ">Our Projects</a>
-
-								</div>
-								<!-- LAYER NR. 3 -->
-								<div class="tp-caption btn-2"
-									 data-x="center"  data-hoffset="85"
-									 data-y="center"  data-voffset="80"
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
-									 data-start="1600"
-									>
-									<a href="" class="ot-btn btn-sub-color text-cap  ">Get a Quote</a>
-								</div>
-
 
 							</li>
 							<!-- SLIDE  -->
@@ -170,50 +102,15 @@
 								<img src="http://placehold.it/2200x1375/000.jpg"  alt=""
 								 data-bgposition="center center" data-kenburns="on" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="130" data-scaleend="150" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 
-								<!-- LAYER NR. 1 -->
-								<div class="tp-caption heading-1 white-text text-cap "
-									 data-x="center"
-									 data-y="center" data-voffset="-80"
-									 data-transform_idle="o:1;"
-
-									 data-transform_in="y:-50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:-50px;opacity:0;s:300;"
-									  data-start="800"
-									>SINMAR Contracting
-								</div>
 								<!-- LAYER NR. 2 -->
-								<div class="tp-caption heading-2 white-text"
+								<div class="tp-caption heading-2 white-text text-cap "
 									 data-x="center"
-									 data-y="center"
-									 data-transform_idle="o:1;"
-
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
+									 data-y="bottom"
+									 data-transform_in="y:80px;opacity:0;s:800;e:easeInOutCubic;"
+									 data-transform_out="y:80px;opacity:0;s:300;"
 									 data-start="1400"
-									>small change, big difference
+								><b style="background-color: rgba(0,0,0,0.4);" >SINMAR Contracting</b>
 								</div>
-								<!-- LAYER NR. 3 -->
-								<div class="tp-caption btn-1"
-									 data-x="center"  data-hoffset="-85"
-									 data-y="center"  data-voffset="80"
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
-									 data-start="1600"
-									>
-									<a href="" class="ot-btn btn-main-color text-cap ">Our Projects</a>
-
-								</div>
-								<!-- LAYER NR. 3 -->
-								<div class="tp-caption btn-2"
-									 data-x="center"  data-hoffset="85"
-									 data-y="center"  data-voffset="80"
-									 data-transform_in="y:50px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:50px;opacity:0;s:300;"
-									 data-start="1600"
-									>
-									<a href="" class="ot-btn btn-sub-color text-cap  ">Get a Quote</a>
-								</div>
-
 
 							</li>
 							</ul>
@@ -245,10 +142,7 @@
 											<img src="http://placehold.it/810x451/ccc.jpg" class="img-responsive" alt="Image">
 										</a>
 										<div class="text-box">
-											<h4 class="text-cap"><mark>Residential</mark> design</h4>
-											<p>
-												Write here Some difinition text about the service...
-											</p>
+											<h4 class="text-cap"><mark>Designing</mark></h4>
 										</div>
 
 									</div>
@@ -257,10 +151,7 @@
 									<div class="block-img-full">
 										<a class="img-block" href="#"><img src="http://placehold.it/810x451/ccc.jpg" class="img-responsive" alt="Image"></a>
 										<div class="text-box">
-											<h4 class="text-cap"><mark>Ecommercial</mark> design</h4>
-											<p>
-												Write here Some difinition text about the service...
-											</p>
+											<h4 class="text-cap"><mark>Contracting</mark></h4>
 										</div>
 
 									</div>
@@ -269,10 +160,7 @@
 									<div class="block-img-full">
 										<a class="img-block" href="#"><img src="http://placehold.it/810x451/ccc.jpg" class="img-responsive" alt="Image"></a>
 										<div class="text-box">
-											<h4 class="text-cap"><mark>Office</mark> design</h4>
-											<p>
-												Write here Some difinition text about the service...
-											</p>
+											<h4 class="text-cap"><mark>Home Appliances</mark></h4>
 										</div>
 
 									</div>
@@ -281,10 +169,7 @@
 									<div class="block-img-full">
 										<a class="img-block" href="#"><img src="http://placehold.it/810x451/ccc.jpg" class="img-responsive" alt="Image"></a>
 										<div class="text-box">
-											<h4 class="text-cap"><mark>Hospital</mark> design</h4>
-											<p>
-												Write here Some difinition text about the service...
-											</p>
+											<h4 class="text-cap"><mark>Kitchen Hardware</mark></h4>
 										</div>
 
 									</div>
@@ -452,7 +337,7 @@
 									<div class="circle-statis">
 										<span class="lnr lnr-pencil"></span>
 										<h6 class="text-cap">Experience Years</h6>
-										<span class="counter">25</span>
+										<span class="counter">21</span>
 									</div>
 
 								</div>
@@ -460,21 +345,21 @@
 									<div class="circle-statis">
 										<span class="lnr lnr-briefcase"></span>
 										<h6 class="text-cap">Projects</h6>
-										<span class="counter">120</span>
+										<span class="counter">81</span>
 									</div>
 								</div>
 								<div class="ourStatis-item-2">
 									<div class="circle-statis">
 										<span class="lnr lnr-smile"></span>
 										<h6 class="text-cap">Clients</h6>
-										<span class="counter">300</span>
+										<span class="counter">52</span>
 									</div>
 								</div>
 								<div class="ourStatis-item-2">
 									<div class="circle-statis">
 										<span class="lnr lnr-users"></span>
 										<h6 class="text-cap">Employees</h6>
-										<span class="counter">480</span>
+										<span class="counter">62</span>
 									</div>
 								</div>
 
@@ -485,82 +370,6 @@
 					</div>
 				</section>
 				<!-- End Our Statis couter up Parallax -->
-
-				<section class="padding bg-grey">
-					<div class="container">
-					<div class="row">
-						<div class="title-block">
-							<h2 class="title text-cap ">Our Partners</h2>
-							<div class="divider divider-1">
-								<svg class="svg-triangle-icon-container">
-								  <polygon class="svg-triangle-icon" points="6 11,12 0,0 0"></polygon>
-								</svg>
-							</div>
-						</div>
-						<!-- End Title -->
-						<div class="owl-partner-warp">
-							<div class="customNavigation">
-								<a class="btn prev-partners"><i class="fa fa-angle-left"></i></a>
-								<a class="btn next-partners"><i class="fa fa-angle-right"></i></a>
-							</div><!-- End owl button -->
-
-							<div id="owl-partners" class="owl-carousel owl-theme owl-partners clearfix">
-								<div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/96x95/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								<div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/163x94/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								 <div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/125x104/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								 <div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/154x109/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								 <div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/144x94/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								<div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/96x95/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								<div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/163x94/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								 <div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/125x104/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								 <div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/154x109/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-								 <div class="item">
-									<a href="#">
-									  <img src="http://placehold.it/144x94/ccc.jpg" class="img-responsive" alt="Image">
-									</a>
-								</div>
-							</div>
-					  </div><!-- End row partners -->
-					</div>
-					</div>
-				</section>
-				<!-- End Section Owl Partners -->
 
 				<?php include_once('includes/footer.php'); ?>
 			</div>
