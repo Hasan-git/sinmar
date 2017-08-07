@@ -13,14 +13,14 @@
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/elegant-font.css">
 	  	<!-- SCROLL BAR MOBILE MENU
-  		================================================== --> 
+  		================================================== -->
  		 <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
 		<!-- OWL CAROUSEL
            ================================================== -->
 		<link rel="stylesheet" href="css/owl.carousel.css">
 		<!-- Main Style -->
 		<link rel="stylesheet" href="style.css">
-		  
+
 		<!-- Favicons
 		  ================================================== -->
 	  	<link rel="shortcut icon" href="favicon.png">
@@ -49,7 +49,7 @@
 			<?php include_once('includes/header.php'); ?>
 			<!-- End  Header -->
 			<!-- End  Header -->
-	
+
 			<section>
 				<div class="sub-header sub-header-1 sub-header-portfolio-grid-1 fake-position">
 					<div class="sub-header-content">
@@ -87,16 +87,16 @@
 							<div class="row">
 								<div class="col-md-4">
 									<div class="pj-info">
-										<div><h5>Title:</h5>prdetailsTitle</div>
-										<div><h5>Location:</h5>	location</div>
-										<div><h5>Date:</h5>	projectDate</div>
-										<div><h5>Type:</h5>	prdetailsType</div>
-										<div><h5>Project:</h5>prdetailsName</div>
+										<div><h5>Title:</h5><span id="prdetailsTitle"></span></div>
+										<div><h5>Location:</h5>	<span id="location"></span></div>
+										<div><h5>Date:</h5>	<span id="projectDate"></span>projectDate</div>
+										<div><h5>Type:</h5>	<span id="prdetailsType"></span>prdetailsType</div>
+										<div><h5>Project:</h5><span id="prdetailsName"></span></div>
 									</div><!-- End Project Info -->
 								</div>
 								<div class="col-md-8">
 									<div class="pj-description">
-										<p>	description </p>
+										<p id="description">	description </p>
 									</div><!-- End Project Description -->
 								</div>
 								<div class="clearfix mgb45"></div>
@@ -110,48 +110,12 @@
 										<a class="btn next-detail-services"><i class="fa fa-angle-right"></i></a>
 									</div>
 									<div id="sync3" class="owl-carousel owl-detail-services clearfix">
-										<div class="item ">
-											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
-										</div>
-										<!-- end item -->
-										<div class="item ">
-											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
-										</div>
-										<!-- end item -->
-										<div class="item ">
-											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
-										</div>
-										<!-- end item -->
-										<div class="item ">
-											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
-										</div>
-										<!-- end item -->
-										<div class="item ">
-											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
-										</div>
-										<!-- end item -->
-										<div class="item ">
-											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
-										</div>
-										<!-- end item -->
-										<div class="item ">
-											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
-										</div>
-										<!-- end item -->
-										<div class="item ">
-											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
-										</div>
+
+
 									</div>
 									<!-- End Main Sync owl -->
 									<div id="sync4" class="owl-carousel thumb-service-slide">
-										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
-										<div class="item"> <img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
-										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
-										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
-										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
-										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
-										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
-										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+
 									</div>
 									<!-- End Navithumbnail Owl Sync -->
 								</div>
@@ -175,8 +139,8 @@
 			<?php include_once('includes/footer.php'); ?>
 		</div>
 		<!-- End page -->
-	     
-		<a id="to-the-top"><i class="fa fa-angle-up"></i></a> 
+
+		<a id="to-the-top"><i class="fa fa-angle-up"></i></a>
 		<!-- Back To Top -->
 	<!-- SCRIPT -->
     <script src="js/vendor/jquery.min.js"></script>
@@ -187,12 +151,19 @@
 		<!-- Initializing Owl Carousel
                  ================================================== -->
 		<script src="js/plugins/owl.carousel.js"></script>
-		<script src="js/plugins/custom-owl.js"></script>
+		<!--<script src="js/plugins/custom-owl.js"></script>-->
+		<script src="js/plugins/customized-owl.js"></script>
+
+ 		<script src="js/controllers/factory.js"></script>
+ 		<script src="js/controllers/projectDetails.js"></script>
+
+
+
 	 <!-- Mobile Menu
-    ================================================== --> 
-     <script src="js/plugins/jquery.mobile-menu.js"></script>  
+    ================================================== -->
+     <script src="js/plugins/jquery.mobile-menu.js"></script>
      <!-- PreLoad
-    ================================================== --> 
+    ================================================== -->
     <script type="text/javascript" src="js/plugins/royal_preloader.min.js"></script>
 	<script type="text/javascript">
 	(function($) { "use strict";
@@ -208,7 +179,7 @@
 	</script>
 
  	<!-- Global Js
-    ================================================== --> 
+    ================================================== -->
     <script src="js/plugins/custom.js"></script>
 	</body>
 </html>
