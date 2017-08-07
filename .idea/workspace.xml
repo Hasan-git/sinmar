@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57131798-9cda-4e2b-bac4-9c7459603ac8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/axispanel/assets/controllers/appliances.js" afterPath="$PROJECT_DIR$/app/axispanel/assets/controllers/appliances.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/axispanel/assets/controllers/brands.js" afterPath="$PROJECT_DIR$/app/axispanel/assets/controllers/brands.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/axispanel/assets/controllers/categories.js" afterPath="$PROJECT_DIR$/app/axispanel/assets/controllers/categories.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/axispanel/assets/controllers/hardware.js" afterPath="$PROJECT_DIR$/app/axispanel/assets/controllers/hardware.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/axispanel/assets/controllers/index.js" afterPath="$PROJECT_DIR$/app/axispanel/assets/controllers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/axispanel/assets/controllers/projectDetails.js" afterPath="$PROJECT_DIR$/app/axispanel/assets/controllers/projectDetails.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/axispanel/assets/controllers/projectTypes.js" afterPath="$PROJECT_DIR$/app/axispanel/assets/controllers/projectTypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.php" afterPath="$PROJECT_DIR$/app/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/prdetail.php" afterPath="$PROJECT_DIR$/app/prdetail.php" />
     </list>
     <ignored path="sinmar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +24,18 @@
     <favorites_list name="sinmar" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="prdetail.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/prdetail.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.7931457">
+              <caret line="163" column="43" selection-start-line="163" selection-start-column="43" selection-end-line="163" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,6 +57,7 @@
         <option value="$PROJECT_DIR$/app/axispanel/assets/controllers/index.js" />
         <option value="$PROJECT_DIR$/app/axispanel/assets/controllers/projectDetails.js" />
         <option value="$PROJECT_DIR$/app/axispanel/assets/controllers/projectTypes.js" />
+        <option value="$PROJECT_DIR$/app/prdetail.php" />
       </list>
     </option>
   </component>
@@ -95,6 +101,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -128,82 +135,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sinmar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sinmar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="axispanel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sinmar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sinmar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="axispanel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sinmar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sinmar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="axispanel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../baloo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../innodev" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -250,9 +190,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3872" height="2092" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12005348" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12326203" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -299,14 +239,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
-          <folding>
-            <marker date="1502097532775" expanded="true" signature="26426:26455" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="26470:26485" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="35526:35555" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="35607:35622" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="37174:37203" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="37218:37233" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -314,7 +246,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -322,12 +253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
-          <folding>
-            <marker date="1502098266824" expanded="true" signature="30529:30558" placeholder="..." />
-            <marker date="1502098266824" expanded="true" signature="30610:30625" placeholder="..." />
-            <marker date="1502098266824" expanded="true" signature="32558:32587" placeholder="..." />
-            <marker date="1502098266824" expanded="true" signature="32602:32617" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -335,7 +260,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -343,7 +267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -351,14 +274,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
-          <folding>
-            <marker date="1502097829600" expanded="true" signature="25973:26002" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="26017:26032" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="35042:35071" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="35123:35138" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="36690:36719" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="36734:36749" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -366,7 +281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="42" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -465,7 +379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -473,7 +386,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -481,7 +393,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -489,14 +400,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="746" column="48" selection-start-line="746" selection-start-column="48" selection-end-line="746" selection-end-column="48" />
-          <folding>
-            <marker date="1502097532775" expanded="true" signature="26426:26455" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="26470:26485" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="35526:35555" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="35607:35622" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="37174:37203" placeholder="..." />
-            <marker date="1502097532775" expanded="true" signature="37218:37233" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -504,7 +407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="238" column="41" selection-start-line="238" selection-start-column="41" selection-end-line="238" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -512,7 +414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="241" column="41" selection-start-line="241" selection-start-column="41" selection-end-line="241" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -520,14 +421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="750" column="48" selection-start-line="750" selection-start-column="48" selection-end-line="750" selection-end-column="48" />
-          <folding>
-            <marker date="1502097829600" expanded="true" signature="25973:26002" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="26017:26032" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="35042:35071" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="35123:35138" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="36690:36719" placeholder="..." />
-            <marker date="1502097829600" expanded="true" signature="36734:36749" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -535,7 +428,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="239" column="41" selection-start-line="239" selection-start-column="41" selection-end-line="239" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -543,7 +435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49286938">
           <caret line="235" column="41" selection-start-line="235" selection-start-column="41" selection-end-line="235" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -551,9 +442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="5.0526314">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1500981614678" expanded="true" signature="1404:1776" placeholder="INSERT INTO tblprojectdetails..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -561,9 +449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1502094570672" expanded="true" signature="1374:1496" placeholder="INSERT INTO tblprojectimages..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -571,9 +456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1502094570670" expanded="true" signature="144:238" placeholder="SELECT * FRO..tblprojectimages..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -581,9 +463,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1502094570674" expanded="true" signature="681:774" placeholder="INSERT INTO tblprojectimages..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -591,15 +470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.315789">
           <caret line="204" column="54" selection-start-line="204" selection-start-column="54" selection-end-line="204" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/prdetail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="65.68421">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -607,12 +477,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="8.173987">
           <caret line="558" column="37" selection-start-line="558" selection-start-column="37" selection-end-line="558" selection-end-column="37" />
-          <folding>
-            <marker date="1502098266824" expanded="true" signature="30529:30558" placeholder="..." />
-            <marker date="1502098266824" expanded="true" signature="30610:30625" placeholder="..." />
-            <marker date="1502098266824" expanded="true" signature="32558:32587" placeholder="..." />
-            <marker date="1502098266824" expanded="true" signature="32602:32617" placeholder="..." />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/prdetail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7931457">
+          <caret line="163" column="43" selection-start-line="163" selection-start-column="43" selection-end-line="163" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

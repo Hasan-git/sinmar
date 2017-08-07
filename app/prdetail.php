@@ -15,6 +15,9 @@
 	  	<!-- SCROLL BAR MOBILE MENU
   		================================================== --> 
  		 <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
+		<!-- OWL CAROUSEL
+           ================================================== -->
+		<link rel="stylesheet" href="css/owl.carousel.css">
 		<!-- Main Style -->
 		<link rel="stylesheet" href="style.css">
 		  
@@ -97,37 +100,69 @@
 									</div><!-- End Project Description -->
 								</div>
 								<div class="clearfix mgb45"></div>
-								<div class="col-md-12">
-									<div class="pj-img-demo">
-										<div class="col-md-6">
 
-											<!-- the before image -->
-											<img src="http://placehold.it/960x720/ccc.jpg" class="img-responsive" alt="Image">
-
+								<!-- slider images -->
+								<!-- slider images -->
+								<!-- slider images -->
+								<div class="slide-services">
+									<div class="customNavigation">
+										<a class="btn prev-detail-services"><i class="fa fa-angle-left"></i></a>
+										<a class="btn next-detail-services"><i class="fa fa-angle-right"></i></a>
+									</div>
+									<div id="sync3" class="owl-carousel owl-detail-services clearfix">
+										<div class="item ">
+											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
 										</div>
-										<div class="col-md-6">
-
-											<!-- the after image -->
-											<img src="http://placehold.it/960x720/ccc.jpg" class="img-responsive" alt="Image">
-
+										<!-- end item -->
+										<div class="item ">
+											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
 										</div>
-									</div><!-- End Project Description -->
+										<!-- end item -->
+										<div class="item ">
+											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
+										</div>
+										<!-- end item -->
+										<div class="item ">
+											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
+										</div>
+										<!-- end item -->
+										<div class="item ">
+											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
+										</div>
+										<!-- end item -->
+										<div class="item ">
+											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
+										</div>
+										<!-- end item -->
+										<div class="item ">
+											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
+										</div>
+										<!-- end item -->
+										<div class="item ">
+											<img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image">
+										</div>
+									</div>
+									<!-- End Main Sync owl -->
+									<div id="sync4" class="owl-carousel thumb-service-slide">
+										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+										<div class="item"> <img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+										<div class="item"><img src="http://placehold.it/850x478/ccc.jpg" class="img-responsive" alt="Image"></div>
+									</div>
+									<!-- End Navithumbnail Owl Sync -->
 								</div>
 
 							</div><!-- End Row -->
+							<!-- end slider images -->
+							<!-- end slider images -->
+							<!-- end slider images -->
+
 							<div class="clearfix mgb30"></div>
-							<div class="divider-line"></div>
-							<p class="arr-pj-container text-center">
 
-								<!-- to the Prev images of the project -->
-								<a href="#" class="prev-pj-arr text-cap"><i class="fa fa-angle-left" aria-hidden="true"></i> Prev</a>
-
-								<i class="fa fa-th" aria-hidden="true"></i>
-
-								<!-- to the next images of the project -->
-								<a href="#" class="next-pj-arr text-cap">Next <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
-
-							</p>
 							<div class="divider-line"></div>
 						</div>
 					</div>
@@ -149,7 +184,10 @@
     <script src="js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/plugins/wow.min.js"></script>
     <script type="text/javascript" src="js/plugins/skrollr.min.js"></script>
-
+		<!-- Initializing Owl Carousel
+                 ================================================== -->
+		<script src="js/plugins/owl.carousel.js"></script>
+		<script src="js/plugins/custom-owl.js"></script>
 	 <!-- Mobile Menu
     ================================================== --> 
      <script src="js/plugins/jquery.mobile-menu.js"></script>  
