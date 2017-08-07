@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once('../../axispanel/includes/connect.php');
 if(isset($_GET['projecttype'])){
 
@@ -9,7 +9,7 @@ $result = mysqli_query($conn, $sql);
 
 if ($result) {
 
-	if (mysqli_num_rows($result) > 0) { 
+	if (mysqli_num_rows($result) > 0) {
 
 		 while($row = mysqli_fetch_assoc($result)) {
 
@@ -50,7 +50,8 @@ if ($result) {
 			$response = json_encode($_record);
 			echo $response;
 		}
-
+			mysqli_free_result($result);
+			mysqli_close($conn);
     }else{
         header("HTTP/1.0 500 Internal Server Error");
     }
@@ -59,6 +60,5 @@ if ($result) {
     	header("HTTP/1.0 400 Bad Request");
     }
 
-mysqli_free_result($result);
-mysqli_close($conn);
-?> 
+
+?>

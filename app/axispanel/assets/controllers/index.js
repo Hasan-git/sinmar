@@ -26,7 +26,7 @@
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
                 }
-            //VALIDATION CONFIGURATION    
+            //VALIDATION CONFIGURATION
             var conf = $.formUtils.defaultConfig();
             conf.language = 'en';
             conf.modules =  'security, date';
@@ -42,13 +42,14 @@
             var urlPath = '../php/projects/';
 
             ////////////////////////////////////////////////////
-            
+
             ////////////////////////////////////////////////////
 
             //Get all projects
             $.ajax({
-                url: urlPath + 'get.php',
+                url: '../php/projects/get.php',
                 method:'GET',
+                cache : false,
                 dataType:'json',
                 success:function(data){
                     console.log(data)
@@ -71,7 +72,7 @@
                             {'data': 'projectName',
                              'render': function ( data, type, full, meta ) {
                                     return meta.row+1
-                                } 
+                                }
                             },
                             {'data':'projectName'},
                             {   'data':null,
@@ -96,10 +97,10 @@
                             { "bSortable": false, "aTargets": [ 0 ] }
                         ],
                         // "aaSorting": [[ 1, 'asc' ]]
-                            })   
+                            })
 
                 // Add Placeholder text to datatables filter bar
-                $('.dataTables_filter input').attr("placeholder", "Enter Terms...");                  
+                $('.dataTables_filter input').attr("placeholder", "Enter Terms...");
                 }
             })
 
@@ -114,11 +115,11 @@
                 event.stopPropagation();
                 $('#editProForm').find("input[type=text],input[type=file],select, textarea").val("")
                 $('#editmode').show(700);
-                
-                //var product = JSON.parse($(this).attr('project-id')) 
+
+                //var product = JSON.parse($(this).attr('project-id'))
                 var project = $(this).data().project;
                 var datatableRow = $(this).attr('data-row');
-                
+
                 //set datatable row in data-row attr to for saveEditPro(Save button) to have the access for datatable row
                 $('#editmode').find('#saveEditPro').attr("data-row",datatableRow)
 
@@ -126,7 +127,7 @@
                 $('#editmode').find('#proNameBox').html(project.projectName)
                 $('#editmode').find('#projectName').val(project.projectName)
                 $('#editmode').find('#projectId').val(project.projectId)
-           
+
             });
 
             // Edit project form submited
@@ -135,11 +136,12 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url: urlPath + 'update.php',
+                            cache : false,
+                            url: '../php/projects/update.php',
                             method:'POST',
                             data: $('#editProForm').serialize(),
-                            success:function(data){ 
-                            // Serialize the form to Json 
+                            success:function(data){
+                            // Serialize the form to Json
                             var localProject = $('#editProForm').serializeFormJSON()
 
                             //Get the datatable row from the button attr and emit changes
@@ -162,7 +164,7 @@
                                }
                             }
                     });
-                    
+
                    }
 
             });
@@ -180,28 +182,29 @@
                 $('#newProForm').hide(700);
             });
 
-                
+
 
 
             //CREATE NEW PROJECT IN PROCESS
             $('#saveNewPro').click(function(){
-                
+
                    if( !$('#newform').isValid(conf.language, conf, true) ) {
                     // displayErrors( errors );
                    } else {
                    // The form is valid
                     $.ajax({
-                        url: urlPath + 'post.php',
+                        url: '../php/projects/post.php',
                         method:'POST',
+                        cache : false,
                         data: $('#newform').serialize(),
-                        success:function(data){ 
+                        success:function(data){
 
                             var _newProduct = JSON.parse(data)
 
                             var myDataTable= $('#datatable3').DataTable();
-                            
+
                             myDataTable.row.add(_newProduct  ).draw( false )
-                            
+
                             $('#newProForm').hide(700);
                             toastr.success('Project updated successfully', 'Notification', {timeOut: 5000})
                         } ,
@@ -212,12 +215,12 @@
                                     toastr.error("Something went wrong", 'Notification', {timeOut: 5000})
                                }
                         }
-                    });    
+                    });
 
 
                    }
-               
-                
+
+
 
             });
 
@@ -227,23 +230,24 @@
             var thisProject = $(this);
             var projectId = $(this).attr('project-id');
             var inst = $('[data-remodal-id=modal]').remodal();
-                    
+
             inst.open();
 
             $(document).on('confirmation', '.remodal', function () {
-                
+
                 $.ajax({
-                        url: urlPath + 'delete.php',
+                        url: '../php/projects/delete.php',
                         method:'POST',
+                        cache : false,
                         data: {projectId:projectId},
-                        success:function(data){ 
+                        success:function(data){
 
                         //get the dt instance
                         var myDataTable= $('#datatable3').DataTable();
 
                         // get / set dt row
                         var row = myDataTable.row($(thisProject).parents('tr')).remove().draw();;
-                        
+
                         inst.close();
                         toastr.success('Project deleted successfully', 'Notification', {timeOut: 5000})
                         } ,

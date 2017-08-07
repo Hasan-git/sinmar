@@ -4,7 +4,7 @@
 
 1. Top bar / .topbar
 2. Header / header
-3. Navigation / .navi-level-1 
+3. Navigation / .navi-level-1
 4. Blog / .lastest-blog-container
 5. Sidebar / .main-sidebar
 6. Search / .modal-search
@@ -5154,7 +5154,7 @@ figure .ot-btn {
   -webkit-clip-path: polygon(0px 220px, 256px 220px, 128px 0px);
 }
 .tri2 {
-  clip-path: url("images/Svg/tri2.svg#tri2");  
+  clip-path: url("images/Svg/tri2.svg#tri2");
   -webkit-clip-path: polygon(0px 256px, 220px 128px, 0px 0px);
   transition: all 0.8s ease-in-out;
   left: 95px;
@@ -8029,7 +8029,7 @@ ul.sidebar-style-2 li a {
 .product-info .price {
   color: #222222;
 }
-.product-info .price span.old-price {
+.product-info .price span.old-price,.single-product-detail span.old-price {
   color: #666;
   text-decoration: line-through;
   margin-right: 7px;
@@ -10916,4 +10916,149 @@ ul.list-link-footer li:hover:before {
   .footer-v1 nav ul li a::after {
     display: none;
   }
+}
+
+
+
+.e-widget {
+    z-index: 100;
+}
+.e-widget {
+    position: absolute;
+    top: 86px;
+    left: -60px;
+}
+.pb-left-column #image-block .new-box, .pb-left-column #image-block .sale-box {
+    z-index: 50002;
+}
+
+.sale-box{
+  right: 290px!important;
+}
+.new-box, .sale-box, .price-percent {
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    /*position: absolute;
+    top: 86px;
+    right: 345px;*/
+    z-index: 5;
+    min-width: 200px;
+    float: left;
+    margin-right: -159px;
+}
+.new-box span {
+    background: #275988;
+}
+.new-box span, .sale-box span, .price-percent span {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    display: block;
+    float: left;
+    height: 28px;
+    min-width: 50px;
+    padding: 3px 9px 0;
+    position: relative;
+    letter-spacing: 1px;
+}
+.new-box span:before, .sale-box span:before, .price-percent span:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 11px 0 0;
+    border-color: #292929 transparent transparent transparent;
+    position: absolute;
+    left: auto;
+    top: 0;
+    right: -10px;
+}
+.new-box span:before, .sale-box span:before, .price-percent span:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 11px 0 0;
+    border-color: #292929 transparent transparent transparent;
+    position: absolute;
+    left: auto;
+    top: 0;
+    right: -10px;
+}
+.new-box span:after, .sale-box span:after, .price-percent span:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 0 11px;
+    border-color: transparent transparent transparent #292929;
+    position: absolute;
+    right: -10px;
+    top: 13px;
+}
+.new-box span, .sale-box span, .price-percent span {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    display: block;
+    float: left;
+    height: 28px;
+    min-width: 50px;
+    padding: 3px 9px 0;
+    position: relative;
+    letter-spacing: 1px;
+}
+.sale-label {
+    background: #d92928;
+}
+.sale-box span:before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 11px 0 0;
+    border-color: #d92928 transparent transparent transparent;
+}
+.new-box span:after, .sale-box span:after, .price-percent span:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 0 11px;
+    border-color: transparent transparent transparent #292929;
+    position: absolute;
+    right: -10px;
+    top: 13px;
+}
+.sale-box span:after {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 0 11px;
+    border-color: transparent transparent transparent #d92928;
+}
+.sale-box span:before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 11px 0 0;
+    border-color: #d92928 transparent transparent transparent;
+}
+.new-box span:before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 11px 0 0;
+    border-color: #275988 transparent transparent transparent;
+}
+.new-box span:after {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 0 11px;
+    border-color: transparent transparent transparent #275988;
 }

@@ -21,26 +21,26 @@
 		<!-- REVOLUTION NAVIGATION STYLES -->
 		<link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
 		<!-- OWL CAROUSEL
-	  	================================================== --> 
+	  	================================================== -->
 	  	<link rel="stylesheet" href="css/owl.carousel.css">
 	  	<!-- SCROLL BAR MOBILE MENU
   		================================================== -->
 	 	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
 		<!-- Main Style -->
-		<link rel="stylesheet" href="style.css">		  
+		<link rel="stylesheet" href="style.css">
 		<!-- Favicons
 		  ================================================== -->
 	  	<link rel="shortcut icon" href="favicon.png">
 	</head>
 	<body>
-		
+
       <?php include_once('includes/mobilemenu.php') ?>
 
 		<div class="modal fade modal-search" id="myModal" tabindex="-1" role="dialog"   aria-hidden="true">
 		  	<button type="button" class="close" data-dismiss="modal">×</button>
 		  	<div style="top: 50%;" class="modal-dialog myModal-search">
 	            <!-- Modal content-->
-	            <div class="modal-content">                                        
+	            <div class="modal-content">
 	                <div class="modal-body">
 	                    <form role="search" method="get" class="search-form"  >
 	                        <input class="search-field" placeholder="Search here..." value="" title="" type="search">
@@ -288,21 +288,22 @@
 					<!-- End Title -->
 					<div class="lastest-project-warp clearfix">
 
-						<div class="clearfix projectContainer">
+						<div class="clearfix projectContainer current_projects">
 
 							<!-- projects goes here -->
 							<!-- projects goes here -->
 							<!-- projects goes here -->
-							<div class="element-item Hospital"><!-- **Hospital** class is the example of project type exchange it with **prdetailsType** -->
+							<div class="element-item Hospital project_article">
+							<!-- **Hospital** class is the example of project type exchange it with **prdetailsType** -->
 								<!-- priject Image -->
-								<img src="http://placehold.it/960x720/ccc.jpg" class="img-responsive" alt="Image">
+								<img id="image" src="http://placehold.it/960x720/ccc.jpg" class="img-responsive" alt="Image">
 
 								<div class="project-info">
-									<a href="prdetail.php?id=id"><!-- link the project with its id -->
-										<h4 class="title-project text-cap">prdetailsTitle</h4>
+									<a id="projectLink" href="prdetail.php?id=id"><!-- link the project with its id -->
+										<h4 class="title-project text-cap" id="prdetailsTitle"></h4>
 									</a>
 									<!-- link the project with its id -->
-									<a href="prdetail.php?id=id" class="cateProject">	prdetailsName / prdetailsType</a>
+									<a id="projectLink" href="prdetail.php?id=id" class="cateProject">	<span id="prdetailsName"></span> / <span id="prdetailsType"></span></a>
 								</div>
 							</div>
 							<!-- End Projects -->
@@ -323,7 +324,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="title-block">
-								<h2 class="title text-cap white-text">Our Statistics</h2>
+								<h2 class="title text-cap ">Our Statistics</h2>
 								<div class="divider divider-2">
 									<svg class="svg-triangle-icon-container">
 										<polygon class="svg-triangle-icon" points="6 11,12 0,0 0"></polygon>
@@ -374,8 +375,8 @@
 			</div>
 		</div>
 		<!-- End page -->
-		 
-		<a id="to-the-top"><i class="fa fa-angle-up"></i></a> 
+
+		<a id="to-the-top"><i class="fa fa-angle-up"></i></a>
 		<!-- Back To Top -->
 		<!-- SCRIPT -->
 	    <script src="js/vendor/jquery.min.js"></script>
@@ -384,14 +385,14 @@
 	 	<script src="js/plugins/wow.min.js"></script>
 	    <script src="js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
         <script type="text/javascript" src="js/plugins/skrollr.min.js"></script>
-			
+
 		<!-- REVOLUTION JS FILES -->
 		<script type="text/javascript" src="revolution/js/jquery.themepunch.tools.min.js"></script>
 		<script type="text/javascript" src="revolution/js/jquery.themepunch.revolution.min.js"></script>
 
-		<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
-			(Load Extensions only on Local File Systems !  
-			The following part can be removed on Server for On Demand Loading) -->	
+		<!-- SLIDER REVOLUTION 5.0 EXTENSIONS
+			(Load Extensions only on Local File Systems !
+			The following part can be removed on Server for On Demand Loading) -->
 		<script type="text/javascript" src="revolution/js/extensions/revolution.extension.actions.min.js"></script>
 		<script type="text/javascript" src="revolution/js/extensions/revolution.extension.carousel.min.js"></script>
 		<script type="text/javascript" src="revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
@@ -400,16 +401,16 @@
 		<script type="text/javascript" src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
 		<script type="text/javascript" src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
 		<script type="text/javascript" src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-		<script type="text/javascript" src="revolution/js/extensions/revolution.extension.video.min.js"></script>	
+		<script type="text/javascript" src="revolution/js/extensions/revolution.extension.video.min.js"></script>
 		<!-- Intializing Slider-->
 		<script type="text/javascript" src="js/plugins/slider.js"></script>
 
 		 <!-- Mobile Menu
-	    ================================================== --> 
-	     <script src="js/plugins/jquery.mobile-menu.js"></script>  
+	    ================================================== -->
+	     <script src="js/plugins/jquery.mobile-menu.js"></script>
 
 		  <!-- Initializing the isotope
-	    ================================================== --> 
+	    ================================================== -->
 	    <script src="js/plugins/isotope.pkgd.min.js"></script>
 	    <script src="js/plugins/custom-isotope.js"></script>
 	    <!-- Initializing Owl Carousel
@@ -419,8 +420,11 @@
         <!-- ================================================== -->
         <script src="js/plugins/jquery.counterup.min.js"></script>
 
+        <script src="js/controllers/index.js"></script>
+
+
 	    <!-- PreLoad
-	    ================================================== --> 
+	    ================================================== -->
 	    <script type="text/javascript" src="js/plugins/royal_preloader.min.js"></script>
 		<script type="text/javascript">
 		(function($) { "use strict";
@@ -437,22 +441,22 @@
 
         <!-- jquery for json -->
         <script>
-            var obj, dbParam, xmlhttp, myObj, x, txt = "";
-            obj = { "table":"tblprojectdetails", "limit":8 };
-            dbParam = JSON.stringify(obj);
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    myObj = JSON.parse(this.responseText);
-                    for (x in myObj) {
-                        title += myObj[x].prdetailsTitle;
-                    }
-                    document.getElementById("demo").innerHTML = txt;
-                }
-            };
-            xmlhttp.open("POST", "php/projects.php", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("x=" + dbParam);
+            // var obj, dbParam, xmlhttp, myObj, x, txt = "";
+            // obj = { "table":"tblprojectdetails", "limit":8 };
+            // dbParam = JSON.stringify(obj);
+            // xmlhttp = new XMLHttpRequest();
+            // xmlhttp.onreadystatechange = function() {
+            //     if (this.readyState == 4 && this.status == 200) {
+            //         myObj = JSON.parse(this.responseText);
+            //         for (x in myObj) {
+            //             title += myObj[x].prdetailsTitle;
+            //         }
+            //         document.getElementById("demo").innerHTML = txt;
+            //     }
+            // };
+            // xmlhttp.open("POST", "php/projects.php", true);
+            // xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            // xmlhttp.send("x=" + dbParam);
         </script>
 
     <!-- Global Js

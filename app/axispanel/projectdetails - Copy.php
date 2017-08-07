@@ -45,9 +45,6 @@
         <!-- Favicon -->
         <link rel="shortcut icon" href="assets/img/favicon.ico">
 
-        <!-- dropzone -->
-        <link rel="stylesheet" type="text/css" href="vendor/plugins/dropzone.v2/dropzone.css">
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -105,7 +102,7 @@
                                 <div class="col-sm-6">
                                     <label class="control-label">Detail Type*</label>
                                     <select data-validation="required" name="prdetailsType" id="prdetailsType" class="select2-single form-control" required>
-
+                                        
                                     </select>
                                 </div>
                                 <div class="col-sm-6">
@@ -253,7 +250,7 @@
         <div class="clearfix"></div>
 
         <div class="row j-hide" id="imagesContainer">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
                 <div class="panel">
                     <div class="panel-heading">
                         <span class="panel-title">Additional Images for <b class="text-info" id='iboxname'></b></span>
@@ -261,25 +258,15 @@
 
                     <div class="panel-body">
 
-                    <form class="form-horizontal" name="" id="" method="POST" action="" enctype="multipart/form-data" role="form">
+                    <!-- SHOW IMAGES -->
+                    <button type="button" style="margin:10px;" class="btn btn-info" data-toggle="collapse" data-target="#images-viewer">Images Panel</button>
+                    
+                    <!-- IMAGES CONTAINER -->
+                    <div class="image-viewer collapse" id="images-viewer">
 
-                        <div class="col-xs-12 text-center" style="padding: 30px 15px;">
-                            <div class="col-xs-12">
-                                <label>Drag your additional Images here</label>
-                            </div>
-                            <div class="col-xs-12">
-                                <div id="dropzoneEdit" class="dropzone" style="min-height: 200px;"></div>
-                            </div>
-                        </div>
-                        <div class="clearfix"><br/></div>
-                            <div align="right" class="">
-                                <button type="button" class="btn btn-default " role="button" id="cancelImagesForm"> Cancel </button>
-                                <button type="button" name="submitedit" data-row='' class="btn btn-primary" id="saveImagesForm">Save changes</button>
+                    </div>
 
-                                <input type="hidden" name="projectTitle" id="projectTitle" value="" >
-                            </div>
-                    </form>
-                        <!-- <form class="form-horizontal" name="imagesform" id="imagesform" method="POST" action="" enctype="multipart/form-data" role="form">
+                        <form class="form-horizontal" name="imagesform" id="imagesform" method="POST" action="" enctype="multipart/form-data" role="form">
 
                             <div class="clearfix"><br/></div>
                             <div class="form-group admin-form">
@@ -311,7 +298,7 @@
 
                                 <input type="hidden" name="projectTitle" id="projectTitle" value="" >
                             </div>
-                        </form> -->
+                        </form>
                     </div>
                 </div>
 
@@ -325,15 +312,15 @@
             </div>
             <div class="col-xs-4"></div>
             <div class="col-xs-5 input-group" style="padding-left:50px;">
-                <span class="input-group-addon" id="basic-addon1">Switch Project</span>
+                <span class="input-group-addon" id="basic-addon1">Switch Project</span>            
                 <select id="projectTypeCtrl" class="form-control">
                 </select>
             </div>
             <div class="col-xs-1"></div>
         </div>
 
-
-
+        
+    
     <div class="panel panel-visible">
         <div class="panel-heading">
             <div class="panel-title hidden-xs" ><span class="glyphicon glyphicon-tags"></span><b class="text-primary" id="PDName" ></b> Project Details</div>
@@ -365,7 +352,7 @@
                     </tr>
                     </tfoot>
                     <tbody>
-
+                 
                     </tbody>
                 </table>
 
@@ -423,7 +410,6 @@
     <script src="vendor/plugins/toaster/toastr.min.js"></script>
     <script src="vendor/plugins/modal/remodal.js"></script>
     <script src="vendor/plugins/jqueryFormValidator/form-validator/jquery.form-validator.js"></script>
-    <script type="text/javascript" src="vendor/plugins/dropzone/dropzone.min.js"></script>
 
     <!-- Theme Javascript -->
     <script src="assets/js/utility/utility.js"></script>
