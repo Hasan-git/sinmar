@@ -40,6 +40,7 @@
 
             //TODO://
             var urlPath = 'http://sinmar-lb.com/php/categories/';
+            //var urlPath = '../php/categories/';
 
             ////////////////////////////////////////////////////
 
@@ -47,7 +48,7 @@
 
             //Get all categories
             $.ajax({
-                url: '../php/categories/get.php',
+                url:  urlPath + 'get.php',
                 method:'GET',
                 cache : false,
                 dataType:'json',
@@ -138,7 +139,7 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url: '../php/categories/update.php',
+                            url:  urlPath + 'update.php',
                             method:'POST',
                             cache : false,
                             data: $('#editForm').serialize(),
@@ -195,7 +196,7 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url: '../php/categories/post.php',
+                        url:  urlPath + 'post.php',
                         method:'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -238,7 +239,7 @@
             $(document).on('confirmation', '.remodal', function () {
 
                 $.ajax({
-                        url: '../php/categories/delete.php',
+                        url:  urlPath + 'delete.php',
                         method:'POST',
                         cache : false,
                         //TODO:??

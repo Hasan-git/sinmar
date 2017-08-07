@@ -39,14 +39,15 @@
     });
 
     var urlPath   = 'http://sinmar-lb.com/php/projectdetails/';
-    var typeParam = getUrlParameter('projecttype');
+        //var urlPath   = '../php/projectdetails/';
+        var typeParam = getUrlParameter('projecttype');
 
     $(".select2-single").select2();
 
     // var maxImagesSize = 300000, maxImagesWidth = 850, maxImagesHeight = 478;
-    var maxImagesSize = 900000,
-        maxImagesWidth = 8850,
-        maxImagesHeight = 8478;
+    var maxImagesSize = 300000,
+        maxImagesWidth = 1080,
+        maxImagesHeight = 720;
 
     ////////////////////////////////////////////////////
 
@@ -163,7 +164,7 @@
     $('#projectTypeCtrl').change(function(){
         var prTypeName = $('#projectTypeCtrl').val()
         $.ajax({
-                url: '../php/projectdetails/get.php?projecttype='+prTypeName,
+                url:  urlPath + 'get.php?projecttype='+prTypeName,
                 method:'GET',
                 dataType:'json',
                 cache : false,
@@ -197,7 +198,7 @@
 
     //Get all records
     $.ajax({
-        url: '../php/projectdetails/get.php?projecttype='+projectTypeName,
+        url:  urlPath + 'get.php?projecttype='+projectTypeName,
         method:'GET',
         dataType:'json',
         cache : false,
@@ -308,7 +309,7 @@
         var imageId = $(this).attr('record-id');
 
         $.ajax({
-                url: '../php/projectimages/delete.php',
+                url:  urlPath + '../projectimages/delete.php',
                 method:'POST',
                 cache : false,
                 data:{projectImageId:imageId},
@@ -335,7 +336,7 @@
 
              var fd = new FormData(document.getElementById("imagesform"));
             $.ajax({
-                    url: '../php/projectimages/upload.php',
+                    url:  urlPath + '../projectimages/upload.php',
                     method:'POST',
                     cache : false,
                     data: fd,
@@ -413,7 +414,7 @@
 
                 var fd = new FormData(document.getElementById("editForm"));
                 $.ajax({
-                    url: '../php/projectdetails/update.php',
+                    url:  urlPath + 'update.php',
                     method:'POST',
                     data: fd,
                     processData: false, // tell jQuery not to process the data
@@ -503,7 +504,7 @@
 
 
             $.ajax({
-                url: '../php/projectdetails/post.php',
+                url:  urlPath + 'post.php',
                 method:'POST',
                 data: fd,
                 processData: false, // tell jQuery not to process the data
@@ -555,7 +556,7 @@
         $(document).on('confirmation', '.remodal', function () {
 
             $.ajax({
-                    url: '../php/projectdetails/delete.php',
+                    url:  urlPath + 'delete.php',
                     method:'POST',
                     data: {prdetailsId:RecordId},
                     success:function(data){

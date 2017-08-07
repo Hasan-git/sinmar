@@ -1,6 +1,7 @@
 <?php
 include_once('../../axispanel/includes/connect.php');
 
+
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -8,6 +9,7 @@ if(isset($_GET['id'])) {
     $result = mysqli_query($conn, $sql);
 }
 elseif(isset($_GET['itemType'])){
+
 
 	$itemType = $_GET['itemType'];
 

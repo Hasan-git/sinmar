@@ -11,7 +11,7 @@
                 <li><a href="index.php"><span>Home</span></a></li>
                 <li><a href="about.php"><span>About </span></a></li>
                 <li><a href="projects.php"><span>Projects</span></a></li>
-                <li class="has-sub"><a href="shop.php"><span>Shop</span></a>
+                <li class="has-sub"><a><span>Shop</span></a>
                     <ul class="navi-level-2">
                         <li><a href="shop.php?type=Appliances">Home Appliances</a></li>
                         <li><a href="shop.php?type=Hardware">Hardware</a></li>

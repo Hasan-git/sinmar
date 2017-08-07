@@ -93,6 +93,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
     </div>
     <!-- End Modal Search-->
@@ -130,6 +131,7 @@
                                             <div class="input-group">
                                                 <input class="form-control" id="exampleInputAmount" placeholder="SEARCH HERE" type="text">
                                                 <button type="submit" class="btn-search-home-6 text-cap">
+
 														<span aria-hidden="true" class="icon_search"></span>
 													</button>
                                             </div>
@@ -190,6 +192,7 @@
                                                 </form>
                                                 <p class="woocommerce-result-count">Showing 1 &ndash; 10 of 23 results</p>
                                         </div> <!-- End Finance Sorting -->
+
                                 <div class="row">
 
                                     <!-- products goes here -->
@@ -392,3 +395,4 @@
 </body>
 
 </html>
+

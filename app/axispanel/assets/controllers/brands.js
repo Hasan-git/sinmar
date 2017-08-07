@@ -39,6 +39,7 @@
             });
 
             var urlPath = 'http://sinmar-lb.com/php/brands/';
+            // var urlPath = '../php/brands/';
 
             ////////////////////////////////////////////////////
 
@@ -46,7 +47,7 @@
 
             //Get all brands
             $.ajax({
-                url: '../php/brands/get.php',
+                url:  urlPath + 'get.php',
                 method:'GET',
                 dataType:'json',
                 cache : false,
@@ -135,7 +136,7 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url: '../php/brands/update.php',
+                            url:  urlPath + 'update.php',
                             method:'POST',
                             cache : false,
                             data: $('#editForm').serialize(),
@@ -192,7 +193,7 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url: '../php/brands/post.php',
+                        url:  urlPath + 'post.php',
                         method:'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -235,7 +236,7 @@
             $(document).on('confirmation', '.remodal', function () {
 
                 $.ajax({
-                        url: '../php/brands/delete.php',
+                        url:  urlPath + 'delete.php',
                         method:'POST',
                         cache : false,
                         data: {brandId:RecordId},
