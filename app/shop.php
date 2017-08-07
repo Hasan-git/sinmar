@@ -102,7 +102,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
 
-                        <p class="">Free shipping for order over $100 </p>
+                        <p class="">Free shipping for order over $500 </p>
 
                     </div>
                 </div>
