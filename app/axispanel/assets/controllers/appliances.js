@@ -40,8 +40,8 @@
 
             //TODO://
 
-            // var urlPath = 'http://sinmar-lb.com/php/items/';
-            var urlPath = '../php/';
+            var urlPath = 'http://sinmar-lb.com/php/items/';
+            // var urlPath = '../php/';
 
             ////////////////////////////////////////////////////
 
@@ -161,7 +161,7 @@
 
             //Get all categories
             $.ajax({
-                url: '../php/items/get.php?itemType=Appliances',
+                url: urlPath + 'get.php?itemType=Appliances',
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -283,7 +283,7 @@
                     // displayErrors( errors );
                 } else {
                     $.ajax({
-                        url: '../php/items/update.php',
+                        url:  urlPath + 'update.php',
                         cache : false,
                         method: 'POST',
                         data: $('#editForm').serialize(),
@@ -350,7 +350,7 @@
                 } else {
                     // The form is valid
                     $.ajax({
-                        url: '../php/items/post.php',
+                        url:  urlPath + 'post.php',
                         method: 'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -394,7 +394,7 @@
                 $(document).on('confirmation', '.remodal', function() {
 
                     $.ajax({
-                        url: '../php/items/delete.php',
+                        url:  urlPath + 'delete.php',
                         method: 'POST',
                         cache : false,
                         //TODO:??
@@ -744,7 +744,7 @@
                         e.stopPropagation();
                         $.ajax({
                             cache : false,
-                            url:  '../php/itemimages/delete.php',
+                            url:   urlPath + '..itemimages/delete.php',
                             method: 'POST',
                             data: {
                                 ImageId: file.imageId

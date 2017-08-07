@@ -39,8 +39,8 @@
             });
 
             //TODO://
-            //var urlPath = 'http://sinmar-lb.com/php/items/';
-            var urlPath = '../php/hardware/';
+            var urlPath = 'http://sinmar-lb.com/php/items/';
+            //var urlPath = '../php/hardware/';
 
             ////////////////////////////////////////////////////
 
@@ -160,7 +160,7 @@
 
             //Get all hardware
             $.ajax({
-                url: '../php/hardware/get.php?itemType=Hardware',
+                url:  urlPath + 'get.php?itemType=Hardware',
                 method: 'GET',
                 dataType: 'json',
                 cache : false,
@@ -283,7 +283,7 @@
                     // displayErrors( errors );
                 } else {
                     $.ajax({
-                        url: '../php/hardware/update.php',
+                        url:  urlPath + 'update.php',
                         method: 'POST',
                         cache : false,
                         data: $('#editForm').serialize(),
@@ -351,7 +351,7 @@
                 } else {
                     // The form is valid
                     $.ajax({
-                        url: '../php/hardware/post.php',
+                        url:  urlPath + 'post.php',
                         method: 'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -400,7 +400,7 @@
                 $(document).on('confirmation', '.remodal', function() {
 
                     $.ajax({
-                        url: '../php/hardware/delete.php',
+                        url:  urlPath + 'delete.php',
                         method: 'POST',
                         cache : false,
                         //TODO:??
@@ -748,7 +748,7 @@
                         e.stopPropagation();
                         $.ajax({
                             cache : false,
-                            url: '../php/itemimages/delete.php',
+                            url:  urlPath + '../itemimages/delete.php',
                             method: 'POST',
                             data: {
                                 ImageId: file.imageId

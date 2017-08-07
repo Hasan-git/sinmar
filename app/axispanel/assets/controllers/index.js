@@ -38,8 +38,9 @@
                 modules:    conf.modules
             });
 
-            //var urlPath = 'http://sinmar-lb.com/php/projects/';
-            var urlPath = '../php/projects/';
+            //TOD
+            var urlPath = 'http://sinmar-lb.com/php/projects/';
+            //var urlPath = '../php/projects/';
 
             ////////////////////////////////////////////////////
 
@@ -47,7 +48,7 @@
 
             //Get all projects
             $.ajax({
-                url: '../php/projects/get.php',
+                url:  urlPath + 'get.php',
                 method:'GET',
                 cache : false,
                 dataType:'json',
@@ -137,7 +138,7 @@
                    } else {
                         $.ajax({
                             cache : false,
-                            url: '../php/projects/update.php',
+                            url:  urlPath + 'update.php',
                             method:'POST',
                             data: $('#editProForm').serialize(),
                             success:function(data){
@@ -193,7 +194,7 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url: '../php/projects/post.php',
+                        url:  urlPath + 'post.php',
                         method:'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -236,7 +237,7 @@
             $(document).on('confirmation', '.remodal', function () {
 
                 $.ajax({
-                        url: '../php/projects/delete.php',
+                        url:  urlPath + 'delete.php',
                         method:'POST',
                         cache : false,
                         data: {projectId:projectId},

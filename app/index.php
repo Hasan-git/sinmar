@@ -182,99 +182,6 @@
 				</section>
 				<!-- End Section What we do -->
 
-				<section class="padding clearfix bg-dark">
-					<div class="chooseus-full-width">
-						<div class="title-block">
-							<h2 class="title text-cap white-text">Why Choose Us ?</h2>
-							<div class="divider divider-2">
-								<svg class="svg-triangle-icon-container">
-								  <polygon class="svg-triangle-icon" points="6 11,12 0,0 0"></polygon>
-								</svg>
-							</div>
-						</div>
-							<!-- End Title -->
-							<div class="chooseus-container text-center">
-								<div class="chooseus-item mgb0">
-
-									<div class="chooseus-canvas-item">
-										   <svg class="svg-hexagon">
-												<polygon class="hexagon" points="285 100,285 250,155 325,25 250,25 100,155 25"></polygon>
-											</svg>
-											<!-- End Hexagon -->
-											<svg class="svg-triangle-dotted"  >
-											  <polygon class="triangle-div" points="2 220,254 220,128 0"></polygon>
-											</svg>
-											<!-- End Triangle Dotted -->
-											<div class="triangle-img-warp tri">
-												<img src="http://placehold.it/512x440/ccc.jpg" class="img-responsive" alt="Image">
-											</div>
-									</div>
-									<h4 class="text-cap white-text">Creative</h4>
-								</div>
-
-								<!-- End -->
-
-								<div class="chooseus-item mgb0">
-
-									<div class="chooseus-canvas-item ">
-										   <svg class="svg-hexagon">
-												<polygon class="hexagon" points="285 100,285 250,155 325,25 250,25 100,155 25"></polygon>
-											</svg>
-											<!-- End Hexagon -->
-											<svg class="svg-triangle-dotted svg-tri-2"  >
-											  <polygon class="triangle-div" points="2 220,254 220,128 0"></polygon>
-											</svg>
-											<!-- End Triangle Dotted -->
-											<div class="triangle-img-warp tri2">
-												<img src="http://placehold.it/512x440/ccc.jpg" class="img-responsive" alt="Image">
-											</div>
-									</div>
-									<h4 class="text-cap white-text">Know - How</h4>
-								</div>
-
-								<!-- End -->
-
-								<div class="chooseus-item mgb0">
-
-									<div class="chooseus-canvas-item ">
-										   <svg class="svg-hexagon">
-												<polygon class="hexagon" points="285 100,285 250,155 325,25 250,25 100,155 25"></polygon>
-											</svg>
-											<!-- End Hexagon -->
-											<svg class="svg-triangle-dotted svg-tri-3"  >
-											  <polygon class="triangle-div" points="2 220,254 220,128 0"></polygon>
-											</svg>
-											<!-- End Triangle Dotted -->
-											<div class="triangle-img-warp tri3">
-												<img src="http://placehold.it/512x440/ccc.jpg" class="img-responsive" alt="Image">
-											</div>
-									</div>
-									<h4 class="text-cap white-text">Devoted</h4>
-								</div>
-
-								 <!-- End -->
-
-								<div class="chooseus-item mgb0">
-
-									<div class="chooseus-canvas-item ">
-										   <svg class="svg-hexagon">
-												<polygon class="hexagon" points="285 100,285 250,155 325,25 250,25 100,155 25"></polygon>
-											</svg>
-											<!-- End Hexagon -->
-											<svg class="svg-triangle-dotted svg-tri-4"  >
-											  <polygon class="triangle-div" points="2 220,254 220,128 0"></polygon>
-											</svg>
-											<!-- End Triangle Dotted -->
-											<div class="triangle-img-warp tri4">
-												<img src="http://placehold.it/512x440/ccc.jpg" class="img-responsive" alt="Image">
-											</div>
-									</div>
-									<h4 class="text-cap white-text">Caring</h4>
-								</div>
-						</div>
-					</div>
-				</section>
-				<!-- End Section Why Choose Us -->
 
 				<section class="padding bg-grey padding-bottom-0">
 					<div class="title-block">
@@ -324,7 +231,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="title-block">
-								<h2 class="title text-cap ">Our Statistics</h2>
+								<h2 class="title text-warning text-cap ">Our Statistics</h2>
 								<div class="divider divider-2">
 									<svg class="svg-triangle-icon-container">
 										<polygon class="svg-triangle-icon" points="6 11,12 0,0 0"></polygon>
