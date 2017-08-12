@@ -142,7 +142,7 @@ jQuery(document).ready(function() {
                     var $a = $('<div class="element-item ' + value.prdetailsType + '">'+
                                 '<img src="axispanel/projectImages/' + value.projectImage + '" class="img-responsive" alt="Image">'+
                                 '<div class="project-info">'+
-                                   '<a href="prdetail.php?id=' + value.Id + '">'+
+                                   '<a href="prdetail.php?id=' + value.prdetailsId + '">'+
                                       '<h4 class="title-project text-cap">' + value.prdetailsTitle + '</h4>'+
                                    '</a>'+
 

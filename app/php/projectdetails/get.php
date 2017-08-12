@@ -1,11 +1,22 @@
 <?php
 include_once('../../axispanel/includes/connect.php');
-if(isset($_GET['projecttype'])){
 
-$projecttype = $_GET['projecttype'];
+	if(isset($_GET['projecttype'])){
 
-$sql = "SELECT * FROM tblprojectdetails WHERE prdetailsType = '$projecttype' ORDER BY prdetailsId DESC";
-$result = mysqli_query($conn, $sql);
+		$projecttype = $_GET['projecttype'];
+		$sql = "SELECT * FROM tblprojectdetails WHERE prdetailsType = '$projecttype' ORDER BY prdetailsId DESC";
+		$result = mysqli_query($conn, $sql);
+	}
+	else if (isset($_GET['prdetailsId'])){
+
+		$prdetailsId = $_GET['prdetailsId'];
+		$sql = "SELECT * FROM tblprojectdetails WHERE prdetailsId = '$prdetailsId' ORDER BY prdetailsId DESC";
+		$result = mysqli_query($conn, $sql);
+
+	}else{
+	    	header("HTTP/1.0 400 Bad Request");
+  }
+
 
 if ($result) {
 
@@ -38,6 +49,20 @@ if ($result) {
 				'new' => $new,
 				'projectImage' => $projectImage,
 				 );
+
+				if(isset($prdetailsTitle)){
+            $imagesQuery = "SELECT * FROM tblprojectimages WHERE projectTitle = '$prdetailsTitle' ";
+            $imagesResult = mysqli_query($conn, $imagesQuery);
+            if (mysqli_num_rows($imagesResult) > 0) {
+                while($imagesRow = mysqli_fetch_assoc($imagesResult)) {
+                    $images[] = array(
+                        'projectImageId' => $imagesRow['projectImageId'],
+                        'imageAfter' => $imagesRow['imageAfter'],
+                        );
+                }
+                $_record['data'][0]['images'] = $images;
+            }
+        }
 		  }
 
 		  $response = json_encode($_record);
@@ -56,9 +81,7 @@ if ($result) {
         header("HTTP/1.0 500 Internal Server Error");
     }
 
-    }else{
-    	header("HTTP/1.0 400 Bad Request");
-    }
+
 
 
 ?>
