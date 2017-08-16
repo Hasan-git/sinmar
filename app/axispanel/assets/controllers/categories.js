@@ -48,7 +48,7 @@
 
             //Get all categories
             $.ajax({
-                url:  urlPath + 'get.php',
+                url:  '../php/categories/get.php',
                 method:'GET',
                 cache : false,
                 dataType:'json',
@@ -139,7 +139,7 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url:  urlPath + 'update.php',
+                            url:  '../php/categories/update.php',
                             method:'POST',
                             cache : false,
                             data: $('#editForm').serialize(),
@@ -196,7 +196,7 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url:  urlPath + 'post.php',
+                        url:  '../php/categories/post.php',
                         method:'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -239,7 +239,7 @@
             $(document).on('confirmation', '.remodal', function () {
 
                 $.ajax({
-                        url:  urlPath + 'delete.php',
+                        url:  '../php/categories/delete.php',
                         method:'POST',
                         cache : false,
                         //TODO:??

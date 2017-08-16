@@ -47,7 +47,7 @@
 
             //Get all brands
             $.ajax({
-                url:  urlPath + 'get.php',
+                url:  '../php/brands/get.php',
                 method:'GET',
                 dataType:'json',
                 cache : false,
@@ -136,7 +136,7 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url:  urlPath + 'update.php',
+                            url:  '../php/brands/update.php',
                             method:'POST',
                             cache : false,
                             data: $('#editForm').serialize(),
@@ -193,7 +193,7 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url:  urlPath + 'post.php',
+                        url:  '../php/brands/post.php',
                         method:'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -236,7 +236,7 @@
             $(document).on('confirmation', '.remodal', function () {
 
                 $.ajax({
-                        url:  urlPath + 'delete.php',
+                        url:  '../php/brands/delete.php',
                         method:'POST',
                         cache : false,
                         data: {brandId:RecordId},

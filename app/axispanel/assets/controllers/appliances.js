@@ -161,7 +161,7 @@
 
             //Get all categories
             $.ajax({
-                url: urlPath + 'get.php?itemType=Appliances',
+                url: '../php/items/get.php?itemType=Appliances',
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -283,7 +283,7 @@
                     // displayErrors( errors );
                 } else {
                     $.ajax({
-                        url:  urlPath + 'update.php',
+                        url:  '../php/items/update.php',
                         cache : false,
                         method: 'POST',
                         data: $('#editForm').serialize(),
@@ -350,7 +350,7 @@
                 } else {
                     // The form is valid
                     $.ajax({
-                        url:  urlPath + 'post.php',
+                        url: '../php/items/post.php',
                         method: 'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -394,7 +394,7 @@
                 $(document).on('confirmation', '.remodal', function() {
 
                     $.ajax({
-                        url:  urlPath + 'delete.php',
+                        url:  '../php/items/delete.php',
                         method: 'POST',
                         cache : false,
                         //TODO:??
@@ -744,7 +744,7 @@
                         e.stopPropagation();
                         $.ajax({
                             cache : false,
-                            url:   urlPath + '..itemimages/delete.php',
+                            url:   '../php/itemimages/delete.php',
                             method: 'POST',
                             data: {
                                 ImageId: file.imageId
