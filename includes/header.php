@@ -1,5 +1,5 @@
-<header id="mainmenu" class="header-v2 header-fix"
-        data-0="padding:10px;padding-left:40px;padding-right:40px;background:rgba(0,0,0,0)" data-251="padding:10px; padding-left:40px;padding-right:40px;top:0;background:rgba(0,0,0,1)">
+<header id="mainmenu" class="header-v2 header-fix" style="background-color: rgba(0,0,0,0.6);"
+        data-0="padding:10px;padding-left:40px;padding-right:40px;" data-251="padding:10px; padding-left:40px;padding-right:40px;top:0;">
     <div class="left-header">
         <ul class="navi-level-1">
             <li><a href="index.php" class="logo">

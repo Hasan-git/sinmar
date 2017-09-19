@@ -63,8 +63,26 @@
 							<li data-transition="fade" data-masterspeed="1000"  >
 
 								<!-- MAIN IMAGE -->
-								<img src="http://placehold.it/1920x880/000.jpg"  alt=""
-								 data-bgposition="center center" data-kenburns="on" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="120" data-scaleend="140" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<img src="images/slider/1.jpg"  alt=""
+								 data-bgposition="center center" data-kenburns="off" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="120" data-scaleend="140" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+
+								<!-- LAYER NR. 2 -->
+								<div class="tp-caption heading-2 white-text text-cap "
+									 data-x="center"
+									 data-y="bottom"
+									 data-transform_in="y:80px;opacity:0;s:800;e:easeInOutCubic;"
+									 data-transform_out="y:80px;opacity:0;s:300;"
+									 data-start="1400"
+								><b style="background-color: rgba(0,0,0,0.4);" >SINMAR Contracting</b>
+								</div>
+
+							</li>
+							<!-- SLIDE  -->
+							<li data-transition="fade" data-masterspeed="1000"  >
+
+								<!-- MAIN IMAGE -->
+								<img src="images/slider/2.jpg"  alt=""
+								 data-bgposition="center center" data-kenburns="off" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="120" data-scaleend="140" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 
 								<!-- LAYER NR. 2 -->
 								<div class="tp-caption heading-2 white-text text-cap "
@@ -81,8 +99,8 @@
 							<li data-transition="fade" data-masterspeed="1000"  >
 
 								<!-- MAIN IMAGE -->
-								<img src="http://placehold.it/1920x959/000.jpg"  alt=""
-								 data-bgposition="center center" data-kenburns="on" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="120" data-scaleend="140" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<img src="images/slider/3.jpg"  alt=""
+								 data-bgposition="center center" data-kenburns="off" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="130" data-scaleend="150" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 
 								<!-- LAYER NR. 2 -->
 								<div class="tp-caption heading-2 white-text text-cap "
@@ -92,24 +110,6 @@
 									 data-transform_out="y:80px;opacity:0;s:300;"
 									 data-start="1400"
 								><b style="background-color: rgba(0,0,0,0.4);" >SINMAR Decoration</b>
-								</div>
-
-							</li>
-							<!-- SLIDE  -->
-							<li data-transition="fade" data-masterspeed="1000"  >
-
-								<!-- MAIN IMAGE -->
-								<img src="http://placehold.it/2200x1375/000.jpg"  alt=""
-								 data-bgposition="center center" data-kenburns="on" data-duration="20000" data-ease="Linear.easeNone" data-scalestart="130" data-scaleend="150" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-
-								<!-- LAYER NR. 2 -->
-								<div class="tp-caption heading-2 white-text text-cap "
-									 data-x="center"
-									 data-y="bottom"
-									 data-transform_in="y:80px;opacity:0;s:800;e:easeInOutCubic;"
-									 data-transform_out="y:80px;opacity:0;s:300;"
-									 data-start="1400"
-								><b style="background-color: rgba(0,0,0,0.4);" >SINMAR Contracting</b>
 								</div>
 
 							</li>
@@ -139,7 +139,7 @@
 								<div class="col-sm-6 col-md-3 wow fadeInRight" data-wow-delay=".25s">
 									<div class="block-img-full">
 										<a class="img-block" href="#">
-											<img src="http://placehold.it/810x451/ccc.jpg" class="img-responsive" alt="Image">
+											<img src="images/whatwedo/1.jpg" class="img-responsive" alt="Image">
 										</a>
 										<div class="text-box">
 											<h4 class="text-cap"><mark>Designing</mark></h4>
@@ -149,7 +149,7 @@
 								</div>
 								<div class="col-sm-6 col-md-3 wow fadeInRight" data-wow-delay=".5s">
 									<div class="block-img-full">
-										<a class="img-block" href="#"><img src="http://placehold.it/810x451/ccc.jpg" class="img-responsive" alt="Image"></a>
+										<a class="img-block" href="#"><img src="images/whatwedo/3.jpg" class="img-responsive" alt="Image"></a>
 										<div class="text-box">
 											<h4 class="text-cap"><mark>Contracting</mark></h4>
 										</div>
@@ -158,7 +158,7 @@
 								</div>
 								<div class="col-sm-6 col-md-3 wow fadeInRight" data-wow-delay=".75s">
 									<div class="block-img-full">
-										<a class="img-block" href="#"><img src="http://placehold.it/810x451/ccc.jpg" class="img-responsive" alt="Image"></a>
+										<a class="img-block" href="#"><img src="images/whatwedo/4.jpg" class="img-responsive" alt="Image"></a>
 										<div class="text-box">
 											<h4 class="text-cap"><mark>Home Appliances</mark></h4>
 										</div>
@@ -167,7 +167,7 @@
 								</div>
 								<div class="col-sm-6 col-md-3 wow fadeInRight" data-wow-delay="1s">
 									<div class="block-img-full">
-										<a class="img-block" href="#"><img src="http://placehold.it/810x451/ccc.jpg" class="img-responsive" alt="Image"></a>
+										<a class="img-block" href="#"><img src="images/whatwedo/2.jpg" class="img-responsive" alt="Image"></a>
 										<div class="text-box">
 											<h4 class="text-cap"><mark>Kitchen Hardware</mark></h4>
 										</div>
