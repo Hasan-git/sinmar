@@ -123,7 +123,7 @@
                             </div>
                         </div>
                         <!-- End Left Header -->
-                        <a href="" class="logo"><img src="http://placehold.it/119x29/ccc.jpg" class="img-responsive" alt="Image"></a>
+                        <a href="" class="logo"><img src="images/logo/logo.png" class="img-responsive" alt="Image"></a>
                         <div class="right-header">
                             <ul class="navi-level-1">
                                 <li>
@@ -220,9 +220,10 @@
 
                                                 <div class="product-info">
                                                     <a id="itemLink" href="shopsingle.php?id=id">
-                                                        <h3 class="text-cap">
-                                                            <span id="itemName"></span> <br/> <span id="brandName"></span>
-                                                        </h3>
+                                                        <b class="text-cap">
+                                                            <span id="itemName"></span> </b>
+                                                            <br/> <span id="brandName"></span>
+                                                        
                                                     </a>
                                                     <p class="price">
                                                         <!-- if offer == 1 display offer price and del price -->
