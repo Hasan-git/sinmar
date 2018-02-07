@@ -244,7 +244,7 @@
 									<div class="circle-statis">
 										<span class="lnr lnr-pencil"></span>
 										<h6 class="text-cap">Experience Years</h6>
-										<span class="counter">21</span>
+										<span class="counter" id="xpYearsCtr"></span>
 									</div>
 
 								</div>
@@ -252,21 +252,21 @@
 									<div class="circle-statis">
 										<span class="lnr lnr-briefcase"></span>
 										<h6 class="text-cap">Projects</h6>
-										<span class="counter">81</span>
+										<span class="counter" id="projectsCtr"></span>
 									</div>
 								</div>
 								<div class="ourStatis-item-2">
 									<div class="circle-statis">
 										<span class="lnr lnr-smile"></span>
 										<h6 class="text-cap">Clients</h6>
-										<span class="counter">52</span>
+										<span class="counter" id="ClientsCtr"></span>
 									</div>
 								</div>
 								<div class="ourStatis-item-2">
 									<div class="circle-statis">
 										<span class="lnr lnr-users"></span>
 										<h6 class="text-cap">Employees</h6>
-										<span class="counter">62</span>
+										<span class="counter" id="empolyeesCtr"></span>
 									</div>
 								</div>
 

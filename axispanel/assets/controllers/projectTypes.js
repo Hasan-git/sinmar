@@ -39,14 +39,14 @@
             });
 
             //var urlPath = '../php/projecttype/';
-            var urlPath = 'http://sinmar-lb.com/php/projecttype/';
+            //var urlPath = 'http://sinmar-lb.com/php/projecttype/';
 
 
             ////////////////////////////////////////////////////
 
             //Get all projects
             $.ajax({
-                url:  urlPath + 'get.php',
+                url:  '../php/projecttype/get.php',
                 method:'GET',
                 dataType:'json',
                 success:function(data){
@@ -133,7 +133,7 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url:  urlPath + 'update.php',
+                            url:  '../php/projecttype/update.php',
                             method:'POST',
                             cache : false,
                             data: $('#editProForm').serialize(),
@@ -190,7 +190,7 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url:  urlPath + 'post.php',
+                        url:  '../php/projecttype/post.php',
                         method:'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -233,7 +233,7 @@
             $(document).on('confirmation', '.remodal', function () {
 
                 $.ajax({
-                        url:  urlPath + 'delete.php',
+                        url:  '../php/projecttype/delete.php',
                         method:'POST',
                         cache : false,
                         data: {projectTypeId:projectTypeId},

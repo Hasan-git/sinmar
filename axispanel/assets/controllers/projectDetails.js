@@ -38,7 +38,7 @@
         modules:    conf.modules
     });
 
-    var urlPath   = 'http://sinmar-lb.com/php/projectdetails/';
+    //var urlPath   = 'http://sinmar-lb.com/php/projectdetails/';
         //var urlPath   = '../php/projectdetails/';
         var typeParam = getUrlParameter('projecttype');
 
@@ -164,7 +164,7 @@
     $('#projectTypeCtrl').change(function(){
         var prTypeName = $('#projectTypeCtrl').val()
         $.ajax({
-                url:  urlPath + 'get.php?projecttype='+prTypeName,
+                url: '../php/projectdetails/get.php?projecttype='+prTypeName,
                 method:'GET',
                 dataType:'json',
                 cache : false,
@@ -198,7 +198,7 @@
 
     //Get all records
     $.ajax({
-        url:  urlPath + 'get.php?projecttype='+projectTypeName,
+        url:  '../php/projectdetails/get.php?projecttype='+projectTypeName,
         method:'GET',
         dataType:'json',
         cache : false,
@@ -309,7 +309,7 @@
         var imageId = $(this).attr('record-id');
 
         $.ajax({
-                url:  urlPath + '../projectimages/delete.php',
+                url:  '../php/projectimages/delete.php',
                 method:'POST',
                 cache : false,
                 data:{projectImageId:imageId},
@@ -336,7 +336,7 @@
 
              var fd = new FormData(document.getElementById("imagesform"));
             $.ajax({
-                    url:  urlPath + '../projectimages/upload.php',
+                    url:  '../php/projectimages/upload.php',
                     method:'POST',
                     cache : false,
                     data: fd,
@@ -414,7 +414,7 @@
 
                 var fd = new FormData(document.getElementById("editForm"));
                 $.ajax({
-                    url:  urlPath + 'update.php',
+                    url:  '../php/projectdetails/update.php',
                     method:'POST',
                     data: fd,
                     processData: false, // tell jQuery not to process the data
@@ -504,7 +504,7 @@
 
 
             $.ajax({
-                url:  urlPath + 'post.php',
+                url:  '../php/projectdetails/post.php',
                 method:'POST',
                 data: fd,
                 processData: false, // tell jQuery not to process the data
@@ -556,7 +556,7 @@
         $(document).on('confirmation', '.remodal', function () {
 
             $.ajax({
-                    url:  urlPath + 'delete.php',
+                    url:  '../php/projectdetails/delete.php',
                     method:'POST',
                     data: {prdetailsId:RecordId},
                     success:function(data){

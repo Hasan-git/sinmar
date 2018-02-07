@@ -89,14 +89,14 @@
 									<div class="pj-info">
 										<div><h5>Title:</h5><span id="prdetailsTitle"></span></div>
 										<div><h5>Location:</h5>	<span id="location"></span></div>
-										<div><h5>Date:</h5>	<span id="projectDate"></span>projectDate</div>
-										<div><h5>Type:</h5>	<span id="prdetailsType"></span>prdetailsType</div>
+										<div><h5>Date:</h5>	<span id="projectDate"></span></div>
+										<div><h5>Type:</h5>	<span id="prdetailsType"></span></div>
 										<div><h5>Project:</h5><span id="prdetailsName"></span></div>
 									</div><!-- End Project Info -->
 								</div>
 								<div class="col-md-8">
 									<div class="pj-description">
-										<p id="description">	description </p>
+										<p id="description"></p>
 									</div><!-- End Project Description -->
 								</div>
 								<div class="clearfix mgb45"></div>

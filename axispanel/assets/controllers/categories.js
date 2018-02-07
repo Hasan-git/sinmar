@@ -39,7 +39,7 @@
             });
 
             //TODO://
-            var urlPath = 'http://sinmar-lb.com/php/categories/';
+            //var urlPath = 'http://sinmar-lb.com/php/categories/';
             //var urlPath = '../php/categories/';
 
             ////////////////////////////////////////////////////
@@ -48,9 +48,8 @@
 
             //Get all categories
             $.ajax({
-                url:  urlPath + 'get.php',
+                url:  '../php/categories/get.php',
                 method:'GET',
-                cache : false,
                 dataType:'json',
                 success:function(data){
                     //Datatable Initializer
@@ -139,9 +138,8 @@
                     // displayErrors( errors );
                    } else {
                         $.ajax({
-                            url:  urlPath + 'update.php',
+                            url:  '../php/categories/update.php',
                             method:'POST',
-                            cache : false,
                             data: $('#editForm').serialize(),
                             success:function(data){
                             // Serialize the form to Json
@@ -196,9 +194,8 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url:  urlPath + 'post.php',
+                        url:  '../php/categories/post.php',
                         method:'POST',
-                        cache : false,
                         data: $('#newform').serialize(),
                         success:function(data){
 
@@ -239,9 +236,8 @@
             $(document).on('confirmation', '.remodal', function () {
 
                 $.ajax({
-                        url:  urlPath + 'delete.php',
+                        url:  '../php/categories/delete.php',
                         method:'POST',
-                        cache : false,
                         //TODO:??
                         data: {categoryId:RecordId},
                         success:function(data){

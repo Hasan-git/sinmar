@@ -2,15 +2,11 @@ jQuery(document).ready(function() {
     "use strict";
 
 
-
-
-
     var fullRecords;
     var fullRecords2;
     var records, _data,types;
 
     //////////////////////////////////////
-
 
     if ($.urlParam('type')) {
         _data = {

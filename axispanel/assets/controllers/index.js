@@ -39,7 +39,7 @@
             });
 
             //TOD
-            var urlPath = 'http://sinmar-lb.com/php/projects/';
+            //var urlPath = 'http://sinmar-lb.com/php/projects/';
             //var urlPath = '../php/projects/';
 
             ////////////////////////////////////////////////////
@@ -48,7 +48,7 @@
 
             //Get all projects
             $.ajax({
-                url:  urlPath + 'get.php',
+                url:  '../php/projects/get.php',
                 method:'GET',
                 cache : false,
                 dataType:'json',
@@ -138,7 +138,7 @@
                    } else {
                         $.ajax({
                             cache : false,
-                            url:  urlPath + 'update.php',
+                            url:  '../php/projects/update.php',
                             method:'POST',
                             data: $('#editProForm').serialize(),
                             success:function(data){
@@ -194,7 +194,7 @@
                    } else {
                    // The form is valid
                     $.ajax({
-                        url:  urlPath + 'post.php',
+                        url:  '../php/projects/post.php',
                         method:'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -237,7 +237,7 @@
             $(document).on('confirmation', '.remodal', function () {
 
                 $.ajax({
-                        url:  urlPath + 'delete.php',
+                        url:  '../php/projects/delete.php',
                         method:'POST',
                         cache : false,
                         data: {projectId:projectId},

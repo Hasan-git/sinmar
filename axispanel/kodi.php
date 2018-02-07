@@ -110,11 +110,11 @@
                                     <!-- <span class="text-danger-darker">Fields with * are required</span> -->
                                     <form class="form-horizontal" name="newform" id="newform" method="POST" action="" enctype="multipart/form-data" role="form">
 
-                                        <input type="hidden" name="itemType" id="itemType" value="Appliances">   
+                                        <input type="hidden" name="itemType" id="itemType" value="kodi">   
                                         <div class="form-group admin-form">
 
                                             <div class="col-sm-2">
-                                                <h2>&ensp;Appliances</h2>
+                                                <h2>&ensp;Kodi</h2>
                                             </div>
 
                                             <div class="col-sm-4">
@@ -234,11 +234,11 @@
                                 <div class="panel-body">
                                     <span class="text-danger-darker">Fields with * are required</span>
                                     <form class="form-horizontal" name="editform" id="editForm" method="POST" action="" enctype="multipart/form-data" role="form">
-                                        <input type="hidden" name="itemType" id="itemType"  value="Appliances"> 
+                                        <input type="hidden" name="itemType" id="itemType"  value="kodi"> 
                                         <div class="form-group admin-form">
 
                                             <div class="col-sm-2">
-                                                <h2>&ensp;Appliances</h2>
+                                                <h2>&ensp;Kodi</h2>
                                             </div>
 
                                             <div class="col-sm-4">
@@ -342,11 +342,11 @@
                     </div>
                     <div class="clearfix"></div>
 
-                    <button class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"><i class="fa fa-plus"></i> Add New Appliances Item </button>
+                    <button class="btn btn-default btn-gradient" scrollto="#newFormContainer" id="openNewRecordForm"><i class="fa fa-plus"></i> Add New Kodi Item </button>
 
                     <div class="panel panel-visible">
                         <div class="panel-heading">
-                            <div class="panel-title hidden-xs"><span class="glyphicon glyphicon-tags"></span><b class="text-primary">Appliances</b> Item Details</div>
+                            <div class="panel-title hidden-xs"><span class="glyphicon glyphicon-tags"></span><b class="text-primary">Kodi</b> Item Details</div>
                         </div>
 
                         <div class="panel-body pn">
@@ -442,7 +442,7 @@
     <script src="assets/js/utility/utility.js"></script>
     <script src="assets/js/demo/demo.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/controllers/appliances.js"></script>
+    <script src="assets/controllers/kodi.js"></script>
 
 
     </body>

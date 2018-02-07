@@ -46,6 +46,25 @@ jQuery(document).ready(function() {
         }
     }
 
+    $.ajax({
+                url: 'php/home/get.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+
+                    var records = data.data;
+
+                    $('#xpYearsCtr').html(records.xpYears);
+                    $('#projectsCtr').html(records.projects);
+                    $('#ClientsCtr').html(records.clients);
+                    $('#empolyeesCtr').html(records.employees);
+                },
+                error: function(error) {
+                    // toastr.error(err.responseText, 'Notification', {timeOut: 5000})
+                }
+            });
+
+
     actions.initProjects()
 
 });

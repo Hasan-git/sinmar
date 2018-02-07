@@ -158,7 +158,7 @@
 
             //Get all categories
             $.ajax({
-                url: '../php/items/get.php?itemType=Appliances',
+                url: '../php/items/get.php?itemType=kodi',
                 method: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -425,7 +425,6 @@
                 $(document).on('cancellation', '.remodal', function() {
                     inst.close();
                 });
-
             });
 
 

@@ -37,6 +37,13 @@
             </a>
           </li>
 
+          <li <?php if(isset($pagename) && $pagename=='home') { echo 'class="active"'; } ?>>
+            <a href="home.php" >
+              <span class="glyphicon glyphicon-th"></span>
+              <span class="sidebar-title">Home</span>
+            </a>
+          </li>
+
 		  <!-- sidebar bullets -->
           <li class="sidebar-label pt20">Projects</li>
           <li <?php if(isset($pagename) && $pagename=='Project Details') { echo 'class="active"'; } ?>>
@@ -71,6 +78,9 @@
               </li>
               <li>
                 <a href="hardware.php?type=Hardware"> Hardware </a>
+              </li>
+              <li>
+                <a href="kodi.php?type=kodi"> Kodi </a>
               </li>
             </ul>
           </li>

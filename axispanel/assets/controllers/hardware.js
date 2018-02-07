@@ -39,7 +39,7 @@
             });
 
             //TODO://
-            var urlPath = 'http://sinmar-lb.com/php/items/';
+            //var urlPath = 'http://sinmar-lb.com/php/items/';
             //var urlPath = '../php/hardware/';
 
             ////////////////////////////////////////////////////
@@ -160,7 +160,7 @@
 
             //Get all hardware
             $.ajax({
-                url:  urlPath + 'get.php?itemType=Hardware',
+                url:  '../php/items/get.php?itemType=Hardware',
                 method: 'GET',
                 dataType: 'json',
                 cache : false,
@@ -283,7 +283,7 @@
                     // displayErrors( errors );
                 } else {
                     $.ajax({
-                        url:  urlPath + 'update.php',
+                        url:  '../php/items/update.php',
                         method: 'POST',
                         cache : false,
                         data: $('#editForm').serialize(),
@@ -351,7 +351,7 @@
                 } else {
                     // The form is valid
                     $.ajax({
-                        url:  urlPath + 'post.php',
+                        url:  '../php/items/post.php',
                         method: 'POST',
                         cache : false,
                         data: $('#newform').serialize(),
@@ -400,7 +400,7 @@
                 $(document).on('confirmation', '.remodal', function() {
 
                     $.ajax({
-                        url:  urlPath + 'delete.php',
+                        url:  '../php/items/delete.php',
                         method: 'POST',
                         cache : false,
                         //TODO:??
@@ -748,7 +748,7 @@
                         e.stopPropagation();
                         $.ajax({
                             cache : false,
-                            url:  urlPath + '../itemimages/delete.php',
+                            url:  '../php/itemimages/delete.php',
                             method: 'POST',
                             data: {
                                 ImageId: file.imageId

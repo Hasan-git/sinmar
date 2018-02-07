@@ -33,6 +33,7 @@
                 <ul class="navi-level-2">
                     <li><a href="shop.php?type=Appliances">Home Appliances</a></li>
                     <li><a href="shop.php?type=Hardware">Hardware</a></li>
+                    <li><a href="shop.php?type=kodi">Kodi Market</a></li>
                 </ul>
             </li>
             <li><a href="contact.php"><span>Contact Us</span></a></li>
